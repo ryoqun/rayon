@@ -23,7 +23,7 @@ rayon-core = { version = "1.9.99", path = "rayon-core" }
 
 [dependencies.crossbeam-deque]
 git = "https://github.com/ryoqun/crossbeam"
-rev = "79b156783b8a9616fc54183e936e153e1781c200"
+rev = "7b65899259ad6fc0270ea2adaee98b42741eb94a"
 
 # This is a public dependency!
 [dependencies.either]
