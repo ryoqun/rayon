@@ -183,7 +183,7 @@ impl<T> JobResult<T> {
 }
 
 /// Indirect queue to provide FIFO job priority.
-pub(super) struct JobFifo {
+pub(super) struct JobFifo<C: CustomCollector> {
     inner: Injector<JobRef, DefaultCollector>,
 }
 
