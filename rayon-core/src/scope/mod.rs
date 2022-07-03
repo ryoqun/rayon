@@ -567,13 +567,10 @@ impl<'scope, C: CustomCollector> Scope<'scope, C> {
 
 impl<'scope, C: CustomCollector> ScopeFifo<'scope, C> {
     fn new(owner: Option<&WorkerThread<C>>, registry: Option<&Arc<Registry<C>>>) -> Self {
-        /*
         let base = ScopeBase::new(owner, registry);
         let num_threads = base.registry.num_threads();
         let fifos = (0..num_threads).map(|_| JobFifo::new()).collect();
         ScopeFifo { base, fifos }
-        */
-        panic!();
     }
 
     /// Spawns a job into the fork-join scope `self`. This job will
