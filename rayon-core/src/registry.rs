@@ -864,7 +864,7 @@ unsafe fn main_loop(worker: Worker<JobRef, DefaultCollector>, registry: Arc<Regi
 /// `op` completes and return its return value. If `op` panics, that
 /// panic will be propagated as well.  The second argument indicates
 /// `true` if injection was performed, `false` if executed directly.
-pub(super) fn in_worker<OP, R, C>(op: OP) -> R
+pub(super) fn in_worker<OP, R, C: CustomCollector>(op: OP) -> R
 where
     OP: FnOnce(&WorkerThread<C>, bool) -> R + Send,
     R: Send,
