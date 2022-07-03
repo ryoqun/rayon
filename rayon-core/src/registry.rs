@@ -799,7 +799,7 @@ impl WorkerThread {
 
 /// ////////////////////////////////////////////////////////////////////////
 
-unsafe fn main_loop(worker: Worker<JobRef>, registry: Arc<Registry>, index: usize) {
+unsafe fn main_loop(worker: Worker<JobRef, DefaultCollector>, registry: Arc<Registry>, index: usize) {
     let worker_thread = &WorkerThread {
         worker,
         fifo: JobFifo::new(),
