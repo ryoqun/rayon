@@ -489,8 +489,8 @@ where
     panic!();
 }
 
-impl<'scope> Scope<'scope> {
-    fn new(owner: Option<&WorkerThread<DefaultCollector>>, registry: Option<&Arc<Registry>>) -> Self {
+impl<'scope, C: CustomCollector> Scope<'scope, C> {
+    fn new(owner: Option<&WorkerThread<DefaultCollector>>, registry: Option<&Arc<Registry<C>>>) -> Self {
         let base = ScopeBase::new(owner, registry);
         Scope { base }
     }
