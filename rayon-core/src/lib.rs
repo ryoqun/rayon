@@ -243,8 +243,8 @@ where
     S: ThreadSpawn,
 {
     /// Creates a new `ThreadPool` initialized using this configuration.
-    pub fn build<C>(self) -> Result<ThreadPool, ThreadPoolBuildError> {
-        ThreadPool::build(self)
+    pub fn build<C>(self) -> Result<ThreadPool<C>, ThreadPoolBuildError> {
+        ThreadPool<C>::build(self)
     }
 
     /// Initializes the global thread pool. This initialization is
