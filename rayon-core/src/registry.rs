@@ -595,7 +595,7 @@ pub(super) struct WorkerThread {
     worker: Worker<JobRef, DefaultCollector>,
 
     /// local queue used for `spawn_fifo` indirection
-    fifo: JobFifo,
+    fifo: JobFifo<C>,
 
     index: usize,
 
