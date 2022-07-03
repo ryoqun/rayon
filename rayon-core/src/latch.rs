@@ -140,7 +140,7 @@ impl CoreLatch {
 /// Spin latches are the simplest, most efficient kind, but they do
 /// not support a `wait()` operation. They just have a boolean flag
 /// that becomes true when `set()` is called.
-pub(super) struct SpinLatch<'r, C> {
+pub(super) struct SpinLatch<'r, C: CustomCollector> {
     core_latch: CoreLatch,
     registry: &'r Arc<Registry<C>>,
     target_worker_index: usize,
