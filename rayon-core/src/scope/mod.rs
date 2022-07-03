@@ -549,7 +549,7 @@ impl<'scope, C: CustomCollector> Scope<'scope, C> {
     /// [`scope` function]: fn.scope.html
     pub fn spawn<BODY>(&self, body: BODY)
     where
-        BODY: FnOnce(&Scope<'scope>) + Send + 'scope,
+        BODY: FnOnce(&Scope<'scope, C>) + Send + 'scope,
     {
         self.base.increment();
         unsafe {
