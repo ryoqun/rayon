@@ -160,7 +160,6 @@ pub(super) struct Registry<C: CustomCollector> {
 /// ////////////////////////////////////////////////////////////////////////
 /// Initialization
 
-/*
 static mut THE_REGISTRY: Option<Arc<Registry>> = None;
 static THE_REGISTRY_SET: Once = Once::new();
 
@@ -201,7 +200,6 @@ where
 
     result
 }
-*/
 
 struct Terminator<'a, C: CustomCollector>(&'a Arc<Registry<C>>);
 
@@ -272,7 +270,7 @@ impl<C: CustomCollector> Registry<C> {
 
     pub(super) fn current() -> Arc<Registry<C>> {
         unsafe {
-            let worker_thread = WorkerThread::<DefaultCollector>::current();
+            let worker_thread = WorkerThread::<C>::current();
             let registry = if worker_thread.is_null() {
                 global_registry()
             } else {
@@ -287,7 +285,7 @@ impl<C: CustomCollector> Registry<C> {
     /// avoids incrementing the `Arc`.
     pub(super) fn current_num_threads() -> usize {
         unsafe {
-            let worker_thread = WorkerThread::<DefaultCollector>::current();
+            let worker_thread = WorkerThread::<C>::current();
             if worker_thread.is_null() {
                 global_registry().num_threads()
             } else {
