@@ -436,11 +436,11 @@ impl<C: CustomCollector> Registry<C> {
     /// was performed, `false` if executed directly.
     pub(super) fn in_worker<OP, R>(&self, op: OP) -> R
     where
-        OP: FnOnce(&WorkerThread::<DefaultCollector>, bool) -> R + Send,
+        OP: FnOnce(&WorkerThread::<C>, bool) -> R + Send,
         R: Send,
     {
         unsafe {
-            let worker_thread = WorkerThread::<DefaultCollector>::current();
+            let worker_thread = WorkerThread::<C>::current();
             if worker_thread.is_null() {
                 self.in_worker_cold(op)
             } else if (*worker_thread).registry().id() != self.id() {
@@ -457,17 +457,17 @@ impl<C: CustomCollector> Registry<C> {
     #[cold]
     unsafe fn in_worker_cold<OP, R>(&self, op: OP) -> R
     where
-        OP: FnOnce(&WorkerThread::<DefaultCollector>, bool) -> R + Send,
+        OP: FnOnce(&WorkerThread::<C>, bool) -> R + Send,
         R: Send,
     {
         thread_local!(static LOCK_LATCH: LockLatch = LockLatch::new());
 
         LOCK_LATCH.with(|l| {
             // This thread isn't a member of *any* thread pool, so just block.
-            debug_assert!(WorkerThread::<DefaultCollector>::current().is_null());
+            debug_assert!(WorkerThread::<C>::current().is_null());
             let job = StackJob::new(
                 |injected| {
-                    let worker_thread = WorkerThread::<DefaultCollector>::current();
+                    let worker_thread = WorkerThread::<C>::current();
                     assert!(injected && !worker_thread.is_null());
                     op(&*worker_thread, true)
                 },
