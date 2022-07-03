@@ -109,23 +109,23 @@ impl ThreadSpawn for DefaultSpawn {
 #[derive(Debug)]
 pub struct CustomSpawn<F>(F);
 
-impl<F> CustomSpawn<F>
+impl<F, C> CustomSpawn<F>
 where
-    F: FnMut(ThreadBuilder) -> io::Result<()>,
+    F: FnMut(ThreadBuilder<C>) -> io::Result<()>,
 {
     pub(super) fn new(spawn: F) -> Self {
         CustomSpawn(spawn)
     }
 }
 
-impl<F> ThreadSpawn for CustomSpawn<F>
+impl<F, C> ThreadSpawn for CustomSpawn<F>
 where
-    F: FnMut(ThreadBuilder) -> io::Result<()>,
+    F: FnMut(ThreadBuilder<C>) -> io::Result<()>,
 {
     private_impl! {}
 
     #[inline]
-    fn spawn(&mut self, thread: ThreadBuilder) -> io::Result<()> {
+    fn spawn(&mut self, thread: ThreadBuilder<C>) -> io::Result<()> {
         (self.0)(thread)
     }
 }
