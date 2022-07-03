@@ -180,7 +180,8 @@ pub(super) fn init_global_registry<S, C: CustomCollector>(
 where
     S: ThreadSpawn,
 {
-    set_global_registry(|| Registry::new(builder))
+    panic!();
+    //set_global_registry(|| Registry::new(builder))
 }
 
 /// Starts the worker threads (if that has not already happened)
