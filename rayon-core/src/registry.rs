@@ -538,11 +538,14 @@ impl<C: CustomCollector> Registry<C> {
     /// dropped. The worker threads will gradually terminate, once any
     /// extant work is completed.
     pub(super) fn terminate(&self) {
+        panic!();
+        /*
         if self.terminate_count.fetch_sub(1, Ordering::AcqRel) == 1 {
             for (i, thread_info) in self.thread_infos.iter().enumerate() {
                 thread_info.terminate.set_and_tickle_one(self, i);
             }
         }
+        */
     }
 
     /// Notify the worker that the latch they are sleeping on has been "set".
