@@ -18,7 +18,7 @@ use std::sync::atomic::{AtomicPtr, Ordering};
 use std::sync::Arc;
 
 
-use crossbeam_deque::CustomCollector;
+use crossbeam_deque::{CustomCollector, DefaultCollector};
 
 #[cfg(test)]
 mod test;
