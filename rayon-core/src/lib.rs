@@ -400,9 +400,9 @@ impl<S> ThreadPoolBuilder<S> {
     ///     Ok(())
     /// }
     /// ```
-    pub fn spawn_handler<F>(self, spawn: F) -> ThreadPoolBuilder<CustomSpawn<F>>
+    pub fn spawn_handler<F, C>(self, spawn: F) -> ThreadPoolBuilder<CustomSpawn<F>>
     where
-        F: FnMut(ThreadBuilder) -> io::Result<()>,
+        F: FnMut(ThreadBuilder<C>) -> io::Result<()>,
     {
         ThreadPoolBuilder {
             spawn_handler: CustomSpawn::new(spawn),
