@@ -179,7 +179,7 @@ impl<'r, C> SpinLatch<'r, C> {
     }
 }
 
-impl<'r> AsCoreLatch for SpinLatch<'r> {
+impl<'r, C> AsCoreLatch for SpinLatch<'r, C> {
     #[inline]
     fn as_core_latch(&self) -> &CoreLatch {
         &self.core_latch
