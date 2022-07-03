@@ -303,9 +303,9 @@ struct ScopeBase<'scope, C: CustomCollector> {
 /// execute, even if the spawning task should later panic. `scope()`
 /// returns once all spawned jobs have completed, and any panics are
 /// propagated at that point.
-pub fn scope<'scope, OP, R>(op: OP) -> R
+pub fn scope<'scope, OP, R, C: CustomCollector>(op: OP) -> R
 where
-    OP: FnOnce(&Scope<'scope>) -> R + Send,
+    OP: FnOnce(&Scope<'scope, C>) -> R + Send,
     R: Send,
 {
     in_worker(|owner_thread, _| {
