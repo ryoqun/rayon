@@ -599,7 +599,7 @@ impl<C: CustomCollector> ThreadInfo<C> {
 
 pub(super) struct WorkerThread<C: CustomCollector> { // TODO
     /// the "worker" half of our local deque
-    worker: Worker<JobRef, DefaultCollector>,
+    worker: Worker<JobRef, C>,
 
     /// local queue used for `spawn_fifo` indirection
     fifo: JobFifo<C>,
