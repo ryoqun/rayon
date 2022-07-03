@@ -166,7 +166,7 @@ impl<'r, C> SpinLatch<'r, C> {
     /// need to make sure the registry is kept alive after setting, so we can
     /// safely call the notification.
     #[inline]
-    pub(super) fn cross<C: CustomCollector>(thread: &'r WorkerThread<C>) -> Self {
+    pub(super) fn cross(thread: &'r WorkerThread<C>) -> Self {
         SpinLatch {
             cross: true,
             ..SpinLatch::new(thread)
