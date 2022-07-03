@@ -89,7 +89,7 @@ pub struct DefaultSpawn;
 impl ThreadSpawn for DefaultSpawn {
     private_impl! {}
 
-    fn spawn(&mut self, thread: ThreadBuilder) -> io::Result<()> {
+    fn spawn<C>(&mut self, thread: ThreadBuilder<C>) -> io::Result<()> {
         let mut b = thread::Builder::new();
         if let Some(name) = thread.name() {
             b = b.name(name.to_owned());
