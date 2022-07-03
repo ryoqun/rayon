@@ -316,6 +316,8 @@ impl ThreadPoolBuilder {
         W: Fn(ThreadBuilder) + Sync, // expected to call `run()`
         F: FnOnce(&ThreadPool::<C>) -> R,
     {
+        panic!();
+        /*
         let result = crossbeam_utils::thread::scope(|scope| {
             let wrapper = &wrapper;
             let pool = self
@@ -338,6 +340,7 @@ impl ThreadPoolBuilder {
             Ok(result) => result,
             Err(err) => unwind::resume_unwinding(err),
         }
+        */
     }
 }
 
