@@ -439,7 +439,7 @@ where
 
 pub(crate) fn do_in_place_scope<'scope, OP, R, C: CustomCollector>(registry: Option<&Arc<Registry<C>>>, op: OP) -> R
 where
-    OP: FnOnce(&Scope<'scope>) -> R,
+    OP: FnOnce(&Scope<'scope, C>) -> R,
 {
     /*
     let thread = unsafe { WorkerThread::<C>::current().as_ref() };
