@@ -750,7 +750,7 @@ impl<C: CustomCollector> ScopeLatch<C> {
     }
 }
 
-impl<'scope> fmt::Debug for Scope<'scope> {
+impl<'scope, C: CustomCollector> fmt::Debug for Scope<'scope, C> {
     fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result {
         fmt.debug_struct("Scope")
             .field("pool_id", &self.base.registry.id())
