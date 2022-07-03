@@ -153,7 +153,7 @@ enum ErrorKind {
 ///
 /// [`ThreadPool`]: struct.ThreadPool.html
 /// [`build_global()`]: struct.ThreadPoolBuilder.html#method.build_global
-pub struct ThreadPoolBuilder<S = DefaultSpawn<C>, C: crossbeam_deque::CustomCollector = crossbeam_deque::DefaultCollector> {
+pub struct ThreadPoolBuilder<S = DefaultSpawn, C: crossbeam_deque::CustomCollector = crossbeam_deque::DefaultCollector> {
     /// The number of threads in the rayon thread pool.
     /// If zero will use the RAYON_NUM_THREADS environment variable.
     /// If RAYON_NUM_THREADS is invalid or zero will use the default.
