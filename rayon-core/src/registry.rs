@@ -495,7 +495,7 @@ impl<C: CustomCollector> Registry<C> {
         let latch = SpinLatch::cross(current_thread);
         let job = StackJob::new(
             |injected| {
-                let worker_thread = WorkerThread::<DefaultCollector>::current();
+                let worker_thread = WorkerThread::<C>::current();
                 assert!(injected && !worker_thread.is_null());
                 op(&*worker_thread, true)
             },
