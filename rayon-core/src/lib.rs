@@ -150,7 +150,7 @@ enum ErrorKind {
 ///
 /// [`ThreadPool`]: struct.ThreadPool.html
 /// [`build_global()`]: struct.ThreadPoolBuilder.html#method.build_global
-pub struct ThreadPoolBuilder<S = DefaultSpawn, C: CustomCollector> {
+pub struct ThreadPoolBuilder<S = DefaultSpawn, C: crossbeam_deque::CustomCollector> {
     /// The number of threads in the rayon thread pool.
     /// If zero will use the RAYON_NUM_THREADS environment variable.
     /// If RAYON_NUM_THREADS is invalid or zero will use the default.
@@ -276,7 +276,7 @@ impl ThreadPoolBuilder {
     /// The threads in this pool will start by calling `wrapper`, which should
     /// do initialization and continue by calling `ThreadBuilder::run()`.
     ///
-    /// [`crossbeam::scope`]: https://docs.rs/crossbeam/0.7/crossbeam/fn.scope.html
+    /// [`crossbeam::scope`]: https://docs.rs/crossbeam/*/crossbeam/fn.scope.html
     ///
     /// # Examples
     ///
