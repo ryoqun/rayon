@@ -317,7 +317,7 @@ impl CountLatch {
     /// the latch is set, then the specific worker thread is tickled,
     /// which should be the one that owns this latch.
     #[inline]
-    pub(super) fn set_and_tickle_one(&self, registry: &Registry, target_worker_index: usize) {
+    pub(super) fn set_and_tickle_one<C>(&self, registry: &Registry<C>, target_worker_index: usize) {
         if self.set() {
             registry.notify_worker_latch_is_set(target_worker_index);
         }
