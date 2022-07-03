@@ -747,7 +747,7 @@ impl<'scope> fmt::Debug for Scope<'scope> {
     }
 }
 
-impl<'scope, C> fmt::Debug for ScopeFifo<'scope, C> {
+impl<'scope, C: CustomCollector> fmt::Debug for ScopeFifo<'scope, C> {
     fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result {
         fmt.debug_struct("ScopeFifo")
             .field("num_fifos", &self.fifos.len())
