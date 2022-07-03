@@ -1,4 +1,4 @@
-use crossbeam_deque::{Steal, Stealer, Worker, DefaultCollector};
+use crossbeam_deque::{Steal, Stealer, Worker, CustomCollector, DefaultCollector};
 
 use std::sync::atomic::{AtomicBool, AtomicUsize, Ordering};
 use std::sync::{Mutex, TryLockError};
