@@ -272,7 +272,8 @@ impl<C: CustomCollector> Registry<C> {
         unsafe {
             let worker_thread = WorkerThread::<C>::current();
             let registry = if worker_thread.is_null() {
-                global_registry()
+                //global_registry()
+                panic!()
             } else {
                 &(*worker_thread).registry
             };
