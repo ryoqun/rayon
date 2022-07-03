@@ -246,7 +246,7 @@ where
     S: ThreadSpawn<C>,
 {
     /// Creates a new `ThreadPool` initialized using this configuration.
-    pub fn build(self) -> Result<ThreadPool<C>, ThreadPoolBuildError> {
+    pub fn build<C: CustomCollector>(self) -> Result<ThreadPool<C>, ThreadPoolBuildError> {
         ThreadPool::<C>::build(self)
     }
 
@@ -268,7 +268,6 @@ where
     /// will return an error. An `Ok` result indicates that this
     /// is the first initialization of the thread pool.
     pub fn build_global(self) -> Result<(), ThreadPoolBuildError> {
-        panic!();
         /*
         let registry = registry::init_global_registry(self)?;
         registry.wait_until_primed();
