@@ -27,8 +27,8 @@ mod test;
 /// See [`scope()`] for more information.
 ///
 ///[`scope()`]: fn.scope.html
-pub struct Scope<'scope> {
-    base: ScopeBase<'scope>,
+pub struct Scope<'scope, C: CustomCollector> {
+    base: ScopeBase<'scope, C>,
 }
 
 /// Represents a fork-join scope which can be used to spawn any number of tasks.
@@ -37,7 +37,7 @@ pub struct Scope<'scope> {
 ///
 ///[`scope_fifo()`]: fn.scope_fifo.html
 pub struct ScopeFifo<'scope, C: CustomCollector> {
-    base: ScopeBase<'scope>,
+    base: ScopeBase<'scope, C>,
     fifos: Vec<JobFifo<C>>,
 }
 
