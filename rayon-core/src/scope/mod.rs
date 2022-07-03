@@ -433,8 +433,7 @@ pub fn in_place_scope<'scope, OP, R, C: CustomCollector>(op: OP) -> R
 where
     OP: FnOnce(&Scope<'scope, C>) -> R,
 {
-    //do_in_place_scope(None, op)
-    panic!();
+    do_in_place_scope(None, op)
 }
 
 pub(crate) fn do_in_place_scope<'scope, OP, R, C: CustomCollector>(registry: Option<&Arc<Registry<C>>>, op: OP) -> R
