@@ -268,7 +268,7 @@ impl Registry {
 
     pub(super) fn current() -> Arc<Registry> {
         unsafe {
-            let worker_thread = WorkerThread::current();
+            let worker_thread = WorkerThread::<DefaultCollector>::current();
             let registry = if worker_thread.is_null() {
                 global_registry()
             } else {
@@ -283,7 +283,7 @@ impl Registry {
     /// avoids incrementing the `Arc`.
     pub(super) fn current_num_threads() -> usize {
         unsafe {
-            let worker_thread = WorkerThread::current();
+            let worker_thread = WorkerThread::<DefaultCollector>::current();
             if worker_thread.is_null() {
                 global_registry().num_threads()
             } else {
@@ -293,9 +293,9 @@ impl Registry {
     }
 
     /// Returns the current `WorkerThread` if it's part of this `Registry`.
-    pub(super) fn current_thread(&self) -> Option<&WorkerThread> {
+    pub(super) fn current_thread(&self) -> Option<&WorkerThread::<DefaultCollector>> {
         unsafe {
-            let worker = WorkerThread::current().as_ref()?;
+            let worker = WorkerThread::<DefaultCollector>::current().as_ref()?;
             if worker.registry().id() == self.id() {
                 Some(worker)
             } else {
