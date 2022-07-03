@@ -160,7 +160,7 @@ pub(super) struct Registry<C: CustomCollector> {
 /// ////////////////////////////////////////////////////////////////////////
 /// Initialization
 
-static mut THE_REGISTRY: Option<Arc<Registry>> = None;
+static mut THE_REGISTRY: Option<Arc<Registry<DefaultCollector>>> = None;
 static THE_REGISTRY_SET: Once = Once::new();
 
 /// Starts the worker threads (if that has not already happened). If
