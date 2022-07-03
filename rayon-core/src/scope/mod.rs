@@ -474,7 +474,7 @@ pub(crate) fn do_in_place_scope_fifo<'scope, OP, R, C: CustomCollector>(registry
 where
     OP: FnOnce(&ScopeFifo<'scope, C>) -> R,
 {
-    let thread = unsafe { WorkerThread::current().as_ref() };
+    let thread = unsafe { WorkerThread::<C>::current().as_ref() };
     let scope = ScopeFifo::<'scope>::new(thread, registry);
     scope.base.complete(thread, || op(&scope))
 }
