@@ -440,12 +440,9 @@ pub(crate) fn do_in_place_scope<'scope, OP, R, C: CustomCollector>(registry: Opt
 where
     OP: FnOnce(&Scope<'scope, C>) -> R,
 {
-    /*
     let thread = unsafe { WorkerThread::<C>::current().as_ref() };
     let scope = Scope::<'scope>::new(thread, registry);
     scope.base.complete(thread, || op(&scope))
-    */
-    panic!();
 }
 
 /// Creates a "fork-join" scope `s` with FIFO order, and invokes the
