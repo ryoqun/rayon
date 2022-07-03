@@ -484,9 +484,9 @@ impl<C: CustomCollector> Registry<C> {
     }
 
     #[cold]
-    unsafe fn in_worker_cross<OP, R>(&self, current_thread: &WorkerThread::<DefaultCollector>, op: OP) -> R
+    unsafe fn in_worker_cross<OP, R>(&self, current_thread: &WorkerThread::<C>, op: OP) -> R
     where
-        OP: FnOnce(&WorkerThread::<DefaultCollector>, bool) -> R + Send,
+        OP: FnOnce(&WorkerThread::<C>, bool) -> R + Send,
         R: Send,
     {
         // This thread is a member of a different pool, so let it process
