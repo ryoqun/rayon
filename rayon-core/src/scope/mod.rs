@@ -701,7 +701,7 @@ impl<'scope, C: CustomCollector> ScopeBase<'scope, C> {
     }
 }
 
-impl ScopeLatch {
+impl<C: CustomCollector> ScopeLatch<C> {
     fn new(owner: Option<&WorkerThread<DefaultCollector>>) -> Self {
         match owner {
             Some(owner) => ScopeLatch::Stealing {
