@@ -211,7 +211,7 @@ impl<'a, C: CustomCollector> Drop for Terminator<'a, C> {
 
 impl<C: CustomCollector> Registry<C> {
     pub(super) fn new<S>(
-        mut builder: ThreadPoolBuilder<S>,
+        mut builder: ThreadPoolBuilder<S, C>,
     ) -> Result<Arc<Self>, ThreadPoolBuildError>
     where
         S: ThreadSpawn<C>,
