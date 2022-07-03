@@ -55,22 +55,22 @@ pub struct ThreadPool<C> {
     registry: Arc<Registry>,
 }
 
-impl<C> ThreadPool {
+impl<C> ThreadPool<C> {
     #[deprecated(note = "Use `ThreadPoolBuilder::build`")]
     #[allow(deprecated)]
     /// Deprecated in favor of `ThreadPoolBuilder::build`.
-    pub fn new(configuration: Configuration) -> Result<ThreadPool, Box<dyn Error>> {
+    pub fn new(configuration: Configuration) -> Result<ThreadPool<C>, Box<dyn Error>> {
         Self::build(configuration.into_builder()).map_err(Box::from)
     }
 
     pub(super) fn build<S>(
         builder: ThreadPoolBuilder<S>,
-    ) -> Result<ThreadPool, ThreadPoolBuildError>
+    ) -> Result<ThreadPool<C>, ThreadPoolBuildError>
     where
         S: ThreadSpawn,
     {
         let registry = Registry::new(builder)?;
-        Ok(ThreadPool { registry })
+        Ok(ThreadPool<C> { registry })
     }
 
     /// Executes `op` within the threadpool. Any attempts to use
