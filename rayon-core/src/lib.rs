@@ -226,6 +226,13 @@ impl ThreadPoolBuilder {
     }
 }
 
+impl ThreadPoolBuilder<DefaultSpawn> {
+    /// Creates and returns a valid rayon thread pool builder, but does not initialize it.
+    pub fn new_under() -> Self {
+        Self::default()
+    }
+}
+
 /// Note: the `S: ThreadSpawn` constraint is an internal implementation detail for the
 /// default spawn and those set by [`spawn_handler`](#method.spawn_handler).
 impl<S> ThreadPoolBuilder<S>
