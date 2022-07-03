@@ -33,7 +33,7 @@ pub struct ThreadBuilder<C: CustomCollector> {
     index: usize,
 }
 
-impl ThreadBuilder {
+impl<C: CustomCollector> ThreadBuilder<C> {
     /// Gets the index of this thread in the pool, within `0..num_threads`.
     pub fn index(&self) -> usize {
         self.index
@@ -56,7 +56,7 @@ impl ThreadBuilder {
     }
 }
 
-impl fmt::Debug for ThreadBuilder {
+impl<C: CustomCollector> fmt::Debug for ThreadBuilder<C> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         f.debug_struct("ThreadBuilder")
             .field("pool", &self.registry.id())
@@ -76,7 +76,7 @@ pub trait ThreadSpawn {
 
     /// Spawn a thread with the `ThreadBuilder` parameters, and then
     /// call `ThreadBuilder::run()`.
-    fn spawn(&mut self, thread: ThreadBuilder) -> io::Result<()>;
+    fn spawn<C: CustomCollector>(&mut self, thread: ThreadBuilder<C>) -> io::Result<()>;
 }
 
 /// Spawns a thread in the "normal" way with `std::thread::Builder`.
