@@ -79,6 +79,8 @@ where
         C: UnindexedConsumer<Self::Item>,
     {
         let split_count = AtomicUsize::new(current_num_threads());
+        panic!()
+        /*
         let worker = Worker::new_fifo();
         let stealer = worker.stealer();
         let done = AtomicBool::new(false);
@@ -93,6 +95,7 @@ where
             },
             consumer,
         )
+        */
     }
 }
 
