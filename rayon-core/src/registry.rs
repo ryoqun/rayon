@@ -614,7 +614,7 @@ thread_local! {
     static WORKER_THREAD_STATE: Cell<*const WorkerThread> = Cell::new(ptr::null());
 }
 
-impl Drop for WorkerThread {
+impl<C: CustomCollector> Drop for WorkerThread<C> {
     fn drop(&mut self) {
         // Undo `set_current`
         WORKER_THREAD_STATE.with(|t| {
