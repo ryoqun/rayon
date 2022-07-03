@@ -187,9 +187,9 @@ pub(super) struct JobFifo<C: CustomCollector> {
     inner: Injector<JobRef, DefaultCollector>,
 }
 
-impl JobFifo {
+impl<C> JobFifo<C> {
     pub(super) fn new() -> Self {
-        JobFifo {
+        JobFifo<C> {
             inner: Injector::new(),
         }
     }
