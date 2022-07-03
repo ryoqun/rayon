@@ -807,7 +807,7 @@ impl<C: CustomCollector> WorkerThread<C> {
 
 /// ////////////////////////////////////////////////////////////////////////
 
-unsafe fn main_loop<C: CustomCollector>(worker: Worker<JobRef, DefaultCollector>, registry: Arc<Registry<C>>, index: usize) {
+unsafe fn main_loop<C: CustomCollector>(worker: Worker<JobRef, C>, registry: Arc<Registry<C>>, index: usize) {
     panic!();
     /*
     let worker_thread = &WorkerThread {
