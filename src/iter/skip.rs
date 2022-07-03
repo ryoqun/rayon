@@ -79,7 +79,7 @@ where
             where
                 P: Producer<Item = T>,
             {
-                crate::in_place_scope(|scope| {
+                /*crate::in_place_scope(|scope| {
                     let Self { callback, n } = self;
                     let (before_skip, after_skip) = base.split_at(n);
 
@@ -88,7 +88,8 @@ where
                     scope.spawn(move |_| bridge_producer_consumer(n, before_skip, NoopConsumer));
 
                     callback.callback(after_skip)
-                })
+                })*/
+                panic!()
             }
         }
     }
