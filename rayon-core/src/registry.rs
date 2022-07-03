@@ -132,7 +132,7 @@ where
 }
 */
 
-pub(super) struct Registry<C: CustomCollector = DefaultCollector> {
+pub(super) struct Registry<C: CustomCollector> {
     logger: Logger,
     thread_infos: Vec<ThreadInfo<C>>,
     sleep: Sleep,
