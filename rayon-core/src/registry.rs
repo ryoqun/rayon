@@ -28,7 +28,7 @@ use std::usize;
 pub struct ThreadBuilder<C: CustomCollector> {
     name: Option<String>,
     stack_size: Option<usize>,
-    worker: Worker<JobRef, DefaultCollector>,
+    worker: Worker<JobRef, C>,
     registry: Arc<Registry<C>>,
     index: usize,
 }
