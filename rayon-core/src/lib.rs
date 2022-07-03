@@ -348,7 +348,7 @@ impl<C: CustomCollector> ThreadPoolBuilder<C> {
     }
 }
 
-impl<S> ThreadPoolBuilder<S> {
+impl<S, C: CustomCollector> ThreadPoolBuilder<S, C> {
     /// Sets a custom function for spawning threads.
     ///
     /// Note that the threads will not exit until after the pool is dropped. It
