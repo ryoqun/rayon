@@ -214,6 +214,8 @@ impl<C: CustomCollector> Registry<C> {
     where
         S: ThreadSpawn,
     {
+        panic!();
+        /*
         // Soft-limit the number of threads that we can actually support.
         let n_threads = Ord::min(builder.get_num_threads(), crate::max_num_threads());
 
@@ -264,6 +266,7 @@ impl<C: CustomCollector> Registry<C> {
         mem::forget(t1000);
 
         Ok(registry)
+        */
     }
 
     pub(super) fn current() -> Arc<Registry> {
