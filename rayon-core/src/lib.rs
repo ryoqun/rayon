@@ -247,7 +247,7 @@ where
     S: ThreadSpawn<C>,
 {
     /// Creates a new `ThreadPool` initialized using this configuration.
-    pub fn build<C: CustomCollector>(self) -> Result<ThreadPool<C>, ThreadPoolBuildError> {
+    pub fn build(self) -> Result<ThreadPool<C>, ThreadPoolBuildError> {
         ThreadPool::<C>::build(self)
     }
 
