@@ -199,9 +199,9 @@ where
     result
 }
 
-struct Terminator<'a>(&'a Arc<Registry>);
+struct Terminator<'a, C: CustomCollector>(&'a Arc<Registry<C>>);
 
-impl<'a> Drop for Terminator<'a> {
+impl<'a> Drop for Terminator<'a, C: CustomCollector> {
     fn drop(&mut self) {
         self.0.terminate()
     }
