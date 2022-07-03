@@ -153,7 +153,7 @@ impl<'r> SpinLatch<'r> {
     /// this latch -- it also means that when the latch is set, we
     /// will wake `thread` if it is sleeping.
     #[inline]
-    pub(super) fn new<C>(thread: &'r WorkerThread<C>) -> SpinLatch<'r> {
+    pub(super) fn new<C: CustomCollector>(thread: &'r WorkerThread<C>) -> SpinLatch<'r> {
         SpinLatch {
             core_latch: CoreLatch::new(),
             registry: thread.registry(),
