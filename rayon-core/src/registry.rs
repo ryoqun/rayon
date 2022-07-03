@@ -592,7 +592,7 @@ impl ThreadInfo {
 
 pub(super) struct WorkerThread {
     /// the "worker" half of our local deque
-    worker: Worker<JobRef>,
+    worker: Worker<JobRef, DefaultCollector>,
 
     /// local queue used for `spawn_fifo` indirection
     fifo: JobFifo,
