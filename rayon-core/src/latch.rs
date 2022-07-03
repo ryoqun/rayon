@@ -4,6 +4,8 @@ use std::usize;
 
 use crate::registry::{Registry, WorkerThread};
 
+use crossbeam_deque::CustomCollector;
+
 /// We define various kinds of latches, which are all a primitive signaling
 /// mechanism. A latch starts as false. Eventually someone calls `set()` and
 /// it becomes true. You can test if it has been set by calling `probe()`.
