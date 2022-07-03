@@ -710,7 +710,7 @@ pub fn initialize(config: Configuration) -> Result<(), Box<dyn Error>> {
     panic!();
 }
 
-impl<S, C: CustomCollector> fmt::Debug for ThreadPoolBuilder<S, C> {
+impl<S: ThreadSpawn, C: CustomCollector> fmt::Debug for ThreadPoolBuilder<S, C> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let ThreadPoolBuilder {
             ref num_threads,
