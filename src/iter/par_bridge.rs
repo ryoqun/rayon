@@ -100,7 +100,7 @@ struct IterParallelProducer<'a, Iter: Iterator> {
     split_count: &'a AtomicUsize,
     done: &'a AtomicBool,
     iter: &'a Mutex<(Iter, Worker<Iter::Item, DefaultCollector>)>,
-    items: Stealer<Iter::Item>,
+    items: Stealer<Iter::Item, DefaultCollector>,
 }
 
 // manual clone because T doesn't need to be Clone, but the derive assumes it should be
