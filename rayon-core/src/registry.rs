@@ -86,10 +86,10 @@ pub trait ThreadSpawn<C: CustomCollector> {
 #[derive(Debug, Default)]
 pub struct DefaultSpawn;
 
-impl ThreadSpawn for DefaultSpawn {
+impl<C> ThreadSpawn<C> for DefaultSpawn {
     private_impl! {}
 
-    fn spawn(&mut self, thread: ThreadBuilder) -> io::Result<()> {
+    fn spawn(&mut self, thread: ThreadBuilder<C>) -> io::Result<()> {
         let mut b = thread::Builder::new();
         if let Some(name) = thread.name() {
             b = b.name(name.to_owned());
