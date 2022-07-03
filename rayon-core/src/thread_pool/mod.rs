@@ -67,7 +67,7 @@ impl<C: CustomCollector> ThreadPool<C> {
         builder: ThreadPoolBuilder<S>,
     ) -> Result<ThreadPool<C>, ThreadPoolBuildError>
     where
-        S: ThreadSpawn<C>,
+        S: ThreadSpawn,
     {
         let registry = Registry<S>::new(builder)?;
         Ok(ThreadPool::<C> { registry })
