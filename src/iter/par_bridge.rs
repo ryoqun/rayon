@@ -96,11 +96,11 @@ where
     }
 }
 
-struct IterParallelProducer<'a, Iter: Iterator> {
+struct IterParallelProducer<'a, Iter: Iterator, C: CustomCollector> {
     split_count: &'a AtomicUsize,
     done: &'a AtomicBool,
-    iter: &'a Mutex<(Iter, Worker<Iter::Item, DefaultCollector>)>,
-    items: Stealer<Iter::Item, DefaultCollector>,
+    iter: &'a Mutex<(Iter, Worker<Iter::Item, C>)>,
+    items: Stealer<Iter::Item, C>,
 }
 
 // manual clone because T doesn't need to be Clone, but the derive assumes it should be
