@@ -4,6 +4,8 @@ use crate::registry::{self, WorkerThread};
 use crate::unwind;
 use std::any::Any;
 
+use crossbeam_deque::CustomCollector;
+
 use crate::FnContext;
 
 #[cfg(test)]
