@@ -203,7 +203,7 @@ impl<C: CustomCollector> ThreadPool<C> {
     /// [scope]: fn.scope.html
     pub fn scope<'scope, OP, R>(&self, op: OP) -> R
     where
-        OP: FnOnce(&Scope<'scope>) -> R + Send,
+        OP: FnOnce(&Scope<'scope, C>) -> R + Send,
         R: Send,
     {
         self.install(|| scope(op))
