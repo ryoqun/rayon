@@ -123,10 +123,12 @@ impl<'c, T: Send + 'c> Folder<T> for CollectResult<'c, T> {
     type Result = Self;
 
     fn consume(mut self, item: T) -> Self {
+        /*
         assert!(
             self.initialized_len < self.total_len,
             "too many values pushed to consumer"
         );
+        */
 
         // SAFETY: The assert above is a bounds check for this write, and we
         // avoid assignment here so we do not drop an uninitialized T.
