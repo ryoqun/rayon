@@ -625,18 +625,18 @@ impl<C: CustomCollector> Drop for WorkerThread<C> {
     }
 }
 
-impl WorkerThread {
+impl<C> WorkerThread<C> {
     /// Gets the `WorkerThread` index for the current thread; returns
     /// NULL if this is not a worker thread. This pointer is valid
     /// anywhere on the current thread.
     #[inline]
-    pub(super) fn current() -> *const WorkerThread {
+    pub(super) fn current() -> *const WorkerThread<C> {
         WORKER_THREAD_STATE.with(Cell::get)
     }
 
     /// Sets `self` as the worker thread index for the current thread.
     /// This is done during worker thread startup.
-    unsafe fn set_current(thread: *const WorkerThread) {
+    unsafe fn set_current(thread: *const WorkerThread<C>) {
         WORKER_THREAD_STATE.with(|t| {
             assert!(t.get().is_null());
             t.set(thread);
