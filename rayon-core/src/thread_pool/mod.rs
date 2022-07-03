@@ -70,7 +70,7 @@ impl<C> ThreadPool<C> {
         S: ThreadSpawn,
     {
         let registry = Registry::new(builder)?;
-        Ok(ThreadPool<C> { registry })
+        Ok(ThreadPool::<C> { registry })
     }
 
     /// Executes `op` within the threadpool. Any attempts to use
