@@ -604,7 +604,7 @@ impl<'scope, C: CustomCollector> ScopeFifo<'scope, C> {
 
 impl<'scope> ScopeBase<'scope> {
     /// Creates the base of a new scope for the given registry
-    fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self {
+    fn new(owner: Option<&WorkerThread<DefaultCollector>>, registry: Option<&Arc<Registry>>) -> Self {
         let registry = registry.unwrap_or_else(|| match owner {
             Some(owner) => owner.registry(),
             None => global_registry(),
@@ -624,7 +624,7 @@ impl<'scope> ScopeBase<'scope> {
 
     /// Executes `func` as a job, either aborting or executing as
     /// appropriate.
-    fn complete<FUNC, R>(&self, owner: Option<&WorkerThread>, func: FUNC) -> R
+    fn complete<FUNC, R>(&self, owner: Option<&WorkerThread<DefaultCollector>>, func: FUNC) -> R
     where
         FUNC: FnOnce() -> R,
     {
