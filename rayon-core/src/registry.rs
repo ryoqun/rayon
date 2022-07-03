@@ -576,7 +576,7 @@ struct ThreadInfo<C: CustomCollector> {
     stealer: Stealer<JobRef, C>,
 }
 
-impl<C> ThreadInfo<C> {
+impl<C: CustomCollector> ThreadInfo<C> {
     fn new(stealer: Stealer<JobRef, DefaultCollector>) -> ThreadInfo<C> {
         ThreadInfo {
             primed: LockLatch::new(),
