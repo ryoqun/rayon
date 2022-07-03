@@ -60,7 +60,7 @@ impl<C: CustomCollector> ThreadPool<C> {
     #[allow(deprecated)]
     /// Deprecated in favor of `ThreadPoolBuilder::build`.
     pub fn new(configuration: Configuration) -> Result<ThreadPool<C>, Box<dyn Error>> {
-        Self::build(configuration.into_builder()).map_err(Box::from)
+        panic!(); //Self::build(configuration.into_builder()).map_err(Box::from)
     }
 
     pub(super) fn build<S>(
