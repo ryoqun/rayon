@@ -191,7 +191,7 @@ pub struct ThreadPoolBuilder<S = DefaultSpawn, C: crossbeam_deque::CustomCollect
 /// [`ThreadPoolBuilder`]: struct.ThreadPoolBuilder.html
 #[deprecated(note = "Use `ThreadPoolBuilder`")]
 pub struct Configuration {
-    builder: ThreadPoolBuilder,
+    builder: ThreadPoolBuilder<DefaultCollector>,
 }
 
 /// The type for a panic handling closure. Note that this same closure
