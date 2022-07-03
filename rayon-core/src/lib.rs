@@ -209,7 +209,7 @@ type StartHandler = dyn Fn(usize) + Send + Sync;
 type ExitHandler = dyn Fn(usize) + Send + Sync;
 
 // NB: We can't `#[derive(Default)]` because `S` is left ambiguous.
-impl Default for ThreadPoolBuilder {
+impl<C: CustomCollector> Default for ThreadPoolBuilder<C> {
     fn default() -> Self {
         ThreadPoolBuilder {
             num_threads: 0,
