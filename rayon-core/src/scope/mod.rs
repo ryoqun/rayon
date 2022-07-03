@@ -490,7 +490,7 @@ where
 }
 
 impl<'scope, C: CustomCollector> Scope<'scope, C> {
-    fn new(owner: Option<&WorkerThread<DefaultCollector>>, registry: Option<&Arc<Registry<C>>>) -> Self {
+    fn new(owner: Option<&WorkerThread<C>>, registry: Option<&Arc<Registry<C>>>) -> Self {
         let base = ScopeBase::new(owner, registry);
         Scope { base }
     }
@@ -617,7 +617,7 @@ impl<'scope, C: CustomCollector> ScopeFifo<'scope, C> {
 
 impl<'scope, C: CustomCollector> ScopeBase<'scope, C> {
     /// Creates the base of a new scope for the given registry
-    fn new(owner: Option<&WorkerThread<DefaultCollector>>, registry: Option<&Arc<Registry<C>>>) -> Self {
+    fn new(owner: Option<&WorkerThread<C>>, registry: Option<&Arc<Registry<C>>>) -> Self {
         let registry = registry.unwrap_or_else(|| match owner {
             Some(owner) => owner.registry(),
             None => global_registry(),
@@ -637,7 +637,7 @@ impl<'scope, C: CustomCollector> ScopeBase<'scope, C> {
 
     /// Executes `func` as a job, either aborting or executing as
     /// appropriate.
-    fn complete<FUNC, R>(&self, owner: Option<&WorkerThread<DefaultCollector>>, func: FUNC) -> R
+    fn complete<FUNC, R>(&self, owner: Option<&WorkerThread<C>>, func: FUNC) -> R
     where
         FUNC: FnOnce() -> R,
     {
@@ -702,7 +702,7 @@ impl<'scope, C: CustomCollector> ScopeBase<'scope, C> {
 }
 
 impl<C: CustomCollector> ScopeLatch<C> {
-    fn new(owner: Option<&WorkerThread<DefaultCollector>>) -> Self {
+    fn new(owner: Option<&WorkerThread<C>>) -> Self {
         match owner {
             Some(owner) => ScopeLatch::Stealing {
                 latch: CountLatch::new(),
@@ -733,7 +733,7 @@ impl<C: CustomCollector> ScopeLatch<C> {
         }
     }
 
-    fn wait(&self, owner: Option<&WorkerThread<DefaultCollector>>) {
+    fn wait(&self, owner: Option<&WorkerThread<C>>) {
         match self {
             ScopeLatch::Stealing {
                 latch,
