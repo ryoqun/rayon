@@ -553,7 +553,7 @@ pub(super) struct RegistryId {
     addr: usize,
 }
 
-struct ThreadInfo {
+struct ThreadInfo<C: CustomCollector> {
     /// Latch set once thread has started and we are entering into the
     /// main loop. Used to wait for worker threads to become primed,
     /// primarily of interest for benchmarking.
@@ -573,7 +573,7 @@ struct ThreadInfo {
     terminate: CountLatch,
 
     /// the "stealer" half of the worker's deque
-    stealer: Stealer<JobRef, DefaultCollector>,
+    stealer: Stealer<JobRef, C>,
 }
 
 impl ThreadInfo {
