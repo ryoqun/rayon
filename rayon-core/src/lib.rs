@@ -666,7 +666,7 @@ impl Configuration {
     }
 
     /// Returns a ThreadPoolBuilder with identical parameters.
-    fn into_builder(self) -> ThreadPoolBuilder {
+    fn into_builder(self) -> ThreadPoolBuilder<DefaultCollector> {
         self.builder
     }
 }
