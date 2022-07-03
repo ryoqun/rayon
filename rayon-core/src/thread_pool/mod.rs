@@ -214,9 +214,9 @@ impl ThreadPool {
     /// See also: [the `scope_fifo()` function][scope_fifo].
     ///
     /// [scope_fifo]: fn.scope_fifo.html
-    pub fn scope_fifo<'scope, OP, R>(&self, op: OP) -> R
+    pub fn scope_fifo<'scope, OP, R, C>(&self, op: OP) -> R
     where
-        OP: FnOnce(&ScopeFifo<'scope>) -> R + Send,
+        OP: FnOnce(&ScopeFifo<'scope, C>) -> R + Send,
         R: Send,
     {
         self.install(|| scope_fifo(op))
