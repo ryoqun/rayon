@@ -228,7 +228,7 @@ impl ThreadPoolBuilder {
     }
 }
 
-impl<C> ThreadPoolBuilder<DefaultSpawn, C> {
+impl<C: crossbeam_epoch::CustomCollector> ThreadPoolBuilder<DefaultSpawn, C> {
     /// Creates and returns a valid rayon thread pool builder, but does not initialize it.
     pub fn new_under() -> Self {
         Self::default()
