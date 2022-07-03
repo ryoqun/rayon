@@ -590,7 +590,7 @@ impl ThreadInfo {
 /// ////////////////////////////////////////////////////////////////////////
 /// WorkerThread identifiers
 
-pub(super) struct WorkerThread<C: CustomCollector> {
+pub(super) struct WorkerThread<C: CustomCollector = DefaultCollector> { // TODO
     /// the "worker" half of our local deque
     worker: Worker<JobRef, DefaultCollector>,
 
