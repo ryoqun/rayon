@@ -870,7 +870,7 @@ where
     R: Send,
 {
     unsafe {
-        let owner_thread = WorkerThread<C>::current();
+        let owner_thread = WorkerThread::<C>::current();
         if !owner_thread.is_null() {
             // Perfectly valid to give them a `&T`: this is the
             // current thread, so we know the data structure won't be
