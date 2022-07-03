@@ -429,9 +429,9 @@ where
 /// execute, even if the spawning task should later panic. `in_place_scope()`
 /// returns once all spawned jobs have completed, and any panics are
 /// propagated at that point.
-pub fn in_place_scope<'scope, OP, R>(op: OP) -> R
+pub fn in_place_scope<'scope, OP, R, C: CustomCollector>(op: OP) -> R
 where
-    OP: FnOnce(&Scope<'scope>) -> R,
+    OP: FnOnce(&Scope<'scope, C>) -> R,
 {
     //do_in_place_scope(None, op)
     panic!();
