@@ -399,13 +399,10 @@ where
     OP: FnOnce(&ScopeFifo<'scope, C>) -> R + Send,
     R: Send,
 {
-    /*
     in_worker(|owner_thread, _| {
         let scope = ScopeFifo::<'scope>::new(Some(owner_thread), None);
         scope.base.complete(Some(owner_thread), || op(&scope))
     })
-    */
-    panic!();
 }
 
 /// Creates a "fork-join" scope `s` and invokes the closure with a
