@@ -732,6 +732,7 @@ impl<S> fmt::Debug for ThreadPoolBuilder<S> {
             ref exit_handler,
             spawn_handler: _,
             ref breadth_first,
+            ref phantom,
         } = *self;
 
         // Just print `Some(<closure>)` or `None` to the debug
