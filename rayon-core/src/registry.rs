@@ -864,13 +864,13 @@ unsafe fn main_loop(worker: Worker<JobRef, DefaultCollector>, registry: Arc<Regi
 /// `op` completes and return its return value. If `op` panics, that
 /// panic will be propagated as well.  The second argument indicates
 /// `true` if injection was performed, `false` if executed directly.
-pub(super) fn in_worker<OP, R>(op: OP) -> R
+pub(super) fn in_worker<OP, R, C>(op: OP) -> R
 where
-    OP: FnOnce(&WorkerThread, bool) -> R + Send,
+    OP: FnOnce(&WorkerThread<C>, bool) -> R + Send,
     R: Send,
 {
     unsafe {
-        let owner_thread = WorkerThread::current();
+        let owner_thread = WorkerThread<C>::current();
         if !owner_thread.is_null() {
             // Perfectly valid to give them a `&T`: this is the
             // current thread, so we know the data structure won't be
