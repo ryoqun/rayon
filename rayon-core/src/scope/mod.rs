@@ -580,7 +580,7 @@ impl<'scope, C> ScopeFifo<'scope, C> {
     /// [`scope_fifo` function]: fn.scope_fifo.html
     pub fn spawn_fifo<BODY>(&self, body: BODY)
     where
-        BODY: FnOnce(&ScopeFifo<'scope>) + Send + 'scope,
+        BODY: FnOnce(&ScopeFifo<'scope, C>) + Send + 'scope,
     {
         self.base.increment();
         unsafe {
