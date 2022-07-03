@@ -615,7 +615,7 @@ impl Configuration {
     }
 
     /// Deprecated in favor of `ThreadPoolBuilder::build`.
-    pub fn build(self) -> Result<ThreadPool, Box<dyn Error + 'static>> {
+    pub fn build<C>(self) -> Result<ThreadPool<C>, Box<dyn Error + 'static>> {
         self.builder.build().map_err(Box::from)
     }
 
