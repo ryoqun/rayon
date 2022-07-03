@@ -140,14 +140,14 @@ impl CoreLatch {
 /// Spin latches are the simplest, most efficient kind, but they do
 /// not support a `wait()` operation. They just have a boolean flag
 /// that becomes true when `set()` is called.
-pub(super) struct SpinLatch<'r> {
+pub(super) struct SpinLatch<'r, C> {
     core_latch: CoreLatch,
-    registry: &'r Arc<Registry>,
+    registry: &'r Arc<Registry<C>>,
     target_worker_index: usize,
     cross: bool,
 }
 
-impl<'r> SpinLatch<'r> {
+impl<'r, C> SpinLatch<'r, C> {
     /// Creates a new spin latch that is owned by `thread`. This means
     /// that `thread` is the only thread that should be blocking on
     /// this latch -- it also means that when the latch is set, we
