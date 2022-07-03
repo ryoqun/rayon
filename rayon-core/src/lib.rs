@@ -277,7 +277,7 @@ where
         */
 }
 
-impl<C: CustomCollector> ThreadPoolBuilder<C> {
+impl<C: CustomCollector> ThreadPoolBuilder<DefaultSpawn, C> {
     /// Creates a scoped `ThreadPool` initialized using this configuration.
     ///
     /// This is a convenience function for building a pool using [`crossbeam::scope`]
