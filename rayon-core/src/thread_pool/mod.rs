@@ -241,7 +241,7 @@ impl ThreadPool {
     /// See also: [the `in_place_scope_fifo()` function][in_place_scope_fifo].
     ///
     /// [in_place_scope_fifo]: fn.in_place_scope_fifo.html
-    pub fn in_place_scope_fifo<'scope, OP, R, C>(&self, op: OP) -> R
+    pub fn in_place_scope_fifo<'scope, OP, R, C: CustomCollector>(&self, op: OP) -> R
     where
         OP: FnOnce(&ScopeFifo<'scope, C>) -> R,
     {
