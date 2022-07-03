@@ -203,7 +203,7 @@ where
 
 struct Terminator<'a, C: CustomCollector>(&'a Arc<Registry<C>>);
 
-impl<'a, CustomCollector> Drop for Terminator<'a, C: CustomCollector> {
+impl<'a, C: CustomCollector> Drop for Terminator<'a, C: CustomCollector> {
     fn drop(&mut self) {
         self.0.terminate()
     }
