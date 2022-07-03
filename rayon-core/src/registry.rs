@@ -178,7 +178,7 @@ pub(super) fn init_global_registry<S: ThreadSpawn<C>, C: CustomCollector>(
     builder: ThreadPoolBuilder<S, C>,
 ) -> Result<&'static Arc<Registry<DefaultCollector>>, ThreadPoolBuildError>
 where
-    S: ThreadSpawn,
+    S: ThreadSpawn<C>,
 {
     panic!();
     //set_global_registry(|| Registry::new(builder))
