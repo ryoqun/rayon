@@ -689,7 +689,7 @@ impl<'scope> ScopeBase<'scope> {
 }
 
 impl ScopeLatch {
-    fn new(owner: Option<&WorkerThread>) -> Self {
+    fn new(owner: Option<&WorkerThread<DefaultCollector>>) -> Self {
         match owner {
             Some(owner) => ScopeLatch::Stealing {
                 latch: CountLatch::new(),
@@ -720,7 +720,7 @@ impl ScopeLatch {
         }
     }
 
-    fn wait(&self, owner: Option<&WorkerThread>) {
+    fn wait(&self, owner: Option<&WorkerThread<DefaultCollector>>) {
         match self {
             ScopeLatch::Stealing {
                 latch,
