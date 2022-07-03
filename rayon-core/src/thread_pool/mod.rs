@@ -52,8 +52,7 @@ mod test;
 /// [`ThreadPoolBuilder::build()`]: struct.ThreadPoolBuilder.html#method.build
 /// [`ThreadPool::install()`]: struct.ThreadPool.html#method.install
 pub struct ThreadPool<C> {
-    registry: Arc<Registry>,
-    phantom: std::marker::PhantomData<C>,
+    registry: Arc<Registry<C>>,
 }
 
 impl<C> ThreadPool<C> {
