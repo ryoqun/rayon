@@ -153,7 +153,7 @@ impl<'r, C> SpinLatch<'r, C> {
     /// this latch -- it also means that when the latch is set, we
     /// will wake `thread` if it is sleeping.
     #[inline]
-    pub(super) fn new<C: CustomCollector>(thread: &'r WorkerThread<C>) -> SpinLatch<'r> {
+    pub(super) fn new(thread: &'r WorkerThread<C>) -> Self {
         SpinLatch {
             core_latch: CoreLatch::new(),
             registry: thread.registry(),
@@ -166,7 +166,7 @@ impl<'r, C> SpinLatch<'r, C> {
     /// need to make sure the registry is kept alive after setting, so we can
     /// safely call the notification.
     #[inline]
-    pub(super) fn cross<C: CustomCollector>(thread: &'r WorkerThread<C>) -> SpinLatch<'r> {
+    pub(super) fn cross<C: CustomCollector>(thread: &'r WorkerThread<C>) -> Self {
         SpinLatch {
             cross: true,
             ..SpinLatch::new(thread)
