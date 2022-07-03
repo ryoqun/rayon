@@ -232,13 +232,6 @@ impl<S, C: CustomCollector> ThreadPoolBuilder<S, C> {
     }
 }
 
-impl<C: crossbeam_deque::CustomCollector> ThreadPoolBuilder<DefaultSpawn, C> {
-    /// Creates and returns a valid rayon thread pool builder, but does not initialize it.
-    pub fn new_under() -> Self {
-        panic!();//Self::default()
-    }
-}
-
 /// Note: the `S: ThreadSpawn` constraint is an internal implementation detail for the
 /// default spawn and those set by [`spawn_handler`](#method.spawn_handler).
 impl<S, C: CustomCollector> ThreadPoolBuilder<S, C>
