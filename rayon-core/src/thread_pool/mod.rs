@@ -55,7 +55,7 @@ pub struct ThreadPool<C> {
     registry: Arc<Registry>,
 }
 
-impl ThreadPool {
+impl<C> ThreadPool {
     #[deprecated(note = "Use `ThreadPoolBuilder::build`")]
     #[allow(deprecated)]
     /// Deprecated in favor of `ThreadPoolBuilder::build`.
@@ -281,13 +281,13 @@ impl ThreadPool {
     }
 }
 
-impl Drop for ThreadPool {
+impl<C> Drop for ThreadPool {
     fn drop(&mut self) {
         self.registry.terminate();
     }
 }
 
-impl fmt::Debug for ThreadPool {
+impl<C> fmt::Debug for ThreadPool {
     fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result {
         fmt.debug_struct("ThreadPool")
             .field("num_threads", &self.current_num_threads())
