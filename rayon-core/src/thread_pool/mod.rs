@@ -64,7 +64,7 @@ impl<C: CustomCollector> ThreadPool<C> {
     }
 
     pub(super) fn build<S>(
-        builder: ThreadPoolBuilder<S>,
+        builder: ThreadPoolBuilder<S, C>,
     ) -> Result<ThreadPool<C>, ThreadPoolBuildError>
     where
         S: ThreadSpawn<C>,
