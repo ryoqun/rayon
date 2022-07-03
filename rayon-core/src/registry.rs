@@ -268,7 +268,7 @@ impl<C: CustomCollector> Registry<C> {
         Ok(registry)
     }
 
-    pub(super) fn current() -> Arc<Registry> {
+    pub(super) fn current() -> Arc<Registry<C>> {
         unsafe {
             let worker_thread = WorkerThread::<DefaultCollector>::current();
             let registry = if worker_thread.is_null() {
