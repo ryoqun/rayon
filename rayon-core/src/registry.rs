@@ -71,7 +71,7 @@ impl<C: CustomCollector> fmt::Debug for ThreadBuilder<C> {
 ///
 /// This trait is pub-in-private -- E0445 forces us to make it public,
 /// but we don't actually want to expose these details in the API.
-pub trait ThreadSpawn<C: CustomCollector = DefaultCollector>: Default {
+pub trait ThreadSpawn<C: CustomCollector>: Default {
     private_decl! {}
 
     /// Spawn a thread with the `ThreadBuilder` parameters, and then
