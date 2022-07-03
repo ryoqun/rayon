@@ -111,7 +111,7 @@ pub struct CustomSpawn<F>(F);
 
 impl<F, C> CustomSpawn<F>
 where
-    F: FnMut(ThreadBuilder<C>) -> io::Result<()>,
+    F: FnMut(ThreadBuilder<DefaultCollector>) -> io::Result<()>,
 {
     pub(super) fn new(spawn: F) -> Self {
         CustomSpawn(spawn)
@@ -120,7 +120,7 @@ where
 
 impl<F, C> ThreadSpawn for CustomSpawn<F>
 where
-    F: FnMut(ThreadBuilder<C>) -> io::Result<()>,
+    F: FnMut(ThreadBuilder<DefaultCollector>) -> io::Result<()>,
 {
     private_impl! {}
 
