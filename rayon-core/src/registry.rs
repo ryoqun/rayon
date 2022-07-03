@@ -607,7 +607,7 @@ pub(super) struct WorkerThread<C: CustomCollector> { // TODO
     /// A weak random number generator.
     rng: XorShift64Star,
 
-    registry: Arc<Registry>,
+    registry: Arc<Registry<C>>,
 }
 
 // This is a bit sketchy, but basically: the WorkerThread is
