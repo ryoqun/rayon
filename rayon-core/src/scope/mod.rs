@@ -71,13 +71,13 @@ struct ScopeBase<'scope, C: CustomCollector> {
     panic: AtomicPtr<Box<dyn Any + Send + 'static>>,
 
     /// latch to track job counts
-    job_completed_latch: ScopeLatch,
+    job_completed_latch: ScopeLatch<C>,
 
     /// You can think of a scope as containing a list of closures to execute,
     /// all of which outlive `'scope`.  They're not actually required to be
     /// `Sync`, but it's still safe to let the `Scope` implement `Sync` because
     /// the closures are only *moved* across threads to be executed.
-    marker: PhantomData<Box<dyn FnOnce(&Scope<'scope>) + Send + Sync + 'scope>>,
+    marker: PhantomData<Box<dyn FnOnce(&Scope<'scope, C>) + Send + Sync + 'scope>>,
 }
 
 /// Creates a "fork-join" scope `s` and invokes the closure with a
