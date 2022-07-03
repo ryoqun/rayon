@@ -281,13 +281,13 @@ impl<C> ThreadPool<C> {
     }
 }
 
-impl<C> Drop for ThreadPool {
+impl<C> Drop for ThreadPool<C> {
     fn drop(&mut self) {
         self.registry.terminate();
     }
 }
 
-impl<C> fmt::Debug for ThreadPool {
+impl<C> fmt::Debug for ThreadPool<C> {
     fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result {
         fmt.debug_struct("ThreadPool")
             .field("num_threads", &self.current_num_threads())
