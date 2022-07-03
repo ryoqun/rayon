@@ -23,6 +23,8 @@ use std::sync::{Arc, Once};
 use std::thread;
 use std::usize;
 
+use crossbeam_deque::CustomCollector;
+
 /// Thread builder used for customization via
 /// [`ThreadPoolBuilder::spawn_handler`](struct.ThreadPoolBuilder.html#method.spawn_handler).
 pub struct ThreadBuilder {
