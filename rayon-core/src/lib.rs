@@ -251,6 +251,7 @@ where
         panic!();
     }
 
+        /*
     /// Initializes the global thread pool. This initialization is
     /// **optional**.  If you do not call this function, the thread pool
     /// will be automatically initialized with the default
@@ -268,7 +269,6 @@ where
     /// changed. Therefore, if you call `build_global` a second time, it
     /// will return an error. An `Ok` result indicates that this
     /// is the first initialization of the thread pool.
-        /*
     pub fn build_global(self) -> Result<(), ThreadPoolBuildError> {
         let registry = registry::init_global_registry(self)?;
         registry.wait_until_primed();
