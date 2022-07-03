@@ -189,7 +189,7 @@ pub(super) struct JobFifo<C: CustomCollector> {
 
 impl<C> JobFifo<C> {
     pub(super) fn new() -> Self {
-        JobFifo<C> {
+        JobFifo {
             inner: Injector::new(),
         }
     }
