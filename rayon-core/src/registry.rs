@@ -453,17 +453,17 @@ impl Registry {
     #[cold]
     unsafe fn in_worker_cold<OP, R>(&self, op: OP) -> R
     where
-        OP: FnOnce(&WorkerThread, bool) -> R + Send,
+        OP: FnOnce(&WorkerThread::<DefaultCollector>, bool) -> R + Send,
         R: Send,
     {
         thread_local!(static LOCK_LATCH: LockLatch = LockLatch::new());
 
         LOCK_LATCH.with(|l| {
             // This thread isn't a member of *any* thread pool, so just block.
-            debug_assert!(WorkerThread::current().is_null());
+            debug_assert!(WorkerThread::<DefaultCollector>::current().is_null());
             let job = StackJob::new(
                 |injected| {
-                    let worker_thread = WorkerThread::current();
+                    let worker_thread = WorkerThread::<DefaultCollector>::current();
                     assert!(injected && !worker_thread.is_null());
                     op(&*worker_thread, true)
                 },
