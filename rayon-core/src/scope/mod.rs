@@ -41,7 +41,7 @@ pub struct ScopeFifo<'scope, C: CustomCollector> {
     fifos: Vec<JobFifo<C>>,
 }
 
-enum ScopeLatch {
+enum ScopeLatch<C: CustomCollector> {
     /// A latch for scopes created on a rayon thread which will participate in work-
     /// stealing while it waits for completion. This thread is not necessarily part
     /// of the same registry as the scope itself!
@@ -52,7 +52,7 @@ enum ScopeLatch {
         /// need to call `latch.set_and_tickle_one()` to wake the thread in registry A.
         /// That means we need a reference to registry A (since at that point we will
         /// only have a reference to registry B), so we stash it here.
-        registry: Arc<Registry>,
+        registry: Arc<Registry<C>>,
         /// The index of the worker to wake in `registry`
         worker_index: usize,
     },
@@ -61,10 +61,10 @@ enum ScopeLatch {
     Blocking { latch: CountLockLatch },
 }
 
-struct ScopeBase<'scope> {
+struct ScopeBase<'scope, C: CustomCollector> {
     /// thread registry where `scope()` was executed or where `in_place_scope()`
     /// should spawn jobs.
-    registry: Arc<Registry>,
+    registry: Arc<Registry<C>>,
 
     /// if some job panicked, the error is stored here; it will be
     /// propagated to the one who created the scope
