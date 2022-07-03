@@ -437,7 +437,7 @@ where
     panic!();
 }
 
-pub(crate) fn do_in_place_scope<'scope, OP, R, C: CustomCollector>(registry: Option<&Arc<Registry>>, op: OP) -> R
+pub(crate) fn do_in_place_scope<'scope, OP, R, C: CustomCollector>(registry: Option<&Arc<Registry<C>>>, op: OP) -> R
 where
     OP: FnOnce(&Scope<'scope>) -> R,
 {
