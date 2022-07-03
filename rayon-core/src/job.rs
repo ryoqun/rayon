@@ -203,7 +203,7 @@ impl<C> JobFifo<C> {
     }
 }
 
-impl Job for JobFifo {
+impl<C> Job for JobFifo<C> {
     unsafe fn execute(this: *const Self) {
         // We "execute" a queue by executing its first job, FIFO.
         loop {
