@@ -134,7 +134,7 @@ pub(super) struct Registry {
     logger: Logger,
     thread_infos: Vec<ThreadInfo>,
     sleep: Sleep,
-    injected_jobs: Injector<JobRef>,
+    injected_jobs: Injector<JobRef, DefaultCollector>,
     panic_handler: Option<Box<PanicHandler>>,
     start_handler: Option<Box<StartHandler>>,
     exit_handler: Option<Box<ExitHandler>>,
