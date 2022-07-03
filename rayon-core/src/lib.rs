@@ -217,7 +217,7 @@ impl Default for ThreadPoolBuilder {
             exit_handler: None,
             spawn_handler: DefaultSpawn,
             breadth_first: false,
-            phatom: PhantomData::default(),
+            phantom: PhantomData::default(),
         }
     }
 }
