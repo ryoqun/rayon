@@ -87,7 +87,7 @@ pub use self::thread_pool::current_thread_has_pending_tasks;
 pub use self::thread_pool::current_thread_index;
 pub use self::thread_pool::ThreadPool;
 
-use self::registry::{/*CustomSpawn, */DefaultSpawn, ThreadSpawn};
+pub use self::registry::{/*CustomSpawn, */DefaultSpawn, ThreadSpawn};
 
 /// Returns the maximum number of threads that Rayon supports in a single thread-pool.
 ///
