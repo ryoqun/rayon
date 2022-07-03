@@ -233,8 +233,7 @@ impl<C: CustomCollector> ThreadPool<C> {
     where
         OP: FnOnce(&Scope<'scope, C>) -> R,
     {
-        panic!();
-        //do_in_place_scope(Some(&self.registry), op)
+        do_in_place_scope(Some(&self.registry), op)
     }
 
     /// Creates a scope that spawns work into this thread-pool in FIFO order.
