@@ -57,18 +57,18 @@ use std::sync::Arc;
 ///     GLOBAL_COUNTER.fetch_add(1, Ordering::SeqCst);
 /// });
 /// ```
-pub fn spawn<F, C>(func: F)
+pub fn spawn<F, C: CustomCollector>(func: F)
 where
     F: FnOnce() + Send + 'static,
 {
     // We assert that current registry has not terminated.
-    unsafe { spawn_in(func, &Registry<C>::current()) }
+    unsafe { spawn_in(func, &Registry::<C>::current()) }
 }
 
 /// Spawns an asynchronous job in `registry.`
 ///
 /// Unsafe because `registry` must not yet have terminated.
-pub(super) unsafe fn spawn_in<F>(func: F, registry: &Arc<Registry>)
+pub(super) unsafe fn spawn_in<F, C: CustomCollector>(func: F, registry: &Arc<Registry<C>>)
 where
     F: FnOnce() + Send + 'static,
 {
@@ -83,7 +83,7 @@ where
     mem::forget(abort_guard);
 }
 
-unsafe fn spawn_job<F>(func: F, registry: &Arc<Registry>) -> JobRef
+unsafe fn spawn_job<F, C: CustomCollector>(func: F, registry: &Arc<Registry<C>>) -> JobRef
 where
     F: FnOnce() + Send + 'static,
 {
@@ -132,18 +132,18 @@ where
 /// details.
 ///
 /// [ph]: struct.ThreadPoolBuilder.html#method.panic_handler
-pub fn spawn_fifo<F>(func: F)
+pub fn spawn_fifo<F, C: CustomCollector>(func: F)
 where
     F: FnOnce() + Send + 'static,
 {
     // We assert that current registry has not terminated.
-    unsafe { spawn_fifo_in(func, &Registry::current()) }
+    unsafe { spawn_fifo_in(func, &Registry<C>::current()) }
 }
 
 /// Spawns an asynchronous FIFO job in `registry.`
 ///
 /// Unsafe because `registry` must not yet have terminated.
-pub(super) unsafe fn spawn_fifo_in<F>(func: F, registry: &Arc<Registry>)
+pub(super) unsafe fn spawn_fifo_in<F, C: CustomCollector>(func: F, registry: &Arc<Registry<C>>)
 where
     F: FnOnce() + Send + 'static,
 {
