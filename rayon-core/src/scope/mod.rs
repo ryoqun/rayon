@@ -36,7 +36,7 @@ pub struct Scope<'scope> {
 /// See [`scope_fifo()`] for more information.
 ///
 ///[`scope_fifo()`]: fn.scope_fifo.html
-pub struct ScopeFifo<C: CustomCollector, 'scope> {
+pub struct ScopeFifo<'scope, C: CustomCollector> {
     base: ScopeBase<'scope>,
     fifos: Vec<JobFifo<C>>,
 }
