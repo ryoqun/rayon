@@ -211,7 +211,7 @@ type ExitHandler = dyn Fn(usize) + Send + Sync;
 // NB: We can't `#[derive(Default)]` because `S` is left ambiguous.
 impl<S, C: CustomCollector> Default for ThreadPoolBuilder<S, C> {
     fn default() -> Self {
-        ThreadPoolBuilder::<S, C> {
+        ThreadPoolBuilder::<DefaultSpawn, C> {
             num_threads: 0,
             panic_handler: None,
             get_thread_name: None,
