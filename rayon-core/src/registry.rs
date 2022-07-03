@@ -652,7 +652,7 @@ impl<C: CustomCollector> WorkerThread<C> {
 
     /// Returns the registry that owns this worker thread.
     #[inline]
-    pub(super) fn registry(&self) -> &Arc<Registry> {
+    pub(super) fn registry(&self) -> &Arc<Registry<C>> {
         &self.registry
     }
 
