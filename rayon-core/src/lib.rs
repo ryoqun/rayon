@@ -709,7 +709,8 @@ impl fmt::Display for ThreadPoolBuildError {
 #[deprecated(note = "use `ThreadPoolBuilder::build_global`")]
 #[allow(deprecated)]
 pub fn initialize(config: Configuration) -> Result<(), Box<dyn Error>> {
-    config.into_builder().build_global().map_err(Box::from)
+    //config.into_builder().build_global().map_err(Box::from)
+    panic!();
 }
 
 impl<S> fmt::Debug for ThreadPoolBuilder<S> {
