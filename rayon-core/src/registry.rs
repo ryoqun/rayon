@@ -809,6 +809,8 @@ impl<C: CustomCollector> WorkerThread<C> {
 /// ////////////////////////////////////////////////////////////////////////
 
 unsafe fn main_loop(worker: Worker<JobRef, DefaultCollector>, registry: Arc<Registry>, index: usize) {
+    panic!();
+    /*
     let worker_thread = &WorkerThread {
         worker,
         fifo: JobFifo::new(),
@@ -865,6 +867,7 @@ unsafe fn main_loop(worker: Worker<JobRef, DefaultCollector>, registry: Arc<Regi
         }
         // We're already exiting the thread, there's nothing else to do.
     }
+    */
 }
 
 /// If already in a worker-thread, just execute `op`.  Otherwise,
