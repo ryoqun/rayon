@@ -620,7 +620,7 @@ impl<'scope, C: CustomCollector> ScopeBase<'scope, C> {
     fn new(owner: Option<&WorkerThread<C>>, registry: Option<&Arc<Registry<C>>>) -> Self {
         let registry = registry.unwrap_or_else(|| match owner {
             Some(owner) => owner.registry(),
-            None => global_registry(),
+            None => panic!(), //global_registry(),
         });
 
         ScopeBase {
