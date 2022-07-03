@@ -233,7 +233,7 @@ impl<C: CustomCollector> Registry<C> {
             .unzip();
 
         let logger = Logger::new(n_threads);
-        let registry = Arc::new(Registry {
+        let registry = Arc::new(Self {
             logger: logger.clone(),
             thread_infos: stealers.into_iter().map(ThreadInfo::new).collect(),
             sleep: Sleep::new(logger, n_threads),
