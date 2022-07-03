@@ -309,10 +309,10 @@ impl ThreadPoolBuilder {
     ///     Ok(())
     /// }
     /// ```
-    pub fn build_scoped<W, F, R>(self, wrapper: W, with_pool: F) -> Result<R, ThreadPoolBuildError>
+    pub fn build_scoped<W, F, R, C>(self, wrapper: W, with_pool: F) -> Result<R, ThreadPoolBuildError>
     where
         W: Fn(ThreadBuilder) + Sync, // expected to call `run()`
-        F: FnOnce(&ThreadPool) -> R,
+        F: FnOnce(&ThreadPool<C>) -> R,
     {
         let result = crossbeam_utils::thread::scope(|scope| {
             let wrapper = &wrapper;
