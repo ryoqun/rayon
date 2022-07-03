@@ -250,7 +250,7 @@ impl<C: CustomCollector> Registry<C> {
         let t1000 = Terminator::<C>(&registry);
 
         for (index, worker) in workers.into_iter().enumerate() {
-            let thread = ThreadBuilder<C> {
+            let thread = ThreadBuilder::<C> {
                 name: builder.get_thread_name(index),
                 stack_size: builder.get_stack_size(),
                 registry: Arc::clone(&registry),
