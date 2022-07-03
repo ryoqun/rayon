@@ -177,8 +177,8 @@ where
 /// B is complete. This is because it may contain references into the
 /// enclosing stack frame(s).
 #[cold] // cold path
-unsafe fn join_recover_from_panic(
-    worker_thread: &WorkerThread,
+unsafe fn join_recover_from_panic<C>(
+    worker_thread: &WorkerThread<C>,
     job_b_latch: &SpinLatch<'_>,
     err: Box<dyn Any + Send>,
 ) -> ! {
