@@ -53,6 +53,7 @@ mod test;
 /// [`ThreadPool::install()`]: struct.ThreadPool.html#method.install
 pub struct ThreadPool<C> {
     registry: Arc<Registry>,
+    phantom: PhantomData<C>,
 }
 
 impl<C> ThreadPool<C> {
