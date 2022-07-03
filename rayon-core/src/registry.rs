@@ -480,9 +480,9 @@ impl Registry {
     }
 
     #[cold]
-    unsafe fn in_worker_cross<OP, R>(&self, current_thread: &WorkerThread, op: OP) -> R
+    unsafe fn in_worker_cross<OP, R>(&self, current_thread: &WorkerThread::<DefaultCollector>, op: OP) -> R
     where
-        OP: FnOnce(&WorkerThread, bool) -> R + Send,
+        OP: FnOnce(&WorkerThread::<DefaultCollector>, bool) -> R + Send,
         R: Send,
     {
         // This thread is a member of a different pool, so let it process
@@ -491,7 +491,7 @@ impl Registry {
         let latch = SpinLatch::cross(current_thread);
         let job = StackJob::new(
             |injected| {
-                let worker_thread = WorkerThread::current();
+                let worker_thread = WorkerThread::<DefaultCollector>::current();
                 assert!(injected && !worker_thread.is_null());
                 op(&*worker_thread, true)
             },
