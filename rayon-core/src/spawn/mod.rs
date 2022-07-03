@@ -139,7 +139,7 @@ where
     F: FnOnce() + Send + 'static,
 {
     // We assert that current registry has not terminated.
-    unsafe { spawn_fifo_in(func, &Registry<C>::current()) }
+    unsafe { spawn_fifo_in(func, &Registry::<C>::current()) }
 }
 
 /// Spawns an asynchronous FIFO job in `registry.`

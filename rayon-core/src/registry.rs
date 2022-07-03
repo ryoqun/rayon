@@ -880,6 +880,8 @@ where
     OP: FnOnce(&WorkerThread<C>, bool) -> R + Send,
     R: Send,
 {
+    panic!();
+    /*
     unsafe {
         let owner_thread = WorkerThread::<C>::current();
         if !owner_thread.is_null() {
@@ -891,6 +893,7 @@ where
             global_registry().in_worker_cold(op)
         }
     }
+    */
 }
 
 /// [xorshift*] is a fast pseudorandom number generator which will
