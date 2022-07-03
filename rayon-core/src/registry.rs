@@ -257,7 +257,7 @@ impl<C: CustomCollector> Registry<C> {
                 worker,
                 index,
             };
-            if let Err(e) = builder.get_spawn_handler().spawn(thread) {
+            if let Err(e) = builder.get_spawn_handler().spawn(3) {
                 return Err(ThreadPoolBuildError::new(ErrorKind::IOError(e)));
             }
         }
