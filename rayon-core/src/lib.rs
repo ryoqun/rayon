@@ -228,7 +228,7 @@ impl<S: ThreadSpawn<C>, C: CustomCollector> Default for ThreadPoolBuilder<S, C> 
     }
 }
 
-impl<S, C: CustomCollector> ThreadPoolBuilder<S, C> {
+impl<S: ThreadSpawn<C>, C: CustomCollector> ThreadPoolBuilder<S, C> {
     /// Creates and returns a valid rayon thread pool builder, but does not initialize it.
     pub fn new() -> Self {
         Self::default()
