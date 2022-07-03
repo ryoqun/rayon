@@ -160,6 +160,7 @@ pub(super) struct Registry<C: CustomCollector> {
 /// ////////////////////////////////////////////////////////////////////////
 /// Initialization
 
+/*
 static mut THE_REGISTRY: Option<Arc<Registry>> = None;
 static THE_REGISTRY_SET: Once = Once::new();
 
@@ -200,6 +201,7 @@ where
 
     result
 }
+*/
 
 struct Terminator<'a, C: CustomCollector>(&'a Arc<Registry<C>>);
 
