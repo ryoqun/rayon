@@ -577,7 +577,7 @@ struct ThreadInfo {
 }
 
 impl ThreadInfo {
-    fn new(stealer: Stealer<JobRef>) -> ThreadInfo {
+    fn new(stealer: Stealer<JobRef, DefaultCollector>) -> ThreadInfo {
         ThreadInfo {
             primed: LockLatch::new(),
             stopped: LockLatch::new(),
