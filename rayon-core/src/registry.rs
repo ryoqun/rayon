@@ -625,7 +625,7 @@ impl<C: CustomCollector> Drop for WorkerThread<C> {
     }
 }
 
-impl<C: CustomCollecor> WorkerThread<C> {
+impl<C: CustomCollector> WorkerThread<C> {
     /// Gets the `WorkerThread` index for the current thread; returns
     /// NULL if this is not a worker thread. This pointer is valid
     /// anywhere on the current thread.
