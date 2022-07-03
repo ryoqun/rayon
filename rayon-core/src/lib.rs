@@ -238,8 +238,7 @@ impl<S: ThreadSpawn<C>, C: CustomCollector> ThreadPoolBuilder<S, C>
 {
     /// Creates a new `ThreadPool` initialized using this configuration.
     pub fn build(self) -> Result<ThreadPool<C>, ThreadPoolBuildError> {
-        //ThreadPool::<C>::build(self)
-        panic!();
+        ThreadPool::<C>::build(self)
     }
 
         /*
