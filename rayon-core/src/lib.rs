@@ -400,23 +400,6 @@ impl<S> ThreadPoolBuilder<S> {
     ///     Ok(())
     /// }
     /// ```
-    pub fn spawn_handler<F, C: CustomCollector>(self, spawn: F) -> ThreadPoolBuilder<CustomSpawn<F>>
-    where
-        F: FnMut(ThreadBuilder<C>) -> io::Result<()>,
-    {
-        ThreadPoolBuilder {
-            spawn_handler: CustomSpawn::new(spawn),
-            // ..self
-            num_threads: self.num_threads,
-            panic_handler: self.panic_handler,
-            get_thread_name: self.get_thread_name,
-            stack_size: self.stack_size,
-            start_handler: self.start_handler,
-            exit_handler: self.exit_handler,
-            breadth_first: self.breadth_first,
-            phantom: self.phantom,
-        }
-    }
 
     /// Returns a reference to the current spawn handler.
     fn get_spawn_handler(&mut self) -> &mut S {
