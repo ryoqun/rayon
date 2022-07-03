@@ -132,7 +132,7 @@ where
 
 pub(super) struct Registry {
     logger: Logger,
-    thread_infos: Vec<ThreadInfo>,
+    thread_infos: Vec<ThreadInfo<DefaultCollector>>,
     sleep: Sleep,
     injected_jobs: Injector<JobRef, DefaultCollector>,
     panic_handler: Option<Box<PanicHandler>>,
