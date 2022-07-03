@@ -109,7 +109,7 @@ impl ThreadSpawn for DefaultSpawn {
 #[derive(Debug)]
 pub struct CustomSpawn<F>(F);
 
-impl<F, C> CustomSpawn<F>
+impl<F, C: CustomCollector> CustomSpawn<F>
 where
     F: FnMut(ThreadBuilder<C>) -> io::Result<()>,
 {
