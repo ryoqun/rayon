@@ -69,7 +69,7 @@ impl<C: CustomCollector> ThreadPool<C> {
     where
         S: ThreadSpawn<C>,
     {
-        let registry = Registry::new(builder)?;
+        let registry = Registry<S>::new(builder)?;
         Ok(ThreadPool::<C> { registry })
     }
 
