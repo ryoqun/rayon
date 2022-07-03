@@ -130,7 +130,7 @@ where
     }
 }
 
-pub(super) struct Registry<C> {
+pub(super) struct Registry<C = DefaultCollector> {
     logger: Logger,
     thread_infos: Vec<ThreadInfo<C>>,
     sleep: Sleep,
