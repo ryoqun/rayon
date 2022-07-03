@@ -218,7 +218,7 @@ impl<S, C: CustomCollector> Default for ThreadPoolBuilder<S, C> {
             stack_size: None,
             start_handler: None,
             exit_handler: None,
-            spawn_handler: S,
+            spawn_handler: S::defualt(),
             breadth_first: false,
             phantom: PhantomData::default(),
         }
