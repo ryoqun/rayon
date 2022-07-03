@@ -99,7 +99,7 @@ where
 struct IterParallelProducer<'a, Iter: Iterator> {
     split_count: &'a AtomicUsize,
     done: &'a AtomicBool,
-    iter: &'a Mutex<(Iter, Worker<Iter::Item>)>,
+    iter: &'a Mutex<(Iter, Worker<Iter::Item, DefaultCollector>)>,
     items: Stealer<Iter::Item>,
 }
 
