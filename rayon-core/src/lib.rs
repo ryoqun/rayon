@@ -241,7 +241,7 @@ impl<C: crossbeam_deque::CustomCollector> ThreadPoolBuilder<DefaultSpawn, C> {
 
 /// Note: the `S: ThreadSpawn` constraint is an internal implementation detail for the
 /// default spawn and those set by [`spawn_handler`](#method.spawn_handler).
-impl<C: CustomCollector, S> ThreadPoolBuilder<S>
+impl<S> ThreadPoolBuilder<S>
 where
     S: ThreadSpawn<C>,
 {
