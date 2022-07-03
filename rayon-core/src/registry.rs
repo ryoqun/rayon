@@ -23,8 +23,6 @@ use std::sync::{Arc, Once};
 use std::thread;
 use std::usize;
 
-use crossbeam_deque::CustomCollector;
-
 /// Thread builder used for customization via
 /// [`ThreadPoolBuilder::spawn_handler`](struct.ThreadPoolBuilder.html#method.spawn_handler).
 pub struct ThreadBuilder {
@@ -247,7 +245,7 @@ impl<C: CustomCollector> Registry<C> {
         });
 
         // If we return early or panic, make sure to terminate existing threads.
-        let t1000 = Terminator(&registry);
+        let t1000 = Terminator::<C>(&registry);
 
         for (index, worker) in workers.into_iter().enumerate() {
             let thread = ThreadBuilder {
