@@ -166,7 +166,7 @@ static THE_REGISTRY_SET: Once = Once::new();
 /// Starts the worker threads (if that has not already happened). If
 /// initialization has not already occurred, use the default
 /// configuration.
-pub(super) fn global_registry() -> &'static Arc<Registry> {
+pub(super) fn global_registry() -> &'static Arc<Registry<DefaultCollector>> {
     set_global_registry(|| Registry::new(ThreadPoolBuilder::new()))
         .or_else(|err| unsafe { THE_REGISTRY.as_ref().ok_or(err) })
         .expect("The global thread pool has not been initialized.")
@@ -185,7 +185,7 @@ where
 
 /// Starts the worker threads (if that has not already happened)
 /// by creating a registry with the given callback.
-fn set_global_registry<F>(registry: F) -> Result<&'static Arc<Registry>, ThreadPoolBuildError>
+fn set_global_registry<F>(registry: F) -> Result<&'static Arc<Registry<DefaultCollector>>, ThreadPoolBuildError>
 where
     F: FnOnce() -> Result<Arc<Registry>, ThreadPoolBuildError>,
 {
