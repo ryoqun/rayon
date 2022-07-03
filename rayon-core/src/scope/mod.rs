@@ -33,9 +33,9 @@ pub struct Scope<'scope> {
 /// See [`scope_fifo()`] for more information.
 ///
 ///[`scope_fifo()`]: fn.scope_fifo.html
-pub struct ScopeFifo<'scope> {
+pub struct ScopeFifo<C: CustomCollector, 'scope> {
     base: ScopeBase<'scope>,
-    fifos: Vec<JobFifo>,
+    fifos: Vec<JobFifo<C>>,
 }
 
 enum ScopeLatch {
