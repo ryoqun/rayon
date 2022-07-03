@@ -174,7 +174,7 @@ pub(super) fn global_registry() -> &'static Arc<Registry<DefaultCollector>> {
 
 /// Starts the worker threads (if that has not already happened) with
 /// the given builder.
-pub(super) fn init_global_registry<S, C>(
+pub(super) fn init_global_registry<S, C: CustomCollector>(
     builder: ThreadPoolBuilder<S, C>,
 ) -> Result<&'static Arc<Registry<DefaultCollector>>, ThreadPoolBuildError>
 where
