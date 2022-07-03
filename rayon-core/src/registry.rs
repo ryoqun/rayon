@@ -295,7 +295,7 @@ impl<C: CustomCollector> Registry<C> {
     }
 
     /// Returns the current `WorkerThread` if it's part of this `Registry`.
-    pub(super) fn current_thread(&self) -> Option<&WorkerThread::<DefaultCollector>> {
+    pub(super) fn current_thread(&self) -> Option<&WorkerThread::<C>> {
         unsafe {
             let worker = WorkerThread::<C>::current().as_ref()?;
             if worker.registry().id() == self.id() {
