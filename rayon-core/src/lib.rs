@@ -247,7 +247,7 @@ where
 {
     /// Creates a new `ThreadPool` initialized using this configuration.
     pub fn build<C: CustomCollector>(self) -> Result<ThreadPool<C>, ThreadPoolBuildError> {
-        ThreadPool::<C>::build(self)
+        //ThreadPool::<C>::build(self)
     }
 
     /// Initializes the global thread pool. This initialization is
