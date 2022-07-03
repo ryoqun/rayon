@@ -186,7 +186,7 @@ impl<'r, C> AsCoreLatch for SpinLatch<'r, C> {
     }
 }
 
-impl<'r> Latch for SpinLatch<'r> {
+impl<'r, C> Latch for SpinLatch<'r, C> {
     #[inline]
     fn set(&self) {
         let cross_registry;
