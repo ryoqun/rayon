@@ -231,7 +231,7 @@ impl<C: CustomCollector> ThreadPool<C> {
     /// [in_place_scope]: fn.in_place_scope.html
     pub fn in_place_scope<'scope, OP, R>(&self, op: OP) -> R
     where
-        OP: FnOnce(&Scope<'scope>) -> R,
+        OP: FnOnce(&Scope<'scope, C>) -> R,
     {
         panic!();
         //do_in_place_scope(Some(&self.registry), op)
