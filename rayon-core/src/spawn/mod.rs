@@ -57,12 +57,12 @@ use std::sync::Arc;
 ///     GLOBAL_COUNTER.fetch_add(1, Ordering::SeqCst);
 /// });
 /// ```
-pub fn spawn<F>(func: F)
+pub fn spawn<F, C>(func: F)
 where
     F: FnOnce() + Send + 'static,
 {
     // We assert that current registry has not terminated.
-    unsafe { spawn_in(func, &Registry::current()) }
+    unsafe { spawn_in(func, &Registry<C>::current()) }
 }
 
 /// Spawns an asynchronous job in `registry.`
