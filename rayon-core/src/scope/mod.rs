@@ -480,7 +480,7 @@ where
 }
 
 impl<'scope> Scope<'scope> {
-    fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self {
+    fn new(owner: Option<&WorkerThread<DefaultCollector>>, registry: Option<&Arc<Registry>>) -> Self {
         let base = ScopeBase::new(owner, registry);
         Scope { base }
     }
