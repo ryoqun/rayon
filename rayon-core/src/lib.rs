@@ -757,7 +757,7 @@ impl<S, C: CustomCollector> fmt::Debug for ThreadPoolBuilder<S, C> {
 impl Default for Configuration {
     fn default() -> Self {
         Configuration {
-            builder: ThreadPoolBuilder::<DefaultCollector>::default(),
+            builder: ThreadPoolBuilder::<DefaultSpawn, DefaultCollector>::default(),
         }
     }
 }
