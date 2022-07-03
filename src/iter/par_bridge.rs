@@ -104,7 +104,7 @@ struct IterParallelProducer<'a, Iter: Iterator, C: CustomCollector> {
 }
 
 // manual clone because T doesn't need to be Clone, but the derive assumes it should be
-impl<'a, Iter: Iterator + 'a> Clone for IterParallelProducer<'a, Iter> {
+impl<'a, Iter: Iterator + 'a, C: CustomCollector> Clone for IterParallelProducer<'a, Iter, C> {
     fn clone(&self) -> Self {
         IterParallelProducer {
             split_count: self.split_count,
