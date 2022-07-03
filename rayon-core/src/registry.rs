@@ -214,7 +214,7 @@ impl<C: CustomCollector> Registry<C> {
         mut builder: ThreadPoolBuilder<S>,
     ) -> Result<Arc<Self>, ThreadPoolBuildError>
     where
-        S: ThreadSpawn,
+        S: ThreadSpawn<C>,
     {
         // Soft-limit the number of threads that we can actually support.
         let n_threads = Ord::min(builder.get_num_threads(), crate::max_num_threads());
