@@ -243,7 +243,7 @@ where
     S: ThreadSpawn,
 {
     /// Creates a new `ThreadPool` initialized using this configuration.
-    pub fn build(self) -> Result<ThreadPool, ThreadPoolBuildError> {
+    pub fn build<C>(self) -> Result<ThreadPool, ThreadPoolBuildError> {
         ThreadPool::build(self)
     }
 
