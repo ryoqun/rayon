@@ -195,7 +195,7 @@ where
 
     THE_REGISTRY_SET.call_once(|| {
         result = registry()
-            .map(|registry: Arc<Registry>| unsafe { &*THE_REGISTRY.get_or_insert(registry) })
+            .map(|registry: Arc<Registry<DefaultCollector>>| unsafe { &*THE_REGISTRY.get_or_insert(registry) })
     });
 
     result
