@@ -25,11 +25,11 @@ use std::usize;
 
 /// Thread builder used for customization via
 /// [`ThreadPoolBuilder::spawn_handler`](struct.ThreadPoolBuilder.html#method.spawn_handler).
-pub struct ThreadBuilder {
+pub struct ThreadBuilder<C: CustomCollector> {
     name: Option<String>,
     stack_size: Option<usize>,
     worker: Worker<JobRef, DefaultCollector>,
-    registry: Arc<Registry>,
+    registry: Arc<Registry<C>>,
     index: usize,
 }
 
