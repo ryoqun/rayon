@@ -180,7 +180,7 @@ pub struct ThreadPoolBuilder<S = DefaultSpawn, C: crossbeam_deque::CustomCollect
     /// fashion. Depth-first is the default.
     breadth_first: bool,
 
-    pantom: PhantomData<C>,
+    phantom: PhantomData<C>,
 }
 
 /// Contains the rayon thread pool configuration. Use [`ThreadPoolBuilder`] instead.
