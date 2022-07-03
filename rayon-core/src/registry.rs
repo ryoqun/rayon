@@ -370,7 +370,7 @@ impl<C: CustomCollector> Registry<C> {
     /// worker thread for the registry, this will push onto the
     /// deque. Else, it will inject from the outside (which is slower).
     pub(super) fn inject_or_push(&self, job_ref: JobRef) {
-        let worker_thread = WorkerThread<C>::current();
+        let worker_thread = WorkerThread::<C>::current();
         unsafe {
             if !worker_thread.is_null() && (*worker_thread).registry().id() == self.id() {
                 (*worker_thread).push(job_ref);
