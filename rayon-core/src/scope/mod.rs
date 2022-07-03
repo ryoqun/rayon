@@ -771,7 +771,7 @@ impl<'scope, C: CustomCollector> fmt::Debug for ScopeFifo<'scope, C> {
     }
 }
 
-impl fmt::Debug for ScopeLatch {
+impl<C: CustomCollector> fmt::Debug for ScopeLatch<C> {
     fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
             ScopeLatch::Stealing { latch, .. } => fmt
