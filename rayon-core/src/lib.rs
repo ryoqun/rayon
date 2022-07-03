@@ -243,7 +243,7 @@ impl<C: crossbeam_deque::CustomCollector> ThreadPoolBuilder<DefaultSpawn, C> {
 /// default spawn and those set by [`spawn_handler`](#method.spawn_handler).
 impl<S> ThreadPoolBuilder<S>
 where
-    S: ThreadSpawn,
+    S: ThreadSpawn<C>,
 {
     /// Creates a new `ThreadPool` initialized using this configuration.
     pub fn build<C: CustomCollector>(self) -> Result<ThreadPool<C>, ThreadPoolBuildError> {
