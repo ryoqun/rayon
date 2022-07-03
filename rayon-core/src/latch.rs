@@ -147,7 +147,7 @@ pub(super) struct SpinLatch<'r, C: CustomCollector> {
     cross: bool,
 }
 
-impl<'r, C> SpinLatch<'r, C> {
+impl<'r, C: CustomCollector> SpinLatch<'r, C> {
     /// Creates a new spin latch that is owned by `thread`. This means
     /// that `thread` is the only thread that should be blocking on
     /// this latch -- it also means that when the latch is set, we
@@ -179,14 +179,14 @@ impl<'r, C> SpinLatch<'r, C> {
     }
 }
 
-impl<'r, C> AsCoreLatch for SpinLatch<'r, C> {
+impl<'r, C: CustomCollector> AsCoreLatch for SpinLatch<'r, C> {
     #[inline]
     fn as_core_latch(&self) -> &CoreLatch {
         &self.core_latch
     }
 }
 
-impl<'r, C> Latch for SpinLatch<'r, C> {
+impl<'r, C: CustomCollector> Latch for SpinLatch<'r, C> {
     #[inline]
     fn set(&self) {
         let cross_registry;
