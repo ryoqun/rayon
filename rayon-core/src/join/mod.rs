@@ -184,7 +184,7 @@ where
 #[cold] // cold path
 unsafe fn join_recover_from_panic<C: CustomCollector>(
     worker_thread: &WorkerThread<C>,
-    job_b_latch: &SpinLatch<'_>,
+    job_b_latch: &SpinLatch<'_, C>,
     err: Box<dyn Any + Send>,
 ) -> ! {
     worker_thread.wait_until(job_b_latch);
