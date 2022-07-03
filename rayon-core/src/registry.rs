@@ -86,7 +86,7 @@ pub trait ThreadSpawn<C: CustomCollector = DefaultCollector> {
 #[derive(Debug, Default)]
 pub struct DefaultSpawn;
 
-impl<C> ThreadSpawn<C> for DefaultSpawn {
+impl<C: CustomCollector> ThreadSpawn<C> for DefaultSpawn {
     private_impl! {}
 
     fn spawn(&mut self, thread: ThreadBuilder<C>) -> io::Result<()> {
