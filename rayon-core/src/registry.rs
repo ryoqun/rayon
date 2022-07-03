@@ -573,7 +573,7 @@ struct ThreadInfo {
     terminate: CountLatch,
 
     /// the "stealer" half of the worker's deque
-    stealer: Stealer<JobRef>,
+    stealer: Stealer<JobRef, DefaultCollector>,
 }
 
 impl ThreadInfo {
