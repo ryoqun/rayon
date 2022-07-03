@@ -176,7 +176,7 @@ pub(super) fn global_registry() -> &'static Arc<Registry<DefaultCollector>> {
 /// the given builder.
 pub(super) fn init_global_registry<S>(
     builder: ThreadPoolBuilder<S>,
-) -> Result<&'static Arc<Registry>, ThreadPoolBuildError>
+) -> Result<&'static Arc<Registry<DefaultCollector>>, ThreadPoolBuildError>
 where
     S: ThreadSpawn,
 {
