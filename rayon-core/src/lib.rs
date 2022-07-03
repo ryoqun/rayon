@@ -268,9 +268,12 @@ where
     /// will return an error. An `Ok` result indicates that this
     /// is the first initialization of the thread pool.
     pub fn build_global(self) -> Result<(), ThreadPoolBuildError> {
+        panic!();
+        /*
         let registry = registry::init_global_registry(self)?;
         registry.wait_until_primed();
         Ok(())
+        */
     }
 }
 
