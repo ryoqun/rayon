@@ -187,7 +187,7 @@ where
 /// by creating a registry with the given callback.
 fn set_global_registry<F>(registry: F) -> Result<&'static Arc<Registry<DefaultCollector>>, ThreadPoolBuildError>
 where
-    F: FnOnce() -> Result<Arc<Registry>, ThreadPoolBuildError>,
+    F: FnOnce() -> Result<Arc<Registry<DefaultCollector>>, ThreadPoolBuildError>,
 {
     let mut result = Err(ThreadPoolBuildError::new(
         ErrorKind::GlobalPoolAlreadyInitialized,
