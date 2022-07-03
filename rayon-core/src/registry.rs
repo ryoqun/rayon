@@ -102,6 +102,7 @@ impl<C> ThreadSpawn<C> for DefaultSpawn {
     }
 }
 
+/*
 /// Spawns a thread with a user's custom callback.
 ///
 /// This type is pub-in-private -- E0445 forces us to make it public,
@@ -129,6 +130,7 @@ where
         (self.0)(thread)
     }
 }
+*/
 
 pub(super) struct Registry<C: CustomCollector = DefaultCollector> {
     logger: Logger,
