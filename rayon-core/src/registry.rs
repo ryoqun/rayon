@@ -432,11 +432,11 @@ impl Registry {
     /// was performed, `false` if executed directly.
     pub(super) fn in_worker<OP, R>(&self, op: OP) -> R
     where
-        OP: FnOnce(&WorkerThread, bool) -> R + Send,
+        OP: FnOnce(&WorkerThread::<DefaultCollector>, bool) -> R + Send,
         R: Send,
     {
         unsafe {
-            let worker_thread = WorkerThread::current();
+            let worker_thread = WorkerThread::<DefaultCollector>::current();
             if worker_thread.is_null() {
                 self.in_worker_cold(op)
             } else if (*worker_thread).registry().id() != self.id() {
