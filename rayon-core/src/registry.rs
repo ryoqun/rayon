@@ -76,7 +76,7 @@ pub trait ThreadSpawn {
 
     /// Spawn a thread with the `ThreadBuilder` parameters, and then
     /// call `ThreadBuilder::run()`.
-    fn spawn<C: CustomCollector>(&mut self, thread: ThreadBuilder<C>) -> io::Result<()>;
+    fn spawn(&mut self, thread: ThreadBuilder) -> io::Result<()>;
 }
 
 /// Spawns a thread in the "normal" way with `std::thread::Builder`.
@@ -89,7 +89,7 @@ pub struct DefaultSpawn;
 impl ThreadSpawn for DefaultSpawn {
     private_impl! {}
 
-    fn spawn<C>(&mut self, thread: ThreadBuilder<C>) -> io::Result<()> {
+    fn spawn(&mut self, thread: ThreadBuilder) -> io::Result<()> {
         let mut b = thread::Builder::new();
         if let Some(name) = thread.name() {
             b = b.name(name.to_owned());
@@ -111,7 +111,7 @@ pub struct CustomSpawn<F>(F);
 
 impl<F> CustomSpawn<F>
 where
-    F: FnMut(ThreadBuilder<DefaultCollector>) -> io::Result<()>,
+    F: FnMut(ThreadBuilder) -> io::Result<()>,
 {
     pub(super) fn new(spawn: F) -> Self {
         CustomSpawn(spawn)
@@ -120,12 +120,12 @@ where
 
 impl<F> ThreadSpawn for CustomSpawn<F>
 where
-    F: FnMut(ThreadBuilder<DefaultCollector>) -> io::Result<()>,
+    F: FnMut(ThreadBuilder) -> io::Result<()>,
 {
     private_impl! {}
 
     #[inline]
-    fn spawn(&mut self, thread: ThreadBuilder<C>) -> io::Result<()> {
+    fn spawn(&mut self, thread: ThreadBuilder) -> io::Result<()> {
         (self.0)(thread)
     }
 }
