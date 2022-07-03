@@ -130,11 +130,11 @@ where
     }
 }
 
-pub(super) struct Registry {
+pub(super) struct Registry<C> {
     logger: Logger,
-    thread_infos: Vec<ThreadInfo<DefaultCollector>>,
+    thread_infos: Vec<ThreadInfo<C>>,
     sleep: Sleep,
-    injected_jobs: Injector<JobRef, DefaultCollector>,
+    injected_jobs: Injector<JobRef, C>,
     panic_handler: Option<Box<PanicHandler>>,
     start_handler: Option<Box<StartHandler>>,
     exit_handler: Option<Box<ExitHandler>>,
