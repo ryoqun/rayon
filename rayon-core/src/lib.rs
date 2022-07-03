@@ -153,7 +153,7 @@ enum ErrorKind {
 ///
 /// [`ThreadPool`]: struct.ThreadPool.html
 /// [`build_global()`]: struct.ThreadPoolBuilder.html#method.build_global
-pub struct ThreadPoolBuilder<S: ThreadSpawn, C: crossbeam_deque::CustomCollector> {
+pub struct ThreadPoolBuilder<S: ThreadSpawn<C>, C: crossbeam_deque::CustomCollector> {
     /// The number of threads in the rayon thread pool.
     /// If zero will use the RAYON_NUM_THREADS environment variable.
     /// If RAYON_NUM_THREADS is invalid or zero will use the default.
@@ -209,7 +209,7 @@ type StartHandler = dyn Fn(usize) + Send + Sync;
 type ExitHandler = dyn Fn(usize) + Send + Sync;
 
 // NB: We can't `#[derive(Default)]` because `S` is left ambiguous.
-impl<S: ThreadSpawn, C: CustomCollector> Default for ThreadPoolBuilder<S, C> {
+impl<S: ThreadSpawn<C>, C: CustomCollector> Default for ThreadPoolBuilder<S, C> {
     fn default() -> Self {
         panic!();
         /*
@@ -239,7 +239,7 @@ impl<S, C: CustomCollector> ThreadPoolBuilder<S, C> {
 /// default spawn and those set by [`spawn_handler`](#method.spawn_handler).
 impl<S, C: CustomCollector> ThreadPoolBuilder<S, C>
 where
-    S: ThreadSpawn,
+    S: ThreadSpawn<C>,
 {
     /// Creates a new `ThreadPool` initialized using this configuration.
     pub fn build(self) -> Result<ThreadPool<C>, ThreadPoolBuildError> {
@@ -344,7 +344,7 @@ impl<C: CustomCollector> ThreadPoolBuilder<DefaultSpawn, C> {
     }
 }
 
-impl<S: ThreadSpawn, C: CustomCollector> ThreadPoolBuilder<S, C> {
+impl<S: ThreadSpawn<C>, C: CustomCollector> ThreadPoolBuilder<S, C> {
     /// Sets a custom function for spawning threads.
     ///
     /// Note that the threads will not exit until after the pool is dropped. It
@@ -710,7 +710,7 @@ pub fn initialize(config: Configuration) -> Result<(), Box<dyn Error>> {
     panic!();
 }
 
-impl<S: ThreadSpawn, C: CustomCollector> fmt::Debug for ThreadPoolBuilder<S, C> {
+impl<S: ThreadSpawn<C>, C: CustomCollector> fmt::Debug for ThreadPoolBuilder<S, C> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let ThreadPoolBuilder {
             ref num_threads,
