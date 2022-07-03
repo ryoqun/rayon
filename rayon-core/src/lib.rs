@@ -58,7 +58,7 @@ use std::io;
 use std::marker::PhantomData;
 use std::str::FromStr;
 
-use crossbeam_deque::CustomCollector;
+use crossbeam_deque::{CustomCollector, DefaultCollector};
 
 #[macro_use]
 mod log;
