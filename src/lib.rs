@@ -103,7 +103,6 @@ pub mod slice;
 pub mod str;
 pub mod string;
 pub mod vec;
-pub mod registry;
 
 mod math;
 mod par_either;
@@ -120,6 +119,7 @@ pub use rayon_core::{in_place_scope, scope, Scope};
 pub use rayon_core::{in_place_scope_fifo, scope_fifo, ScopeFifo};
 pub use rayon_core::{join, join_context};
 pub use rayon_core::{spawn, spawn_fifo};
+pub use rayon_core::registry;
 
 /// We need to transmit raw pointers across threads. It is possible to do this
 /// without any unsafe code by converting pointers to usize or to AtomicPtr<T>
