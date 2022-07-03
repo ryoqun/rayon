@@ -463,7 +463,7 @@ where
 /// execute, even if the spawning task should later panic. `in_place_scope_fifo()`
 /// returns once all spawned jobs have completed, and any panics are
 /// propagated at that point.
-pub fn in_place_scope_fifo<'scope, OP, R, C>(op: OP) -> R
+pub fn in_place_scope_fifo<'scope, OP, R, C: CustomCollector>(op: OP) -> R
 where
     OP: FnOnce(&ScopeFifo<'scope, C>) -> R,
 {
