@@ -312,7 +312,7 @@ impl ThreadPoolBuilder {
     ///     Ok(())
     /// }
     /// ```
-    pub fn build_scoped<W, F, R, C>(self, wrapper: W, with_pool: F) -> Result<R, ThreadPoolBuildError>
+    pub fn build_scoped<W, F, R, C: CustomCollector>(self, wrapper: W, with_pool: F) -> Result<R, ThreadPoolBuildError>
     where
         W: Fn(ThreadBuilder::<C>) + Sync, // expected to call `run()`
         F: FnOnce(&ThreadPool::<C>) -> R,
