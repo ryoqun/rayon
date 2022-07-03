@@ -556,7 +556,7 @@ impl<'scope> Scope<'scope> {
     }
 }
 
-impl<'scope, C> ScopeFifo<'scope, C> {
+impl<'scope, C: CustomCollector> ScopeFifo<'scope, C> {
     fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self {
         let base = ScopeBase::new(owner, registry);
         let num_threads = base.registry.num_threads();
