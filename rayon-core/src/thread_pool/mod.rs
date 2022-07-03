@@ -51,7 +51,7 @@ mod test;
 /// [`ThreadPoolBuilder`]: struct.ThreadPoolBuilder.html
 /// [`ThreadPoolBuilder::build()`]: struct.ThreadPoolBuilder.html#method.build
 /// [`ThreadPool::install()`]: struct.ThreadPool.html#method.install
-pub struct ThreadPool<C> {
+pub struct ThreadPool<C: CustomCollector> {
     registry: Arc<Registry<C>>,
 }
 
