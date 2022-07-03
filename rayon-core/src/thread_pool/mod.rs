@@ -245,8 +245,7 @@ impl<C: CustomCollector> ThreadPool<C> {
     where
         OP: FnOnce(&ScopeFifo<'scope, C>) -> R,
     {
-        panic!();
-        //do_in_place_scope_fifo(Some(&self.registry), op)
+        do_in_place_scope_fifo(Some(&self.registry), op)
     }
 
     /// Spawns an asynchronous task in this thread-pool. This task will
