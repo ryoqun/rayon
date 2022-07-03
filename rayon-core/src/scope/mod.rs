@@ -615,9 +615,9 @@ impl<'scope, C: CustomCollector> ScopeFifo<'scope, C> {
     }
 }
 
-impl<'scope> ScopeBase<'scope> {
+impl<'scope, C: CustomCollector> ScopeBase<'scope, C> {
     /// Creates the base of a new scope for the given registry
-    fn new(owner: Option<&WorkerThread<DefaultCollector>>, registry: Option<&Arc<Registry>>) -> Self {
+    fn new(owner: Option<&WorkerThread<DefaultCollector>>, registry: Option<&Arc<Registry<C>>>) -> Self {
         let registry = registry.unwrap_or_else(|| match owner {
             Some(owner) => owner.registry(),
             None => global_registry(),
