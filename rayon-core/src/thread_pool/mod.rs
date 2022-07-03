@@ -16,6 +16,8 @@ use std::error::Error;
 use std::fmt;
 use std::sync::Arc;
 
+use crossbeam_deque::CustomCollector;
+
 mod test;
 
 /// Represents a user created [thread-pool].
