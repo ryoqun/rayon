@@ -638,7 +638,7 @@ impl<C: CustomCollector> Drop for WorkerThread<C> {
         // Undo `set_current`
         WORKER_THREAD_STATE.with(|t| {
             unsafe {
-                assert!(t.get().eq(*(self as *const WorkerThread<TypeErasedCustomCollector>)));
+                assert!(t.get().eq((self as *const WorkerThread<TypeErasedCustomCollector>)));
             }
             t.set(ptr::null());
         });
