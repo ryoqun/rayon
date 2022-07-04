@@ -801,14 +801,16 @@ impl<C: CustomCollector> WorkerThread<C> {
         loop {
             let mut retry = false;
             let start = self.rng.next_usize(num_threads);
+            /*
             let s = std::any::type_name::<C>().to_string();
             if s != "crossbeam_rayon_many_threads::MyCustomCollector" {
-                dbg!(("steal1", &s));
+                //dbg!(("steal1", &s));
             }
             if s == "rayon_core::registry::TypeErasedCustomCollector" {
                 //dbg!(("type erase", &std::any::type_name::<Self>(), self.dyn_collector.name()));
                 //panic!("type erase detected!")
             }
+            */
             let job = (start..num_threads)
                 .chain(0..start)
                 .filter(move |&i| i != self.index)
