@@ -18,11 +18,11 @@ pub struct Enumerate<I: IndexedParallelIterator> {
 /// jajaajja
 #[must_use = "iterator adaptors are lazy and do nothing unless consumed"]
 #[derive(Debug, Clone)]
-pub struct InstallType<I: ParallelIterator, C> {
+pub struct InstallType<I: ParallelIterator, CC> {
     base: I,
 }
 
-impl<I, C> InstallType<I, C>
+impl<I, CC> InstallType<I, CC>
 where
     I: ParallelIterator,
 {
@@ -61,7 +61,7 @@ where
     }
 }
 
-impl<I, C> ParallelIterator for InstallType<I, C>
+impl<I, CC> ParallelIterator for InstallType<I, CC>
 where
     I: ParallelIterator,
 {
@@ -87,7 +87,7 @@ pub trait WithInstallType {
     }
 }
 
-impl<I, C> WithInstallType for InstallType<I, C>
+impl<I, CC> WithInstallType for InstallType<I, CC>
 where
     I: ParallelIterator,
 {
