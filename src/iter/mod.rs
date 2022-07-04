@@ -2045,7 +2045,7 @@ pub trait ParallelIterator: Sized + Send {
     /// let error = result.unwrap_err();
     /// assert!(error == 6 || error == 7);
     /// ```
-    fn collect<C>(self) -> C
+    fn collect<C, CC>(self) -> C
     where
         C: FromParallelIterator<Self::Item>,
     {
