@@ -83,14 +83,14 @@ where
 }
 
 /// wwwjwwj
-pub trait WithInstallType {
+pub trait WithInstallType<CC: CustomCollector> {
     ///jnanana
     fn installed_type_name(&self) -> &'static str {
         "aaaa"
     }
 }
 
-impl<I, CC: CustomCollector> WithInstallType for InstallType<I, CC>
+impl<I, CC: CustomCollector> WithInstallType<CC> for InstallType<I, CC>
 where
     I: ParallelIterator,
 {
