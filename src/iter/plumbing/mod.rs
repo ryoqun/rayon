@@ -443,9 +443,9 @@ where
 /// A variant of [`bridge_producer_consumer`] where the producer is an unindexed producer.
 ///
 /// [`bridge_producer_consumer`]: fn.bridge_producer_consumer.html
-pub fn bridge_unindexed<P, C>(producer: P, consumer: C) -> C::Result
+pub fn bridge_unindexed<P, C, CC>(producer: P, consumer: C) -> C::Result
 where
-    P: UnindexedProducer<i8>,
+    P: UnindexedProducer<CC>,
     C: UnindexedConsumer<P::Item>,
 {
     let splitter = Splitter::new();
