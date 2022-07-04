@@ -97,11 +97,11 @@ pub trait MMM {}
 
 impl<I, CC: CustomCollector> WithInstallType<CC> for InstallType<I, CC>
 where
-    I: ParallelIterator<Base = bool> + MMM,
+    I: ParallelIterator<Base = bool>,
 {
 }
 
-impl<I: ParallelIterator<Base = G>, CC: CustomCollector, G: WithInstallType<CC>> WithInstallType<CC> for I {
+impl<I: ParallelIterator<Base = G> + MMM, CC: CustomCollector, G: WithInstallType<CC>> WithInstallType<CC> for I {
 }
 
 impl<I> IndexedParallelIterator for Enumerate<I>
