@@ -101,7 +101,7 @@ where
 }
 */
 
-impl<I: ParallelIterator<Base = WithInstallType<CC>>, CC: CustomCollector> WithInstallType<CC> for I {
+impl<I: ParallelIterator<Base = G>, CC: CustomCollector, G: WithInstallType<CC>> WithInstallType<CC> for I {
 }
 
 impl<I> IndexedParallelIterator for Enumerate<I>
