@@ -55,7 +55,7 @@ pub struct ThreadPool<C: CustomCollector> {
     registry: Arc<Registry<C>>,
 }
 
-impl<C: CustomCollector> ThreadPool<C> {
+impl<C: CustomCollector + 'static> ThreadPool<C> {
     #[deprecated(note = "Use `ThreadPoolBuilder::build`")]
     #[allow(deprecated)]
     /// Deprecated in favor of `ThreadPoolBuilder::build`.
