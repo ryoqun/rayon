@@ -120,7 +120,7 @@ impl<'a, Iter: Iterator + 'a, C: CustomCollector> Clone for IterParallelProducer
     }
 }
 
-impl<'a, Iter: Iterator + Send + 'a, C: CustomCollector> UnindexedProducer for IterParallelProducer<'a, Iter, C>
+impl<'a, Iter: Iterator + Send + 'a, C: CustomCollector> UnindexedProducer<i8> for IterParallelProducer<'a, Iter, C>
 where
     Iter::Item: Send,
 {
