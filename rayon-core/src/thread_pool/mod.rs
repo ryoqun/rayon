@@ -296,7 +296,7 @@ impl<C: CustomCollector> Drop for ThreadPool<C> {
     }
 }
 
-impl<C: CustomCollector> fmt::Debug for ThreadPool<C> {
+impl<C: CustomCollector + 'static> fmt::Debug for ThreadPool<C> {
     fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result {
         fmt.debug_struct("ThreadPool")
             .field("num_threads", &self.current_num_threads())
