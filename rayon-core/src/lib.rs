@@ -79,7 +79,7 @@ mod compile_fail;
 mod test;
 
 pub use self::join::{join, join_context};
-pub use self::registry::{ThreadBuilder, TypeErasedCustomCollector};
+pub use self::registry::ThreadBuilder;
 pub use self::scope::{in_place_scope, scope, Scope};
 pub use self::scope::{in_place_scope_fifo, scope_fifo, ScopeFifo};
 pub use self::spawn::{spawn, spawn_fifo};
@@ -119,7 +119,7 @@ pub fn max_num_threads() -> usize {
 ///
 /// [snt]: struct.ThreadPoolBuilder.html#method.num_threads
 pub fn current_num_threads() -> usize {
-    crate::registry::Registry::<TypeErasedCustomCollector>::current_num_threads()
+    crate::registry::Registry::<self::registry::TypeErasedCustomCollector>::current_num_threads()
 }
 
 /// Error when initializing a thread pool.
