@@ -75,7 +75,7 @@ where
     }
 
     fn opt_len(&self) -> Option<usize> {
-        Some(self.len())
+        self.base.opt_len()
     }
 }
 
