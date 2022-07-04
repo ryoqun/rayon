@@ -652,7 +652,7 @@ impl<C: CustomCollector> WorkerThread<C> {
     #[inline]
     pub(super) fn current() -> *const WorkerThread<C> {
         unsafe {
-            WORKER_THREAD_STATE.with(Cell::get) as *mut WorkerThread<C>
+            *WORKER_THREAD_STATE.with(Cell::get) as *const WorkerThread<C>
         }
     }
 
