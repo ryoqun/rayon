@@ -632,6 +632,10 @@ impl CustomCollector for TypeErasedCustomCollector {
     fn handle() -> &'static std::thread::LocalKey<LocalHandle> {
         panic!("handle(): TypeErasedCustomCollector has somehow leaked into runtime!")
     }
+
+    fn new() -> Self {
+        panic!("new(): TypeErasedCustomCollector has somehow leaked into runtime!")
+    }
 }
 
 impl<C: CustomCollector> Drop for WorkerThread<C> {
