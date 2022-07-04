@@ -257,7 +257,7 @@ macro_rules! unindexed_range_impl {
             }
         }
 
-        impl UnindexedProducer for IterProducer<$t> {
+        impl UnindexedProducer<i8> for IterProducer<$t> {
             type Item = $t;
 
             fn split(mut self) -> (Self, Option<Self>) {
