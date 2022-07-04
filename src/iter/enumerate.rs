@@ -99,7 +99,7 @@ impl<I: ParallelIterator, E> MMM for Map<I, E> {}
 
 impl<I, CC: CustomCollector> WithInstallType<CC> for InstallType<I, CC>
 where
-    I: ParallelIterator<Base = bool>,
+    I: ParallelIterator,
 {
 }
 
