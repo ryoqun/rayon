@@ -657,7 +657,7 @@ impl<C: CustomCollector> WorkerThread<C> {
     /// NULL if this is not a worker thread. This pointer is valid
     /// anywhere on the current thread.
     #[inline]
-    pub(super) fn current() -> *const WorkerThread<C> {
+    pub fn current() -> *const WorkerThread<C> {
         unsafe {
             WORKER_THREAD_STATE.with(Cell::get) as *const WorkerThread<C>
         }
