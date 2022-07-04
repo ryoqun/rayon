@@ -230,7 +230,7 @@ pub trait IntoParallelIterator {
     /// ```
     ///
     /// [`zip`]: trait.IndexedParallelIterator.html#method.zip
-    fn into_par_iter<C>(self) -> Self::Iter;
+    fn into_par_iter<C = i8>(self) -> Self::Iter;
 }
 
 /// `IntoParallelRefIterator` implements the conversion to a
