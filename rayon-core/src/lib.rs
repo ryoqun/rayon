@@ -234,7 +234,7 @@ impl<S: ThreadSpawn<C>, C: CustomCollector> ThreadPoolBuilder<S, C> {
 
 /// Note: the `S: ThreadSpawn` constraint is an internal implementation detail for the
 /// default spawn and those set by [`spawn_handler`](#method.spawn_handler).
-impl<S: ThreadSpawn<C>, C: CustomCollector> ThreadPoolBuilder<S, C>
+impl<S: 'static + ThreadSpawn<C>, C: CustomCollector> ThreadPoolBuilder<S, C>
 {
     /// Creates a new `ThreadPool` initialized using this configuration.
     pub fn build(self) -> Result<ThreadPool<C>, ThreadPoolBuildError> {
