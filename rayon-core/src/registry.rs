@@ -7,7 +7,7 @@ use crate::unwind;
 use crate::{
     ErrorKind, ExitHandler, PanicHandler, StartHandler, ThreadPoolBuildError, ThreadPoolBuilder,
 };
-use crossbeam_deque::{Injector, Steal, Stealer, Worker, DefaultCollector, CustomCollector, LocalHandle, Collector};
+use crossbeam_deque::{Injector, Steal, Stealer, Worker, DefaultCollector, CustomCollector, DynCustomCollector, LocalHandle, Collector};
 use std::any::Any;
 use std::cell::Cell;
 use std::collections::hash_map::DefaultHasher;
