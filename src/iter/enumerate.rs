@@ -93,6 +93,8 @@ pub trait WithInstallType<CC: CustomCollector> {
     }
 }
 
+pub trait MMM {}
+
 impl<I, CC: CustomCollector + MMM> WithInstallType<CC> for InstallType<I, CC>
 where
     I: ParallelIterator,
