@@ -590,8 +590,8 @@ pub trait ParallelIterator: Sized + Send {
     }
 
     /// jjaajj
-    fn install<C>(&self, a: C) -> Self {
-        panic!()
+    fn install<C>(self, a: C) -> Self {
+        self
     }
 
     /// Applies `map_op` to the given `init` value with each item of this
