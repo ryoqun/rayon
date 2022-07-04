@@ -15,6 +15,7 @@ pub struct Enumerate<I: IndexedParallelIterator> {
     base: I,
 }
 
+/// jajaajja
 #[must_use = "iterator adaptors are lazy and do nothing unless consumed"]
 #[derive(Debug, Clone)]
 pub struct InstallType<I: ParallelIterator> {
