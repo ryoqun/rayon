@@ -459,7 +459,7 @@ fn bridge_unindexed_producer_consumer<P, C, CC>(
     consumer: C,
 ) -> C::Result
 where
-    P: UnindexedProducer<i8>,
+    P: UnindexedProducer<CC>,
     C: UnindexedConsumer<P::Item>,
 {
     if consumer.full() {
