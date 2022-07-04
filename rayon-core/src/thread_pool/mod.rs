@@ -322,7 +322,7 @@ impl<C: CustomCollector> fmt::Debug for ThreadPool<C> {
 #[inline]
 pub fn current_thread_index() -> Option<usize> {
     unsafe {
-        let curr = WorkerThread::current().as_ref()?;
+        let curr = WorkerThread::<TypeErasedCustomCollector>>::current().as_ref()?;
         Some(curr.index())
     }
 }
