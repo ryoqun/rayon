@@ -388,11 +388,10 @@ where
 /// [`bridge`]: fn.bridge.html
 /// [`drive_unindexed`]: ../trait.ParallelIterator.html#tymethod.drive_unindexed
 /// [`drive`]: ../trait.IndexedParallelIterator.html#tymethod.drive
-pub fn bridge_producer_consumer<P, C>(len: usize, producer: P, consumer: C) -> C::Result
+pub fn bridge_producer_consumer<P, C, CC>(len: usize, producer: P, consumer: C) -> C::Result
 where
     P: Producer,
     C: Consumer<P::Item>,
-    CC,
 {
     let splitter = LengthSplitter::new(producer.min_len(), producer.max_len(), len);
     return helper(len, false, splitter, producer, consumer);
