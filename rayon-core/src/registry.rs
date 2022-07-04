@@ -626,11 +626,11 @@ pub(crate) struct TypeErasedCustomCollector;
 
 impl CustomCollector for TypeErasedCustomCollector {
     fn collector() -> &'static Collector {
-        panic!()
+        panic!("collector(): TypeErasedCustomCollector has somehow leaked into runtime!")
     }
 
     fn handle() -> &'static std::thread::LocalKey<LocalHandle> {
-        panic!()
+        panic!("handle(): TypeErasedCustomCollector has somehow leaked into runtime!")
     }
 }
 
