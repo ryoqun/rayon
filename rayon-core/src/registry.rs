@@ -598,6 +598,7 @@ impl<C: CustomCollector> ThreadInfo<C> {
 /// ////////////////////////////////////////////////////////////////////////
 /// WorkerThread identifiers
 
+#[derive(Debug)]
 pub struct WorkerThread<C: CustomCollector> { // TODO
     /// the "worker" half of our local deque
     worker: Worker<JobRef, C>,
