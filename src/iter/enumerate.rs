@@ -79,7 +79,7 @@ where
     }
 }
 
-trait WithInstallType {
+pub trait WithInstallType {
     fn installed_type_name() -> &'static str {
         "aaaa"
     }
