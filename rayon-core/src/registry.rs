@@ -612,7 +612,7 @@ pub(super) struct WorkerThread<C: CustomCollector> { // TODO
 
     registry: Arc<Registry<C>>,
 
-    dyn_collector: Box<dyn CustomCollector>,
+    dyn_collector: Box<dyn DynCustomCollector>,
 }
 
 // This is a bit sketchy, but basically: the WorkerThread is
