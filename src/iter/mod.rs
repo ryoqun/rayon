@@ -589,6 +589,7 @@ pub trait ParallelIterator: Sized + Send {
         Map::new(self, map_op)
     }
 
+    /// jjaajj
     fn install() -> Self {
         panic!()
     }
