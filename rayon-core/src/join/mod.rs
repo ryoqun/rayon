@@ -92,7 +92,7 @@ mod test;
 /// closure, that panic will be propagated and hence `join()` will
 /// panic with the same panic value. If both closures panic, `join()`
 /// will panic with the panic value from the first closure.
-pub fn join<A, B, RA, RB>(oper_a: A, oper_b: B) -> (RA, RB)
+pub fn join<A, B, RA, RB, C>(oper_a: A, oper_b: B) -> (RA, RB)
 where
     A: FnOnce() -> RA + Send,
     B: FnOnce() -> RB + Send,
@@ -104,7 +104,7 @@ where
         move |_| f()
     }
 
-    join_context(call(oper_a), call(oper_b))
+    join_context::<_, _, _, _, C>(call(oper_a), call(oper_b))
 }
 
 /// Identical to `join`, except that the closures have a parameter
