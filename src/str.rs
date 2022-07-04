@@ -822,7 +822,7 @@ impl<'ch, P: Pattern> ParallelIterator for MatchIndices<'ch, P> {
     }
 }
 
-impl<'ch, 'pat, P: Pattern> UnindexedProducer for MatchIndicesProducer<'ch, 'pat, P> {
+impl<'ch, 'pat, P: Pattern> UnindexedProducer<i8> for MatchIndicesProducer<'ch, 'pat, P> {
     type Item = (usize, &'ch str);
 
     fn split(self) -> (Self, Option<Self>) {
