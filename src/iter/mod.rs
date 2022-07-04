@@ -232,6 +232,7 @@ pub trait IntoParallelIterator {
     /// [`zip`]: trait.IndexedParallelIterator.html#method.zip
     fn into_par_iter(self) -> Self::Iter;
 
+    /// ajaja
     fn into_par_iter2(self) -> Self::Iter where Self: Sized {
         panic!();
     }
