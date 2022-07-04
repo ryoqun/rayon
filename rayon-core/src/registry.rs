@@ -97,7 +97,7 @@ impl<C: CustomCollector> ThreadSpawn<C> for DefaultSpawn {
         if let Some(stack_size) = thread.stack_size() {
             b = b.stack_size(stack_size);
         }
-        //b.spawn(|| thread.run())?;
+        b.spawn(|| thread.run())?;
         Ok(())
     }
 }
