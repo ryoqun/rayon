@@ -840,7 +840,7 @@ unsafe fn main_loop<C: CustomCollector>(worker: Worker<JobRef, C>, registry: Arc
         rng: XorShift64Star::new(),
         registry,
     };
-    let a = Box::new();
+    let a = Box::new(C::new());
     WorkerThread::set_current(worker_thread);
     let registry = &*worker_thread.registry;
 
