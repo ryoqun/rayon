@@ -131,7 +131,7 @@ where
         move |migrated| f(FnContext::new(migrated))
     }
 
-    registry::in_worker(|worker_thread, injected| unsafe {
+    registry::in_worker::<_, _, TypeErasedCustomCollector>(|worker_thread, injected| unsafe {
         // Create virtual wrapper for task b; this all has to be
         // done here so that the stack frame can keep it all live
         // long enough.
