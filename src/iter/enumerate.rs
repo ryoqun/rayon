@@ -99,7 +99,7 @@ where
 {
 }
 
-impl<I, CC> WithInstallType<CC> for I {
+impl<I: ParallelIterator, CC> WithInstallType<CC> for I {
 }
 
 impl<I> IndexedParallelIterator for Enumerate<I>
