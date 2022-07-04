@@ -591,6 +591,7 @@ pub trait ParallelIterator: Sized + Send {
 
     /// jjaajj
     fn install<C>(self, a: C) -> Self {
+        panic!(format!("install(): {}", std::any::type_name::<C>().to_string()));
         self
     }
 
