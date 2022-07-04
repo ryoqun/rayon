@@ -157,7 +157,7 @@ pub use self::{
     cloned::Cloned,
     copied::Copied,
     empty::{empty, Empty},
-    enumerate::{Enumerate, InstallType},
+    enumerate::{Enumerate, InstallType, WithInstallType},
     filter::Filter,
     filter_map::FilterMap,
     flat_map::FlatMap,
@@ -591,6 +591,7 @@ pub trait ParallelIterator: Sized + Send {
 
     /// jjaajj
     fn install_type<C: crossbeam_deque::CustomCollector>(self, _marker: &'static std::marker::PhantomData<C>) -> InstallType<Self> {
+        //panic!("install(): {}", std::any::type_name::<C>().to_string());
         InstallType::new(self)
     }
 
