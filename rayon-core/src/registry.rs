@@ -650,7 +650,9 @@ impl<C: CustomCollector> WorkerThread<C> {
     /// anywhere on the current thread.
     #[inline]
     pub(super) fn current() -> *const WorkerThread<C> {
-        WORKER_THREAD_STATE.with(Cell::get)
+        unsafe {
+            WORKER_THREAD_STATE.with(Cell::get) as WorkerThread<C>
+        }
     }
 
     /// Sets `self` as the worker thread index for the current thread.
