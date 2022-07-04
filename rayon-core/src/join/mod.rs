@@ -131,8 +131,6 @@ where
         move |migrated| f(FnContext::new(migrated))
     }
 
-    panic!();
-    /*
     registry::in_worker(|worker_thread, injected| unsafe {
         // Create virtual wrapper for task b; this all has to be
         // done here so that the stack frame can keep it all live
@@ -175,7 +173,6 @@ where
 
         (result_a, job_b.into_result())
     })
-    */
 }
 
 /// If job A panics, we still cannot return until we are sure that job
