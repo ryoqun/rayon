@@ -170,6 +170,7 @@ where
                 break;
             }
         }
+        panic!();
 
         (result_a, job_b.into_result())
     })
