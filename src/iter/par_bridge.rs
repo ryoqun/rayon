@@ -155,7 +155,7 @@ where
         F: Folder<Self::Item>,
     {
         loop {
-            match self.items.steal() {
+            match self.items.steal(WorkerThread::<C>::current()) {
                 Steal::Success(it) => {
                     folder = folder.consume(it);
                     if folder.full() {
