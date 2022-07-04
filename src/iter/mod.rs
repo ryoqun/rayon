@@ -233,7 +233,7 @@ pub trait IntoParallelIterator {
     fn into_par_iter(self) -> Self::Iter;
 
     /// ajaja
-    fn into_par_iter2(self) -> Self::Iter where Self: Sized {
+    fn into_par_iter2<C>(self) -> Self::Iter where Self: Sized {
         panic!();
     }
 }
