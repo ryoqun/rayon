@@ -335,11 +335,8 @@ pub fn current_thread_index() -> Option<usize> {
 /// [m]: struct.ThreadPool.html#method.current_thread_has_pending_tasks
 #[inline]
 pub fn current_thread_has_pending_tasks() -> Option<bool> {
-    panic!();
-    /*
     unsafe {
-        let curr = WorkerThread::current().as_ref()?;
+        let curr = WorkerThread::<TypeErasedCustomCollector>::current().as_ref()?;
         Some(!curr.local_deque_is_empty())
     }
-    */
 }
