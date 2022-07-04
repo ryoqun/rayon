@@ -119,8 +119,7 @@ pub fn max_num_threads() -> usize {
 ///
 /// [snt]: struct.ThreadPoolBuilder.html#method.num_threads
 pub fn current_num_threads() -> usize {
-    panic!();
-    //crate::registry::Registry::current_num_threads()
+    crate::registry::Registry::<TypeErasedCustomCollector>::current_num_threads()
 }
 
 /// Error when initializing a thread pool.
