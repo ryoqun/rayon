@@ -845,6 +845,7 @@ unsafe fn main_loop<C: CustomCollector>(worker: Worker<JobRef, C>, registry: Arc
         index,
         rng: XorShift64Star::new(),
         registry,
+        dyn_collector: C::make_dyn_box(),
     };
     WorkerThread::set_current(worker_thread);
     let registry = &*worker_thread.registry;
