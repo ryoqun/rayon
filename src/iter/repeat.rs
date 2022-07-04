@@ -76,7 +76,7 @@ struct RepeatProducer<T: Clone + Send> {
     element: T,
 }
 
-impl<T: Clone + Send> UnindexedProducer for RepeatProducer<T> {
+impl<T: Clone + Send> UnindexedProducer<i8> for RepeatProducer<T> {
     type Item = T;
 
     fn split(self) -> (Self, Option<Self>) {
