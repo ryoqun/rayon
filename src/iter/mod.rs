@@ -590,7 +590,7 @@ pub trait ParallelIterator: Sized + Send {
     }
 
     /// jjaajj
-    fn install<C: crossbeam_deque::CustomCollector>(self, _marker: &'static std::marker::PhantomData<C>) -> Self {
+    fn install_type<C: crossbeam_deque::CustomCollector>(self, _marker: &'static std::marker::PhantomData<C>) -> Self {
         panic!("install(): {}", std::any::type_name::<C>().to_string());
         self
     }
