@@ -796,7 +796,7 @@ impl<C: CustomCollector> WorkerThread<C> {
             let start = self.rng.next_usize(num_threads);
             let s = std::any::type_name::<C>().to_string();
             if s != "crossbeam_rayon_many_threads::MyCustomCollector" {
-                dbg!(("steal1", s));
+                dbg!(("steal1", &s));
             }
             if s == "rayon_core::registry::TypeErasedCustomCollector" {
                 panic!("type erase detected!")
