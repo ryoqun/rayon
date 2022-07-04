@@ -233,7 +233,7 @@ pub trait UnindexedConsumer<I>: Consumer<I> {
 /// (In principle, `Producer` could extend this trait; however, it
 /// does not because to do so would require producers to carry their
 /// own length with them.)
-pub trait UnindexedProducer<T>: Send + Sized {
+pub trait UnindexedProducer<CC>: Send + Sized {
     /// The type of item returned by this producer.
     type Item;
 
