@@ -25,7 +25,7 @@ pub struct InstallType<I: ParallelIterator, CC: CustomCollector> {
     marker: std::marker::PhantomData<CC>,
 }
 
-impl<I, CC> InstallType<I, CC>
+impl<I, CC: CustomCollector> InstallType<I, CC>
 where
     I: ParallelIterator,
 {
@@ -64,7 +64,7 @@ where
     }
 }
 
-impl<I, CC> ParallelIterator for InstallType<I, CC>
+impl<I, CC: CustomCollector> ParallelIterator for InstallType<I, CC>
 where
     I: ParallelIterator,
 {
@@ -90,7 +90,7 @@ pub trait WithInstallType {
     }
 }
 
-impl<I, CC> WithInstallType for InstallType<I, CC>
+impl<I, CC: CustomCollector> WithInstallType for InstallType<I, CC>
 where
     I: ParallelIterator,
 {
