@@ -192,7 +192,7 @@ impl<C: CustomCollector> ThreadPool<C> {
         RA: Send,
         RB: Send,
     {
-        self.install(|| join::<_, _, _, _, TypeErasedCustomCollector>(oper_a, oper_b))
+        self.install(|| join::<_, _, _, _, C>(oper_a, oper_b))
     }
 
     /// Creates a scope that executes within this thread-pool.
