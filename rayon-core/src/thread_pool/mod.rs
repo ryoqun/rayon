@@ -119,7 +119,7 @@ impl<C: CustomCollector> ThreadPool<C> {
         OP: FnOnce(&std::marker::PhantomData<C>) -> R + Send,
         R: Send,
     {
-        self.registry.in_worker(|_, _| op(3))
+        self.registry.in_worker(|_, _| op(&PhantomData<C>))
     }
 
     /// Returns the (current) number of threads in the thread pool.
