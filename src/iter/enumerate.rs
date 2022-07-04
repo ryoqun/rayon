@@ -97,7 +97,7 @@ pub trait MMM {}
 
 impl<I, CC: CustomCollector> WithInstallType<CC> for InstallType<I, CC>
 where
-    I: ParallelIterator<Base = bool>,
+    I: ParallelIterator<Base = bool> + MMM,
 {
 }
 
