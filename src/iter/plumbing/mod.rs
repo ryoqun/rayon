@@ -392,12 +392,13 @@ pub fn bridge_producer_consumer<P, C>(len: usize, producer: P, consumer: C) -> C
 where
     P: Producer,
     C: Consumer<P::Item>,
+    CC,
 {
     let splitter = LengthSplitter::new(producer.min_len(), producer.max_len(), len);
     return helper(len, false, splitter, producer, consumer);
 
     #[inline]
-    fn helper<P, C>(
+    fn helper<P, C, CC>(
         len: usize,
         migrated: bool,
         mut splitter: LengthSplitter,
