@@ -74,7 +74,7 @@ where
     }
 }
 
-impl<'p, P, V> UnindexedProducer for SplitProducer<'p, P, V>
+impl<'p, P, V> UnindexedProducer<i8> for SplitProducer<'p, P, V>
 where
     V: Fissile<P> + Send,
     P: Sync,
