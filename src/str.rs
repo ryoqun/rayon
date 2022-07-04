@@ -533,7 +533,7 @@ impl<'ch> ParallelIterator for EncodeUtf16<'ch> {
     }
 }
 
-impl<'ch> UnindexedProducer for EncodeUtf16Producer<'ch> {
+impl<'ch> UnindexedProducer<i8> for EncodeUtf16Producer<'ch> {
     type Item = u16;
 
     fn split(self) -> (Self, Option<Self>) {
