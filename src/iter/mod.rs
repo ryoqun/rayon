@@ -157,7 +157,7 @@ pub use self::{
     cloned::Cloned,
     copied::Copied,
     empty::{empty, Empty},
-    enumerate::Enumerate,
+    enumerate::{Enumerate, InstallType},
     filter::Filter,
     filter_map::FilterMap,
     flat_map::FlatMap,
