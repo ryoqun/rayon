@@ -661,7 +661,7 @@ impl<C: CustomCollector> WorkerThread<C> {
     unsafe fn set_current(thread: *const WorkerThread<C>) {
         WORKER_THREAD_STATE.with(|t| {
             assert!(t.get().is_null());
-            t.set(thread);
+            t.set(thread as *const WorkerThread<TypeErasedCustomCollector>);
         });
     }
 
