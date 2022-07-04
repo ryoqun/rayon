@@ -824,6 +824,7 @@ impl<C: CustomCollector> WorkerThread<C> {
 /// ////////////////////////////////////////////////////////////////////////
 
 unsafe fn main_loop<C: CustomCollector>(worker: Worker<JobRef, C>, registry: Arc<Registry<C>>, index: usize) {
+    dbg!(("main_loop", std::any::type_name::<C>()));
     let worker_thread = &WorkerThread {
         worker,
         fifo: JobFifo::new(),
