@@ -806,6 +806,7 @@ impl<C: CustomCollector> WorkerThread<C> {
             }
             if s == "rayon_core::registry::TypeErasedCustomCollector" {
                 dbg!(("type erase", &std::any::type_name::<Self>()));
+                dbg!(("type erase", self.dyn_collector.name()));
                 panic!("type erase detected!")
             }
             let job = (start..num_threads)
