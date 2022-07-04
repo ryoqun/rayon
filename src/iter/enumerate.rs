@@ -79,13 +79,11 @@ where
     }
 }
 
-/*
 trait WithInstallType {
-    fn installed_type_name() {
+    fn installed_type_name() -> &'static str {
         "aaaa"
     }
 }
-*/
 
 impl<I> IndexedParallelIterator for Enumerate<I>
 where
