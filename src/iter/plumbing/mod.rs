@@ -414,7 +414,7 @@ where
             let mid = len / 2;
             let (left_producer, right_producer) = producer.split_at(mid);
             let (left_consumer, right_consumer, reducer) = consumer.split_at(mid);
-            let (left_result, right_result) = join_context(
+            let (left_result, right_result) = join_context::<_, _, _, _, C>(
                 |context| {
                     helper(
                         mid,
