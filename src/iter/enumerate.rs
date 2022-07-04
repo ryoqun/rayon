@@ -87,7 +87,7 @@ pub trait WithInstallType {
     }
 }
 
-impl<I> WithInstallType for InstallType<I>
+impl<I, C> WithInstallType for InstallType<I, C>
 where
     I: ParallelIterator,
 {
