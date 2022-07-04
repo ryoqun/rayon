@@ -18,7 +18,7 @@ pub struct Enumerate<I: IndexedParallelIterator> {
 /// jajaajja
 #[must_use = "iterator adaptors are lazy and do nothing unless consumed"]
 #[derive(Debug, Clone)]
-pub struct InstallType<I: ParallelIterator, CC> {
+pub struct InstallType<I: ParallelIterator, CC: CustomCollector> {
     base: I,
     marker: std::marker::PhantomData<CC>,
 }
