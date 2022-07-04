@@ -590,7 +590,7 @@ pub trait ParallelIterator: Sized + Send {
     }
 
     fn install() -> Self {
-        Self
+        panic!()
     }
 
     /// Applies `map_op` to the given `init` value with each item of this
