@@ -489,7 +489,7 @@ impl<'ch> ParallelIterator for Bytes<'ch> {
     }
 }
 
-impl<'ch> UnindexedProducer for BytesProducer<'ch> {
+impl<'ch> UnindexedProducer<i8> for BytesProducer<'ch> {
     type Item = u8;
 
     fn split(self) -> (Self, Option<Self>) {
