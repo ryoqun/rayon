@@ -113,6 +113,7 @@ impl<C: CustomCollector> ThreadPool<C> {
         self.registry.in_worker(|_, _| op())
     }
 
+    /// jajaja
     pub fn install_for_iters<OP, R>(&self, op: OP) -> R
     where
         OP: FnOnce(std::marker::PhantomData<C>) -> R + Send,
