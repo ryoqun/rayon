@@ -794,6 +794,7 @@ impl<C: CustomCollector> WorkerThread<C> {
         loop {
             let mut retry = false;
             let start = self.rng.next_usize(num_threads);
+            dbg!(("steal", std::any::type_name::<C>()));
             let job = (start..num_threads)
                 .chain(0..start)
                 .filter(move |&i| i != self.index)
