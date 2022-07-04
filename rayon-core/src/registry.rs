@@ -794,7 +794,10 @@ impl<C: CustomCollector> WorkerThread<C> {
         loop {
             let mut retry = false;
             let start = self.rng.next_usize(num_threads);
-            dbg!(("steal1", std::any::type_name::<C>()));
+            let s = std::any::type_name::<C>().to_string();
+            if s != "crossbeam_rayon_many_threads::MyCustomCollector" {
+                dbg!(("steal1", s));
+            }
             let job = (start..num_threads)
                 .chain(0..start)
                 .filter(move |&i| i != self.index)
