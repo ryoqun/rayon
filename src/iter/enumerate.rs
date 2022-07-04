@@ -84,6 +84,7 @@ where
 
 /// wwwjwwj
 pub trait WithInstallType<CC: CustomCollector> {
+    /// jjddjccc
     type InstalledCollector = CC;
     ///jnanana
     fn installed_type_name(&self) -> &'static str {
