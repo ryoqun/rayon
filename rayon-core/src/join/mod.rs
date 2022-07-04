@@ -114,7 +114,7 @@ where
 /// the second job is stolen by a different thread, or if
 /// `join_context` was called from outside the thread pool to begin
 /// with.
-pub fn join_context<A, B, RA, RB>(oper_a: A, oper_b: B) -> (RA, RB)
+pub fn join_context<A, B, RA, RB, C>(oper_a: A, oper_b: B) -> (RA, RB)
 where
     A: FnOnce(FnContext) -> RA + Send,
     B: FnOnce(FnContext) -> RB + Send,
