@@ -115,7 +115,7 @@ impl<C: CustomCollector> ThreadPool<C> {
 
     pub fn install_for_iters<OP, R>(&self, op: OP) -> R
     where
-        OP: FnOnce(PhantomData<C>) -> R + Send,
+        OP: FnOnce(std::marker::PhantomData<C>) -> R + Send,
         R: Send,
     {
         panic!();
