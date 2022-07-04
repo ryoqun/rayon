@@ -61,7 +61,7 @@ where
     }
 }
 
-impl<I> ParallelIterator for InstallType<I>
+impl<I, C> ParallelIterator for InstallType<I, C>
 where
     I: ParallelIterator,
 {
