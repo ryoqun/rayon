@@ -79,7 +79,7 @@ mod compile_fail;
 mod test;
 
 pub use self::join::{join, join_context};
-pub use self::registry::ThreadBuilder;
+pub use self::registry::{ThreadBuilder, TypeErasedCustomCollector};
 pub use self::scope::{in_place_scope, scope, Scope};
 pub use self::scope::{in_place_scope_fifo, scope_fifo, ScopeFifo};
 pub use self::spawn::{spawn, spawn_fifo};
