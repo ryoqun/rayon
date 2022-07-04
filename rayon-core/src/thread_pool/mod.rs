@@ -321,13 +321,10 @@ impl<C: CustomCollector> fmt::Debug for ThreadPool<C> {
 /// [snt]: struct.ThreadPoolBuilder.html#method.num_threads
 #[inline]
 pub fn current_thread_index() -> Option<usize> {
-    panic!();
-    /*
     unsafe {
         let curr = WorkerThread::current().as_ref()?;
         Some(curr.index())
     }
-    */
 }
 
 /// If called from a Rayon worker thread, indicates whether that
