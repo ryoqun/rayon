@@ -452,7 +452,7 @@ where
     bridge_unindexed_producer_consumer(false, splitter, producer, consumer)
 }
 
-fn bridge_unindexed_producer_consumer<P, C>(
+fn bridge_unindexed_producer_consumer<P, C, CC>(
     migrated: bool,
     mut splitter: Splitter,
     producer: P,
