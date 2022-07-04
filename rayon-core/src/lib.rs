@@ -68,7 +68,7 @@ mod private;
 mod job;
 mod join;
 mod latch;
-mod registry;
+pub mod registry;
 mod scope;
 mod sleep;
 mod spawn;
