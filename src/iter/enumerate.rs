@@ -95,7 +95,7 @@ pub trait WithInstallType<CC: CustomCollector> {
 
 pub trait MMM {}
 
-impl MMM for Map {}
+impl<I, E> MMM for Map<I, E> {}
 
 impl<I, CC: CustomCollector> WithInstallType<CC> for InstallType<I, CC>
 where
