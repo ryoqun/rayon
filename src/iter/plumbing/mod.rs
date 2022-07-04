@@ -366,7 +366,7 @@ where
         C: Consumer<I>,
     {
         type Output = C::Result;
-        fn callback<P>(self, producer: P) -> C::Result
+        fn callback<P, CC>(self, producer: P) -> C::Result
         where
             P: Producer<Item = I>,
         {
