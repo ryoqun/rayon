@@ -156,6 +156,7 @@ where
     where
         F: Folder<Self::Item>,
     {
+        unsafe {
         loop {
             match self.items.steal(&((*WorkerThread::<C>::current()).dyn_collector)) {
                 Steal::Success(it) => {
@@ -217,6 +218,7 @@ where
                 }
                 Steal::Retry => (),
             }
+        }
         }
     }
 }
