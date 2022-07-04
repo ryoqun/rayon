@@ -794,13 +794,13 @@ impl<C: CustomCollector> WorkerThread<C> {
         loop {
             let mut retry = false;
             let start = self.rng.next_usize(num_threads);
-            dbg!(("steal1", std::any::type_name::<C>()));
+            //dbg!(("steal1", std::any::type_name::<C>()));
             let job = (start..num_threads)
                 .chain(0..start)
                 .filter(move |&i| i != self.index)
                 .find_map(|victim_index| {
                     let victim = &thread_infos[victim_index];
-                    dbg!(("steal2", std::any::type_name::<C>()));
+                    //dbg!(("steal2", std::any::type_name::<C>()));
                     match victim.stealer.steal() {
                         Steal::Success(job) => {
                             self.log(|| JobStolen {
@@ -826,7 +826,7 @@ impl<C: CustomCollector> WorkerThread<C> {
 /// ////////////////////////////////////////////////////////////////////////
 
 unsafe fn main_loop<C: CustomCollector>(worker: Worker<JobRef, C>, registry: Arc<Registry<C>>, index: usize) {
-    dbg!(("main_loop", std::any::type_name::<C>()));
+    //dbg!(("main_loop", std::any::type_name::<C>()));
     let worker_thread = &WorkerThread {
         worker,
         fifo: JobFifo::new(),
