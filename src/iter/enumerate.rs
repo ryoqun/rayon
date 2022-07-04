@@ -86,7 +86,7 @@ where
 pub trait WithInstallType<CC: CustomCollector> {
     ///jnanana
     fn installed_type_name(&self) -> &'static str {
-        "aaaa"
+        std::any::type_name::<CC>()
     }
 }
 
