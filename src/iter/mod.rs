@@ -590,7 +590,7 @@ pub trait ParallelIterator: Sized + Send {
     }
 
     /// jjaajj
-    fn install() -> Self {
+    fn install(a: i8) -> Self {
         panic!()
     }
 
