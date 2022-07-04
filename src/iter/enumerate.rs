@@ -20,6 +20,7 @@ pub struct Enumerate<I: IndexedParallelIterator> {
 #[derive(Debug, Clone)]
 pub struct InstallType<I: ParallelIterator, CC> {
     base: I,
+    marker: PhantomData<CC>,
 }
 
 impl<I, CC> InstallType<I, CC>
