@@ -348,7 +348,7 @@ impl LengthSplitter {
 ///
 /// [`drive_unindexed`]: ../trait.ParallelIterator.html#tymethod.drive_unindexed
 /// [`drive`]: ../trait.IndexedParallelIterator.html#tymethod.drive
-pub fn bridge<I, C>(par_iter: I, consumer: C) -> C::Result
+pub fn bridge<I, C, CC>(par_iter: I, consumer: C) -> C::Result
 where
     I: IndexedParallelIterator,
     C: Consumer<I::Item>,
@@ -370,7 +370,7 @@ where
         where
             P: Producer<Item = I>,
         {
-            bridge_producer_consumer(self.len, producer, self.consumer)
+            bridge_producer_consumer::<_, _, CC>(self.len, producer, self.consumer)
         }
     }
 }
