@@ -898,7 +898,7 @@ where
             // invalidated until we return.
             op(&*owner_thread, false)
         } else {
-            global_registry().in_worker_cold(op)
+            panic!(); //global_registry().in_worker_cold(op)
         }
     }
 }
