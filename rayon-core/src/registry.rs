@@ -611,6 +611,8 @@ pub(super) struct WorkerThread<C: CustomCollector> { // TODO
     rng: XorShift64Star,
 
     registry: Arc<Registry<C>>,
+
+    dyn_collector: Box<dyn CustomCollector>,
 }
 
 // This is a bit sketchy, but basically: the WorkerThread is
