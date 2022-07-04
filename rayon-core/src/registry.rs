@@ -191,6 +191,7 @@ fn set_global_registry<F>(registry: F) -> Result<&'static Arc<Registry<DefaultCo
 where
     F: FnOnce() -> Result<Arc<Registry<DefaultCollector>>, ThreadPoolBuildError>,
 {
+    panic!();
     let mut result = Err(ThreadPoolBuildError::new(
         ErrorKind::GlobalPoolAlreadyInitialized,
     ));
