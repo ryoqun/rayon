@@ -656,7 +656,7 @@ impl<'ch, P: Pattern> ParallelIterator for SplitTerminator<'ch, P> {
     }
 }
 
-impl<'ch, 'sep, P: Pattern + 'sep> UnindexedProducer for SplitTerminatorProducer<'ch, 'sep, P> {
+impl<'ch, 'sep, P: Pattern + 'sep> UnindexedProducer<i8> for SplitTerminatorProducer<'ch, 'sep, P> {
     type Item = &'ch str;
 
     fn split(mut self) -> (Self, Option<Self>) {
