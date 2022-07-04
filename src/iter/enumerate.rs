@@ -79,6 +79,14 @@ where
     }
 }
 
+/*
+trait WithInstallType {
+    fn installed_type_name() {
+        "aaaa"
+    }
+}
+*/
+
 impl<I> IndexedParallelIterator for Enumerate<I>
 where
     I: IndexedParallelIterator,
