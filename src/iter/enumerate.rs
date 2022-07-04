@@ -31,7 +31,7 @@ where
 {
     /// Creates a new `InstallType` iterator.
     pub(super) fn new(base: I) -> Self {
-        InstallType { base }
+        InstallType { base, marker: std::marker::PhantomData }
     }
 }
 
