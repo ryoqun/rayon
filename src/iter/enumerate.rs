@@ -87,6 +87,12 @@ pub trait WithInstallType {
     }
 }
 
+impl<I> WithInstallType for InstallType<I>
+where
+    I: ParallelIterator,
+{
+}
+
 impl<I> IndexedParallelIterator for Enumerate<I>
 where
     I: IndexedParallelIterator,
