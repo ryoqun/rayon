@@ -71,7 +71,7 @@ where
     where
         C: UnindexedConsumer<Self::Item>,
     {
-        bridge(self, consumer)
+        self.base.drive_unindexed(consumer)
     }
 
     fn opt_len(&self) -> Option<usize> {
