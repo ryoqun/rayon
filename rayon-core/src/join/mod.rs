@@ -1,6 +1,6 @@
 use crate::job::StackJob;
 use crate::latch::SpinLatch;
-use crate::registry::{self, WorkerThread};
+use crate::registry::{self, WorkerThread, TypeErasedCustomCollector};
 use crate::unwind;
 use std::any::Any;
 
