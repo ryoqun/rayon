@@ -624,6 +624,13 @@ thread_local! {
 struct TypeErasedCustomCollector;
 
 impl CustomCollector for TypeErasedCustomCollector {
+    fn collector() -> &'static Collector {
+        panic!()
+    }
+
+    fn handle() -> &'static std::thread::LocalKey<LocalHandle> {
+        panic!()
+    }
 }
 
 impl<C: CustomCollector> Drop for WorkerThread<C> {
