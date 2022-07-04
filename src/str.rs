@@ -389,7 +389,7 @@ impl<'ch> ParallelIterator for Chars<'ch> {
     }
 }
 
-impl<'ch> UnindexedProducer for CharsProducer<'ch> {
+impl<'ch> UnindexedProducer<i8> for CharsProducer<'ch> {
     type Item = char;
 
     fn split(self) -> (Self, Option<Self>) {
@@ -438,7 +438,7 @@ impl<'ch> ParallelIterator for CharIndices<'ch> {
     }
 }
 
-impl<'ch> UnindexedProducer for CharIndicesProducer<'ch> {
+impl<'ch> UnindexedProducer<i8> for CharIndicesProducer<'ch> {
     type Item = (usize, char);
 
     fn split(self) -> (Self, Option<Self>) {
