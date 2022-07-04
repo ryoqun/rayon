@@ -113,6 +113,14 @@ impl<C: CustomCollector> ThreadPool<C> {
         self.registry.in_worker(|_, _| op())
     }
 
+    pub fn install_for_iters<OP, R>(&self, op: OP) -> R
+    where
+        OP: FnOnce(PhantomData<C>) -> R + Send,
+        R: Send,
+    {
+        self.registry.in_worker(|_, _| op())
+    }
+
     /// Returns the (current) number of threads in the thread pool.
     ///
     /// # Future compatibility note
