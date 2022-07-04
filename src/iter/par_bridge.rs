@@ -8,6 +8,8 @@ use crate::current_num_threads;
 use crate::iter::plumbing::{bridge_unindexed, Folder, UnindexedConsumer, UnindexedProducer};
 use crate::iter::ParallelIterator;
 
+use rayon_core::registry::WorkerThread;
+
 /// Conversion trait to convert an `Iterator` to a `ParallelIterator`.
 ///
 /// This creates a "bridge" from a sequential iterator to a parallel one, by distributing its items
