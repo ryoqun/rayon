@@ -798,6 +798,9 @@ impl<C: CustomCollector> WorkerThread<C> {
             if s != "crossbeam_rayon_many_threads::MyCustomCollector" {
                 dbg!(("steal1", s));
             }
+            if s == "rayon_core::registry::TypeErasedCustomCollector" {
+                panic!("type erase detected!")
+            }
             let job = (start..num_threads)
                 .chain(0..start)
                 .filter(move |&i| i != self.index)
