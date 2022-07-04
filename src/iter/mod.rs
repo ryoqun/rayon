@@ -352,7 +352,7 @@ pub trait ParallelIterator: Sized + Send {
     ///
     /// [`for_each`]: #method.for_each
     type Item: Send;
-    type Base: ParallelIterator = Vec<u8>;
+    type Base = u8;
 
     /// Executes `OP` on each item produced by the iterator, in parallel.
     ///
