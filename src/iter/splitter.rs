@@ -151,7 +151,7 @@ struct SplitProducer<'a, D, S> {
     splitter: &'a S,
 }
 
-impl<'a, D, S> UnindexedProducer for SplitProducer<'a, D, S>
+impl<'a, D, S> UnindexedProducer<i8> for SplitProducer<'a, D, S>
 where
     D: Send,
     S: Fn(D) -> (D, Option<D>) + Sync,
