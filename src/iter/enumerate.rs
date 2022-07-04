@@ -51,6 +51,7 @@ where
     I: IndexedParallelIterator,
 {
     type Item = (usize, I::Item);
+    type Base = u8;
 
     fn drive_unindexed<C>(self, consumer: C) -> C::Result
     where
