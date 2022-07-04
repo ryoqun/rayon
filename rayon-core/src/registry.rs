@@ -623,7 +623,7 @@ thread_local! {
     static WORKER_THREAD_STATE: Cell<*const WorkerThread<TypeErasedCustomCollector>> = Cell::new(ptr::null());
 }
 
-struct TypeErasedCustomCollector;
+pub(crate) struct TypeErasedCustomCollector;
 
 impl CustomCollector for TypeErasedCustomCollector {
     fn collector() -> &'static Collector {
