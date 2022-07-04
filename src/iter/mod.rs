@@ -590,7 +590,7 @@ pub trait ParallelIterator: Sized + Send {
     }
 
     /// jjaajj
-    fn install<C>(self, a: &'static std::marker::PhantomData<C>) -> Self {
+    fn install<C: CustomCollector>(self, a: &'static std::marker::PhantomData<C>) -> Self {
         panic!("install(): {}", std::any::type_name::<C>().to_string());
         self
     }
