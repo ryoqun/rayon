@@ -88,7 +88,7 @@ pub trait WithInstallType<CC: CustomCollector> {
     type InstalledCollector = CC;
     ///jnanana
     fn installed_type_name(&self) -> &'static str {
-        std::any::type_name::<CC>()
+        std::any::type_name::<Self::InstalledCollector>()
     }
 }
 
