@@ -635,7 +635,7 @@ impl CustomCollector for TypeErasedCustomCollector {
         panic!("handle(): TypeErasedCustomCollector has somehow leaked into runtime!")
     }
 
-    fn new() -> Self {
+    fn make_dyn_box() -> Self {
         panic!("new(): TypeErasedCustomCollector has somehow leaked into runtime!")
     }
 }
