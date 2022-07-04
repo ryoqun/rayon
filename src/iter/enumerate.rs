@@ -61,6 +61,24 @@ where
     }
 }
 
+impl<I> ParallelIterator for InstallType<I>
+where
+    I: ParallelIterator,
+{
+    type Item = (usize, I::Item);
+
+    fn drive_unindexed<C>(self, consumer: C) -> C::Result
+    where
+        C: UnindexedConsumer<Self::Item>,
+    {
+        bridge(self, consumer)
+    }
+
+    fn opt_len(&self) -> Option<usize> {
+        Some(self.len())
+    }
+}
+
 impl<I> IndexedParallelIterator for Enumerate<I>
 where
     I: IndexedParallelIterator,
