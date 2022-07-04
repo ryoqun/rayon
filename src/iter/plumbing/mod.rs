@@ -445,7 +445,7 @@ where
 /// [`bridge_producer_consumer`]: fn.bridge_producer_consumer.html
 pub fn bridge_unindexed<P, C>(producer: P, consumer: C) -> C::Result
 where
-    P: UnindexedProducer,
+    P: UnindexedProducer<i8>,
     C: UnindexedConsumer<P::Item>,
 {
     let splitter = Splitter::new();
@@ -459,7 +459,7 @@ fn bridge_unindexed_producer_consumer<P, C>(
     consumer: C,
 ) -> C::Result
 where
-    P: UnindexedProducer,
+    P: UnindexedProducer<i8>,
     C: UnindexedConsumer<P::Item>,
 {
     if consumer.full() {
