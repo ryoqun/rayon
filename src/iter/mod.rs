@@ -589,6 +589,10 @@ pub trait ParallelIterator: Sized + Send {
         Map::new(self, map_op)
     }
 
+    fn install() -> Install<Self> {
+        Install::new(self)
+    }
+
     /// Applies `map_op` to the given `init` value with each item of this
     /// iterator, producing a new iterator with the results.
     ///
