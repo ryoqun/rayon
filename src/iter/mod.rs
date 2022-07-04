@@ -591,8 +591,7 @@ pub trait ParallelIterator: Sized + Send {
 
     /// jjaajj
     fn install_type<C: crossbeam_deque::CustomCollector>(self, _marker: &'static std::marker::PhantomData<C>) -> Self {
-        panic!("install(): {}", std::any::type_name::<C>().to_string());
-        self
+        InstallType::new(self)
     }
 
     /// Applies `map_op` to the given `init` value with each item of this
