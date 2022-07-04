@@ -24,7 +24,7 @@ pub struct InstallType<I: ParallelIterator> {
 
 impl<I> InstallType<I>
 where
-    I: IndexedParallelIterator,
+    I: ParallelIterator,
 {
     /// Creates a new `InstallType` iterator.
     pub(super) fn new(base: I) -> Self {
