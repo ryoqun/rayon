@@ -160,6 +160,7 @@ where
         loop {
             let s = std::any::type_name::<C>().to_string();
             dbg!(s);
+            panic!();
             match self.items.steal(&((*WorkerThread::<C>::current()).dyn_collector)) {
                 Steal::Success(it) => {
                     folder = folder.consume(it);
