@@ -201,9 +201,9 @@ pub use self::step_by::StepBy;
 ///
 /// [`ParallelIterator`]: trait.ParallelIterator.html
 /// [`std::iter::IntoIterator`]: https://doc.rust-lang.org/std/iter/trait.IntoIterator.html
-pub trait IntoParallelIterator<C> {
+pub trait IntoParallelIterator {
     /// The parallel iterator type that will be created.
-    type Iter: ParallelIterator<C, Item = Self::Item>;
+    type Iter: ParallelIterator<Item = Self::Item>;
 
     /// The type of item that the parallel iterator will produce.
     type Item: Send;
