@@ -85,7 +85,7 @@ where
 /// wwwjwwj
 pub trait WithInstallType {
     ///jnanana
-    fn installed_type_name() -> &'static str {
+    fn installed_type_name(&self) -> &'static str {
         "aaaa"
     }
 }
