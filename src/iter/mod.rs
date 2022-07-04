@@ -233,6 +233,7 @@ pub trait IntoParallelIterator {
     fn into_par_iter(self) -> Self::Iter;
 
     fn into_par_iter2(self) -> Self::Iter {
+        panic!();
     }
 }
 
