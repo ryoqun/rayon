@@ -27,7 +27,7 @@ pub trait ProducerCallback<T> {
     /// Invokes the callback with the given producer as argument. The
     /// key point of this trait is that this method is generic over
     /// `P`, and hence implementors must be defined for any producer.
-    fn callback<P, CC>(self, producer: P) -> Self::Output
+    fn callback<P>(self, producer: P) -> Self::Output
     where
         P: Producer<Item = T>;
 }
@@ -348,7 +348,7 @@ impl LengthSplitter {
 ///
 /// [`drive_unindexed`]: ../trait.ParallelIterator.html#tymethod.drive_unindexed
 /// [`drive`]: ../trait.IndexedParallelIterator.html#tymethod.drive
-pub fn bridge<I, C, CC>(par_iter: I, consumer: C) -> C::Result
+pub fn bridge<I, C>(par_iter: I, consumer: C) -> C::Result
 where
     I: IndexedParallelIterator,
     C: Consumer<I::Item>,
@@ -366,11 +366,11 @@ where
         C: Consumer<I>,
     {
         type Output = C::Result;
-        fn callback<P, CC>(self, producer: P) -> C::Result
+        fn callback<P>(self, producer: P) -> C::Result
         where
             P: Producer<Item = I>,
         {
-            bridge_producer_consumer::<_, _, CC>(self.len, producer, self.consumer)
+            bridge_producer_consumer(self.len, producer, self.consumer)
         }
     }
 }
@@ -388,7 +388,7 @@ where
 /// [`bridge`]: fn.bridge.html
 /// [`drive_unindexed`]: ../trait.ParallelIterator.html#tymethod.drive_unindexed
 /// [`drive`]: ../trait.IndexedParallelIterator.html#tymethod.drive
-pub fn bridge_producer_consumer<P, C, CC>(len: usize, producer: P, consumer: C) -> C::Result
+pub fn bridge_producer_consumer<P, C>(len: usize, producer: P, consumer: C) -> C::Result
 where
     P: Producer,
     C: Consumer<P::Item>,
@@ -396,8 +396,7 @@ where
     let splitter = LengthSplitter::new(producer.min_len(), producer.max_len(), len);
     return helper(len, false, splitter, producer, consumer);
 
-    #[inline]
-    fn helper<P, C, CC>(
+    fn helper<P, C>(
         len: usize,
         migrated: bool,
         mut splitter: LengthSplitter,
@@ -414,7 +413,7 @@ where
             let mid = len / 2;
             let (left_producer, right_producer) = producer.split_at(mid);
             let (left_consumer, right_consumer, reducer) = consumer.split_at(mid);
-            let (left_result, right_result) = join_context::<_, _, _, _, CC>(
+            let (left_result, right_result) = join_context(
                 |context| {
                     helper(
                         mid,
