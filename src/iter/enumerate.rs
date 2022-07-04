@@ -22,6 +22,16 @@ pub struct InstallType<I: ParallelIterator> {
     base: I,
 }
 
+impl<I> InstallType<I>
+where
+    I: IndexedParallelIterator,
+{
+    /// Creates a new `InstallType` iterator.
+    pub(super) fn new(base: I) -> Self {
+        InstallType { base }
+    }
+}
+
 
 impl<I> Enumerate<I>
 where
