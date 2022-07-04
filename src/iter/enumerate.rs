@@ -15,6 +15,11 @@ pub struct Enumerate<I: IndexedParallelIterator> {
     base: I,
 }
 
+pub struct InstallType<I: ParallelIterator, F> {
+    base: I,
+}
+
+
 impl<I> Enumerate<I>
 where
     I: IndexedParallelIterator,
