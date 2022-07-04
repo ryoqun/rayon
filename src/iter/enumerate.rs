@@ -65,7 +65,7 @@ impl<I> ParallelIterator for InstallType<I>
 where
     I: ParallelIterator,
 {
-    type Item = (usize, I::Item);
+    type Item = I::Item;
 
     fn drive_unindexed<C>(self, consumer: C) -> C::Result
     where
