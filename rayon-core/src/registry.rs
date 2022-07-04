@@ -637,8 +637,9 @@ impl<C: CustomCollector> Drop for WorkerThread<C> {
     fn drop(&mut self) {
         // Undo `set_current`
         WORKER_THREAD_STATE.with(|t| {
-            //todo
-            assert!(t.get().eq(&(self as *const WorkerThread<TypeErasedCustomCollector>)));
+            unsafe {
+                assert!(t.get().eq(&(self as *const WorkerThread<TypeErasedCustomCollector>)));
+            }
             t.set(ptr::null());
         });
     }
