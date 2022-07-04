@@ -201,7 +201,7 @@ pub use self::step_by::StepBy;
 ///
 /// [`ParallelIterator`]: trait.ParallelIterator.html
 /// [`std::iter::IntoIterator`]: https://doc.rust-lang.org/std/iter/trait.IntoIterator.html
-pub trait IntoParallelIterator<C = i8> {
+pub trait IntoParallelIterator {
     /// The parallel iterator type that will be created.
     type Iter: ParallelIterator<Item = Self::Item>;
 
@@ -231,6 +231,9 @@ pub trait IntoParallelIterator<C = i8> {
     ///
     /// [`zip`]: trait.IndexedParallelIterator.html#method.zip
     fn into_par_iter(self) -> Self::Iter;
+
+    fn into_par_iter2(self) -> Self::Iter {
+    }
 }
 
 /// `IntoParallelRefIterator` implements the conversion to a
