@@ -176,7 +176,7 @@ where
 }
 
 /// with.
-pub fn join_context2<A, B, RA, RB, II>(oper_a: A, oper_b: B) -> (RA, RB)
+pub fn join_context2<A, B, RA, RB, II: crossbeam_deque::CustomCollector>(oper_a: A, oper_b: B) -> (RA, RB)
 where
     A: FnOnce(FnContext) -> RA + Send,
     B: FnOnce(FnContext) -> RB + Send,
