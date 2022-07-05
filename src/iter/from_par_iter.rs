@@ -43,7 +43,7 @@ where
 
     fn from_par_iter2<I, CC: crossbeam_deque::CustomCollector>(par_iter: I) -> Self
     where
-        I: IntoParallelIterator<Item = T> + crate::iter::WithInstallType<CC> + crate::iter::ParallelIterator + iter::enumerate::MMM,
+        I: IntoParallelIterator<Item = T> + crate::iter::WithInstallType<CC> + crate::iter::ParallelIterator + crate::iter::enumerate::MMM,
     {
         collect_extended(par_iter)
     }
