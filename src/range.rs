@@ -176,7 +176,7 @@ macro_rules! indexed_range_impl {
                 bridge(iter, consumer)
             }
 
-            fn drive_unindexed2<C, II>(iter: Iter<$t>, consumer: C) -> C::Result
+            fn drive_unindexed2<C, II: ParallelIterator>(iter: Iter<$t>, consumer: C) -> C::Result
             where
                 C: UnindexedConsumer<$t>,
             {
