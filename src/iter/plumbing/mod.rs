@@ -23,7 +23,6 @@ pub trait ProducerCallback<T> {
     ///
     /// [Output]: https://doc.rust-lang.org/std/ops/trait.FnOnce.html#associatedtype.Output
     type Output;
-    type InstalledCollector = u8;
 
     /// Invokes the callback with the given producer as argument. The
     /// key point of this trait is that this method is generic over
@@ -395,18 +394,16 @@ where
         consumer: C,
     }
 
-    impl<C, I, III: crate::iter::ParallelIterator> ProducerCallback<I> for Callback<C>
+    impl<C, I> ProducerCallback<I> for Callback<C>
     where
         C: Consumer<I>,
     {
         type Output = C::Result;
-        type InstalledCollector = III::Base;
-
         fn callback<P>(self, producer: P) -> C::Result
         where
             P: Producer<Item = I>,
         {
-            bridge_producer_consumer2::<Self::InstalledCollector>(self.len, producer, self.consumer)
+            bridge_producer_consumer2::<II::Base>(self.len, producer, self.consumer)
         }
     }
 }
