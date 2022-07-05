@@ -484,7 +484,7 @@ where
     let splitter = LengthSplitter::new(producer.min_len(), producer.max_len(), len);
     return helper(len, false, splitter, producer, consumer);
 
-    fn helper<P, C>(
+    fn helper<P, C, II>(
         len: usize,
         migrated: bool,
         mut splitter: LengthSplitter,
