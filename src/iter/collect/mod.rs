@@ -36,7 +36,7 @@ where
     I: ParallelIterator<Item = T>,
     T: Send,
 {
-    collect_with_consumer(v, len, |consumer| pi.drive_unindexed(consumer));
+    collect_with_consumer(v, len, |consumer| pi.drive_unindexed<I>(consumer));
 }
 
 /// Unzips the results of the exact iterator into the specified vectors.
