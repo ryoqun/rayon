@@ -2054,6 +2054,13 @@ pub trait ParallelIterator: Sized + Send {
         C::from_par_iter(self)
     }
 
+    fn collect2<C/*, CC*/>(self) -> C
+    where
+        C: FromParallelIterator<Self::Item>,
+    {
+        C::from_par_iter(self)
+    }
+
     /// Unzips the items of a parallel iterator into a pair of arbitrary
     /// `ParallelExtend` containers.
     ///
