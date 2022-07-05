@@ -36,14 +36,7 @@ where
 {
     fn from_par_iter<I>(par_iter: I) -> Self
     where
-        I: IntoParallelIterator<Item = T>,
-    {
-        collect_extended(par_iter)
-    }
-
-    fn from_par_iter<I>(par_iter: I) -> Self
-    where
-        I: IntoParallelIterator<Item = T> + Send,
+        I: IntoParallelIterator<Item = T> + crate::iter::WithInstallType<CC>,
     {
         collect_extended(par_iter)
     }
