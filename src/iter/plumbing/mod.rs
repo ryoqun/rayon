@@ -474,7 +474,7 @@ where
 }
 
 /// aaaaa
-pub fn bridge_producer_consumer2<P, C>(len: usize, producer: P, consumer: C) -> C::Result
+pub fn bridge_producer_consumer2<P, C, II>(len: usize, producer: P, consumer: C) -> C::Result
 where
     P: Producer,
     C: Consumer<P::Item>,
