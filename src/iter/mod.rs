@@ -2988,7 +2988,7 @@ where
 
     fn from_par_iter2<I, CC: crossbeam_deque::CustomCollector>(par_iter: I) -> Self
     where
-        I: IntoParallelIterator<Item = T> { panic!() }
+        I: IntoParallelIterator<Item = T>, Self: Sized { panic!() }
 }
 
 /// `ParallelExtend` extends an existing collection with items from a [`ParallelIterator`].
