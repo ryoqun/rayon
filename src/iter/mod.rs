@@ -2986,6 +2986,7 @@ where
     where
         I: IntoParallelIterator<Item = T>;
 
+    /// kkkks
     fn from_par_iter2<I, CC: crossbeam_deque::CustomCollector>(par_iter: I) -> Self
     where
         I: IntoParallelIterator<Item = T> + crate::iter::WithInstallType<CC> + crate::iter::ParallelIterator + crate::iter::enumerate::MMM,
