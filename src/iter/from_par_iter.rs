@@ -8,9 +8,9 @@ use std::collections::{BinaryHeap, VecDeque};
 use std::hash::{BuildHasher, Hash};
 
 /// Creates an empty default collection and extends it.
-fn collect_extended<C, I>(par_iter: I) -> C
+fn collect_extended<C, I, CC>(par_iter: I) -> C
 where
-    I: IntoParallelIterator + crate::iter::WithInstallType,
+    I: IntoParallelIterator + crate::iter::WithInstallType<CC>,
     C: ParallelExtend<I::Item> + Default,
 {
     let mut collection = C::default();
