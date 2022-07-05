@@ -387,7 +387,7 @@ where
 {
     panic!("{:?}", (std::any::type_name::<II>(), std::any::type_name::<II::Base>(), std::any::type_name::<I>(), std::any::type_name::<I::Base>()));
     let len = par_iter.len();
-    return par_iter.with_producer(Callback { len, consumer });
+    return par_iter.with_producer(Callback { len, consumer, marker: std::marker::PhantomData });
 
     struct Callback<C, CC> {
         len: usize,
