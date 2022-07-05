@@ -399,11 +399,13 @@ where
         C: Consumer<I>,
     {
         type Output = C::Result;
+        type InstalledCollector = II::Base;
+
         fn callback<P>(self, producer: P) -> C::Result
         where
             P: Producer<Item = I>,
         {
-            bridge_producer_consumer2::<II::Base>(self.len, producer, self.consumer)
+            bridge_producer_consumer2::<Self::InstalledCollector>(self.len, producer, self.consumer)
         }
     }
 }
