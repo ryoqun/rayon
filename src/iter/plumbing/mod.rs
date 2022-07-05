@@ -385,7 +385,7 @@ where
     I: IndexedParallelIterator,
     C: Consumer<I::Item>,
 {
-    panic!("{:?}", (std::any::type_name::<II>(), std::any::type_name::<II::Base>(), std::any::type_name::<I>(), std::any::type_name::<I::Base>()));
+    //panic!("{:?}", (std::any::type_name::<II>(), std::any::type_name::<II::Base>(), std::any::type_name::<I>(), std::any::type_name::<I::Base>()));
     let len = par_iter.len();
     return par_iter.with_producer(Callback::<_, II::Base> { len, consumer, marker: std::marker::PhantomData });
 
@@ -480,6 +480,7 @@ where
     P: Producer,
     C: Consumer<P::Item>,
 {
+    panic!("{:?}", (std::any::type_name::<II>()));
     let splitter = LengthSplitter::new(producer.min_len(), producer.max_len(), len);
     return helper(len, false, splitter, producer, consumer);
 
