@@ -180,7 +180,7 @@ macro_rules! indexed_range_impl {
             where
                 C: UnindexedConsumer<$t>,
             {
-                bridge2::<II>(iter, consumer)
+                bridge2::<_, _, II>(iter, consumer)
             }
 
             fn opt_len(iter: &Iter<$t>) -> Option<usize> {
