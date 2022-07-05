@@ -176,7 +176,7 @@ where
 }
 
 /// with.
-pub fn join_context2<A, B, RA, RB>(oper_a: A, oper_b: B) -> (RA, RB)
+pub fn join_context2<A, B, RA, RB, II>(oper_a: A, oper_b: B) -> (RA, RB)
 where
     A: FnOnce(FnContext) -> RA + Send,
     B: FnOnce(FnContext) -> RB + Send,
@@ -193,7 +193,7 @@ where
         move |migrated| f(FnContext::new(migrated))
     }
 
-    registry::in_worker::<_, _, TypeErasedCustomCollector>(|worker_thread, injected| unsafe {
+    registry::in_worker::<_, _, II>(|worker_thread, injected| unsafe {
         // Create virtual wrapper for task b; this all has to be
         // done here so that the stack frame can keep it all live
         // long enough.
