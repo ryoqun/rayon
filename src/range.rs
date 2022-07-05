@@ -96,7 +96,7 @@ mod private {
         where
             C: UnindexedConsumer<Self>;
 
-        fn drive_unindexed2<C, I: ParallelIterator>(self, consumer: C) -> C::Result
+        fn drive_unindexed2<C, I: ParallelIterator>(iter: Iter<Self>, consumer: C) -> C::Result
         where
             C: UnindexedConsumer<Self> { panic!() }
 
