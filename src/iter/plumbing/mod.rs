@@ -385,7 +385,7 @@ where
     I: IndexedParallelIterator,
     C: Consumer<I::Item>,
 {
-    panic!("{:?}", (std::any::type_name::<I>(), std::any::type_name::<I::Base>()));
+    panic!("{:?}", (std::any::type_name::<II>(), std::any::type_name::<I>(), std::any::type_name::<I::Base>()));
     let len = par_iter.len();
     return par_iter.with_producer(Callback { len, consumer });
 
