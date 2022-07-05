@@ -395,7 +395,7 @@ where
         consumer: C,
     }
 
-    impl<C, I, III> ProducerCallback<I> for Callback<C>
+    impl<C, I, III: crate::iter::ParallelIterator> ProducerCallback<I> for Callback<C>
     where
         C: Consumer<I>,
     {
