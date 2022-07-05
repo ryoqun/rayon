@@ -379,6 +379,7 @@ where
     }
 }
 
+/// llll
 pub fn bridge2<I, C>(par_iter: I, consumer: C) -> C::Result
 where
     I: IndexedParallelIterator,
