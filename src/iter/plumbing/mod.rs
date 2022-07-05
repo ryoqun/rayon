@@ -135,6 +135,7 @@ pub trait Consumer<Item>: Send + Sized {
     /// The type of result that this consumer will ultimately produce.
     type Result: Send;
 
+    /// jajajaja
     type InstalledCollector = u8;
 
     /// Divide the consumer into two consumers, one processing items
