@@ -75,7 +75,7 @@ where
     where
         C: UnindexedConsumer<Self::Item>,
     {
-        panic!(); //self.base.drive_unindexed(consumer)
+        self.base.drive_unindexed(consumer)
     }
 
     fn opt_len(&self) -> Option<usize> {
