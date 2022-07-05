@@ -2220,7 +2220,7 @@ pub trait ParallelIterator: Sized + Send {
     /// iterators.
     ///
     /// [README]: https://github.com/rayon-rs/rayon/blob/master/src/iter/plumbing/README.md
-    fn drive_unindexed<C>(self, consumer: C) -> C::Result
+    fn drive_unindexed<C, I: ParallelIterator>(self, consumer: C) -> C::Result
     where
         C: UnindexedConsumer<Self::Item>;
 
