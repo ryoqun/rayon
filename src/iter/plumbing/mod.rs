@@ -394,7 +394,7 @@ where
         consumer: C,
     }
 
-    impl<C, I> ProducerCallback<I> for Callback<C>
+    impl<C, I, II> ProducerCallback<I> for Callback<C>
     where
         C: Consumer<I>,
     {
