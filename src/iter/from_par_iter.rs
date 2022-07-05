@@ -34,7 +34,7 @@ impl<T> FromParallelIterator<T> for Vec<T>
 where
     T: Send,
 {
-    fn from_par_iter<I>(par_iter: I) -> Self
+    fn from_par_iter<I, CC: crossbeam_deque::CustomCollector>(par_iter: I) -> Self
     where
         I: IntoParallelIterator<Item = T> + crate::iter::WithInstallType<CC>,
     {
