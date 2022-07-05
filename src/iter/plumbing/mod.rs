@@ -395,7 +395,7 @@ where
         marker: PhantomData<CC>,
     }
 
-    impl<C, I> ProducerCallback<I> for Callback<C, CC>
+    impl<C, I, CC> ProducerCallback<I> for Callback<C, CC>
     where
         C: Consumer<I>,
     {
