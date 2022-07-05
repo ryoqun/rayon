@@ -484,7 +484,7 @@ where
     let splitter = LengthSplitter::new(producer.min_len(), producer.max_len(), len);
     return helper(len, false, splitter, producer, consumer);
 
-    fn helper<P, C, II>(
+    fn helper<P, C, II: crossbeam_deque::CustomCollector>(
         len: usize,
         migrated: bool,
         mut splitter: LengthSplitter,
