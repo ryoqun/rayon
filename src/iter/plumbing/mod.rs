@@ -389,9 +389,10 @@ where
     let len = par_iter.len();
     return par_iter.with_producer(Callback { len, consumer });
 
-    struct Callback<C> {
+    struct Callback<C, CC> {
         len: usize,
         consumer: C,
+        marker: PhantomData<CC>,
     }
 
     impl<C, I> ProducerCallback<I> for Callback<C>
