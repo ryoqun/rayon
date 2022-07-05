@@ -8,7 +8,18 @@ use std::collections::{BinaryHeap, VecDeque};
 use std::hash::{BuildHasher, Hash};
 
 /// Creates an empty default collection and extends it.
-fn collect_extended<C, I, CC: crossbeam_deque::CustomCollector>(par_iter: I) -> C
+fn collect_extended<C, I>(par_iter: I) -> C
+where
+    I: IntoParallelIterator,
+    C: ParallelExtend<I::Item> + Default,
+{
+    let mut collection = C::default();
+    collection.par_extend(par_iter);
+    collection
+}
+
+/// Creates an empty default collection and extends it.
+fn collect_extended2<C, I, CC: crossbeam_deque::CustomCollector>(par_iter: I) -> C
 where
     I: IntoParallelIterator + crate::iter::WithInstallType<CC>,
     C: ParallelExtend<I::Item> + Default,
