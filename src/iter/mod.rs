@@ -2986,7 +2986,7 @@ where
     where
         I: IntoParallelIterator<Item = T>;
 
-    fn from_par_iter2<I, CC: crossbeam_deque::CustomCollector>(par_iter: I) -> Self
+    fn from_par_iter2<I, CC: crossbeam_deque::CustomCollector>(par_iter: I) -> Self: Sized
     where
         I: IntoParallelIterator<Item = T> { panic!() }
 }
