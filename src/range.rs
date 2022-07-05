@@ -172,6 +172,13 @@ macro_rules! indexed_range_impl {
                 bridge(iter, consumer)
             }
 
+            fn drive_unindexed2<C, II>(iter: Iter<$t>, consumer: C) -> C::Result
+            where
+                C: UnindexedConsumer<$t>,
+            {
+                bridge(iter, consumer)
+            }
+
             fn opt_len(iter: &Iter<$t>) -> Option<usize> {
                 Some(iter.range.len())
             }
