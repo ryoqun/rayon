@@ -351,7 +351,35 @@ impl LengthSplitter {
 ///
 /// [`drive_unindexed`]: ../trait.ParallelIterator.html#tymethod.drive_unindexed
 /// [`drive`]: ../trait.IndexedParallelIterator.html#tymethod.drive
-pub fn bridge<I, C, F = u8>(par_iter: I, consumer: C) -> C::Result
+pub fn bridge<I, C>(par_iter: I, consumer: C) -> C::Result
+where
+    I: IndexedParallelIterator,
+    C: Consumer<I::Item>,
+{
+    panic!("{:?}", (std::any::type_name::<I>(), std::any::type_name::<I::Base>()));
+    let len = par_iter.len();
+    return par_iter.with_producer(Callback { len, consumer });
+
+    struct Callback<C> {
+        len: usize,
+        consumer: C,
+    }
+
+    impl<C, I> ProducerCallback<I> for Callback<C>
+    where
+        C: Consumer<I>,
+    {
+        type Output = C::Result;
+        fn callback<P>(self, producer: P) -> C::Result
+        where
+            P: Producer<Item = I>,
+        {
+            bridge_producer_consumer(self.len, producer, self.consumer)
+        }
+    }
+}
+
+pub fn bridge2<I, C>(par_iter: I, consumer: C) -> C::Result
 where
     I: IndexedParallelIterator,
     C: Consumer<I::Item>,
