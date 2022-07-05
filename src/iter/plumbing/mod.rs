@@ -351,7 +351,7 @@ impl LengthSplitter {
 ///
 /// [`drive_unindexed`]: ../trait.ParallelIterator.html#tymethod.drive_unindexed
 /// [`drive`]: ../trait.IndexedParallelIterator.html#tymethod.drive
-pub fn bridge<I, C>(par_iter: I, consumer: C) -> C::Result
+pub fn bridge<I, C, F = u8>(par_iter: I, consumer: C) -> C::Result
 where
     I: IndexedParallelIterator,
     C: Consumer<I::Item>,
