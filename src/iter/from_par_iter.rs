@@ -34,7 +34,7 @@ impl<T, I: IntoParallelIterator<Item = T>> FromParallelIterator<T> for Vec<T>
 where
     T: Send,
 {
-    fn from_par_iter<I>(par_iter: I) -> Self
+    fn from_par_iter(par_iter: I) -> Self
     {
         collect_extended(par_iter)
     }
