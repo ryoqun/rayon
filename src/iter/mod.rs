@@ -2059,7 +2059,7 @@ pub trait ParallelIterator: Sized + Send {
     where
         C: FromParallelIterator<Self::Item>,
     {
-        C::from_par_iter(self, 3)
+        C::from_par_iter(self)
     }
 
     /// Unzips the items of a parallel iterator into a pair of arbitrary
