@@ -69,7 +69,7 @@ where
     I: ParallelIterator,
 {
     type Item = I::Item;
-    type Base = I;
+    type Base = CC;
 
     fn drive_unindexed<C>(self, consumer: C) -> C::Result
     where
