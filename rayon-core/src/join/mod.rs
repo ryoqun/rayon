@@ -175,6 +175,68 @@ where
     })
 }
 
+/// with.
+pub fn join_context2<A, B, RA, RB>(oper_a: A, oper_b: B) -> (RA, RB)
+where
+    A: FnOnce(FnContext) -> RA + Send,
+    B: FnOnce(FnContext) -> RB + Send,
+    RA: Send,
+    RB: Send,
+{
+    #[inline]
+    fn call_a<R>(f: impl FnOnce(FnContext) -> R, injected: bool) -> impl FnOnce() -> R {
+        move || f(FnContext::new(injected))
+    }
+
+    #[inline]
+    fn call_b<R>(f: impl FnOnce(FnContext) -> R) -> impl FnOnce(bool) -> R {
+        move |migrated| f(FnContext::new(migrated))
+    }
+
+    registry::in_worker::<_, _, TypeErasedCustomCollector>(|worker_thread, injected| unsafe {
+        // Create virtual wrapper for task b; this all has to be
+        // done here so that the stack frame can keep it all live
+        // long enough.
+        let job_b = StackJob::new(call_b(oper_b), SpinLatch::new(worker_thread));
+        let job_b_ref = job_b.as_job_ref();
+        worker_thread.push(job_b_ref);
+
+        // Execute task a; hopefully b gets stolen in the meantime.
+        let status_a = unwind::halt_unwinding(call_a(oper_a, injected));
+        let result_a = match status_a {
+            Ok(v) => v,
+            Err(err) => join_recover_from_panic(worker_thread, &job_b.latch, err),
+        };
+
+        // Now that task A has finished, try to pop job B from the
+        // local stack.  It may already have been popped by job A; it
+        // may also have been stolen. There may also be some tasks
+        // pushed on top of it in the stack, and we will have to pop
+        // those off to get to it.
+        while !job_b.latch.probe() {
+            if let Some(job) = worker_thread.take_local_job() {
+                if job == job_b_ref {
+                    // Found it! Let's run it.
+                    //
+                    // Note that this could panic, but it's ok if we unwind here.
+                    let result_b = job_b.run_inline(injected);
+                    return (result_a, result_b);
+                } else {
+                    worker_thread.execute(job);
+                }
+            } else {
+                // Local deque is empty. Time to steal from other
+                // threads.
+                worker_thread.wait_until(&job_b.latch);
+                debug_assert!(job_b.latch.probe());
+                break;
+            }
+        }
+
+        (result_a, job_b.into_result())
+    })
+}
+
 /// If job A panics, we still cannot return until we are sure that job
 /// B is complete. This is because it may contain references into the
 /// enclosing stack frame(s).
