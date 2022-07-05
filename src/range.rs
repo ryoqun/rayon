@@ -96,6 +96,10 @@ mod private {
         where
             C: UnindexedConsumer<Self>;
 
+        fn drive_unindexed2<C, I: ParallelIterator>(self, consumer: C) -> C::Result
+        where
+            C: UnindexedConsumer<Self::Item> { panic!() }
+
         fn opt_len(iter: &Iter<Self>) -> Option<usize>;
     }
 
