@@ -399,7 +399,7 @@ where
         C: Consumer<I>,
     {
         type Output = C::Result;
-        type InstalledCollector = II::Base;
+        //type InstalledCollector = II::Base;
 
         fn callback<P>(self, producer: P) -> C::Result
         where
