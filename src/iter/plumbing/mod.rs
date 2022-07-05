@@ -482,7 +482,7 @@ where
 {
     panic!("{:?}", (std::any::type_name::<II>()));
     let splitter = LengthSplitter::new(producer.min_len(), producer.max_len(), len);
-    return helper(len, false, splitter, producer, consumer);
+    return helper::<P, C, II>(len, false, splitter, producer, consumer);
 
     fn helper<P, C, II: crossbeam_deque::CustomCollector>(
         len: usize,
