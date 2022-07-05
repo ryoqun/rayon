@@ -403,7 +403,7 @@ where
         where
             P: Producer<Item = I>,
         {
-            bridge_producer_consumer(self.len, producer, self.consumer)
+            bridge_producer_consumer2(self.len, producer, self.consumer)
         }
     }
 }
