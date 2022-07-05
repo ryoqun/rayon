@@ -2982,7 +2982,7 @@ where
     /// [`par_iter.fold`]: trait.ParallelIterator.html#method.fold
     /// [`par_iter.fold_with`]: trait.ParallelIterator.html#method.fold_with
     /// [`par_iter.for_each`]: trait.ParallelIterator.html#method.for_each
-    fn from_par_iter<I>(par_iter: I) -> Self
+    fn from_par_iter<I, CC = crossbeam_deque::DefaultCollector>(par_iter: I) -> Self
     where
         I: IntoParallelIterator<Item = T>;
 }
