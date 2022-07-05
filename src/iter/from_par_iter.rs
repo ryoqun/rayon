@@ -10,7 +10,7 @@ use std::hash::{BuildHasher, Hash};
 /// Creates an empty default collection and extends it.
 fn collect_extended<C, I>(par_iter: I) -> C
 where
-    I: IntoParallelIterator,
+    I: IntoParallelIterator + WithInstallType,
     C: ParallelExtend<I::Item> + Default,
 {
     let mut collection = C::default();
