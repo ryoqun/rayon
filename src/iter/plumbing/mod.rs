@@ -404,7 +404,7 @@ where
         where
             P: Producer<Item = I>,
         {
-            bridge_producer_consumer2::<CC>(self.len, producer, self.consumer)
+            bridge_producer_consumer2::<_, _, CC>(self.len, producer, self.consumer)
         }
     }
 }
