@@ -2220,9 +2220,14 @@ pub trait ParallelIterator: Sized + Send {
     /// iterators.
     ///
     /// [README]: https://github.com/rayon-rs/rayon/blob/master/src/iter/plumbing/README.md
-    fn drive_unindexed<C, I: ParallelIterator>(self, consumer: C) -> C::Result
+    fn drive_unindexed<C>(self, consumer: C) -> C::Result
     where
         C: UnindexedConsumer<Self::Item>;
+
+    /// ajajaja
+    fn drive_unindexed2<C, I: ParallelIterator>(self, consumer: C) -> C::Result
+    where
+        C: UnindexedConsumer<Self::Item> { panic!() }
 
     /// Internal method used to define the behavior of this parallel
     /// iterator. You should not need to call this directly.
