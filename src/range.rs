@@ -130,7 +130,7 @@ impl<T: RangeInteger> ParallelIterator for Iter<T> {
         T::drive_unindexed(self, consumer)
     }
 
-    fn drive_unindexed2<C, II>(self, consumer: C) -> C::Result
+    fn drive_unindexed2<C, II: ParallelIterator>(self, consumer: C) -> C::Result
     where
         C: UnindexedConsumer<T>,
     {
