@@ -395,12 +395,12 @@ where
         consumer: C,
     }
 
-    impl<C, I, II> ProducerCallback<I> for Callback<C>
+    impl<C, I, III> ProducerCallback<I> for Callback<C>
     where
         C: Consumer<I>,
     {
         type Output = C::Result;
-        type InstalledCollector = II::Base;
+        type InstalledCollector = III::Base;
 
         fn callback<P>(self, producer: P) -> C::Result
         where
