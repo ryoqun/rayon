@@ -473,6 +473,59 @@ where
     }
 }
 
+/// aaaaa
+pub fn bridge_producer_consumer2<P, C>(len: usize, producer: P, consumer: C) -> C::Result
+where
+    P: Producer,
+    C: Consumer<P::Item>,
+{
+    let splitter = LengthSplitter::new(producer.min_len(), producer.max_len(), len);
+    return helper(len, false, splitter, producer, consumer);
+
+    fn helper<P, C>(
+        len: usize,
+        migrated: bool,
+        mut splitter: LengthSplitter,
+        producer: P,
+        consumer: C,
+    ) -> C::Result
+    where
+        P: Producer,
+        C: Consumer<P::Item>,
+    {
+        if consumer.full() {
+            consumer.into_folder().complete()
+        } else if splitter.try_split(len, migrated) {
+            let mid = len / 2;
+            let (left_producer, right_producer) = producer.split_at(mid);
+            let (left_consumer, right_consumer, reducer) = consumer.split_at(mid);
+            let (left_result, right_result) = join_context(
+                |context| {
+                    helper(
+                        mid,
+                        context.migrated(),
+                        splitter,
+                        left_producer,
+                        left_consumer,
+                    )
+                },
+                |context| {
+                    helper(
+                        len - mid,
+                        context.migrated(),
+                        splitter,
+                        right_producer,
+                        right_consumer,
+                    )
+                },
+            );
+            reducer.reduce(left_result, right_result)
+        } else {
+            producer.fold_with(consumer.into_folder()).complete()
+        }
+    }
+}
+
 /// A variant of [`bridge_producer_consumer`] where the producer is an unindexed producer.
 ///
 /// [`bridge_producer_consumer`]: fn.bridge_producer_consumer.html
