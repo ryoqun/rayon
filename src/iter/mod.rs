@@ -2054,6 +2054,7 @@ pub trait ParallelIterator: Sized + Send {
         C::from_par_iter(self)
     }
 
+    /// jajaja
     fn collect2<C/*, CC*/>(self) -> C
     where
         C: FromParallelIterator<Self::Item>,
