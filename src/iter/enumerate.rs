@@ -82,7 +82,7 @@ where
     where
         C: UnindexedConsumer<Self::Item>,
     {
-        self.base.drive_unindexed2::<II>(consumer)
+        self.base.drive_unindexed2::<_, II>(consumer)
     }
 
     fn opt_len(&self) -> Option<usize> {
