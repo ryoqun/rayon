@@ -503,7 +503,7 @@ where
             let (left_consumer, right_consumer, reducer) = consumer.split_at(mid);
             let (left_result, right_result) = join_context2::<_, _, _, _, II>(
                 |context| {
-                    helper(
+                    helper::<P, C, II>(
                         mid,
                         context.migrated(),
                         splitter,
@@ -512,7 +512,7 @@ where
                     )
                 },
                 |context| {
-                    helper(
+                    helper::<P, C, II>(
                         len - mid,
                         context.migrated(),
                         splitter,
