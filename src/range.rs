@@ -126,6 +126,13 @@ impl<T: RangeInteger> ParallelIterator for Iter<T> {
         T::drive_unindexed(self, consumer)
     }
 
+    fn drive_unindexed2<C, II>(self, consumer: C) -> C::Result
+    where
+        C: UnindexedConsumer<T>,
+    {
+        T::drive_unindexed2::<_, II>(self, consumer)
+    }
+
     #[inline]
     fn opt_len(&self) -> Option<usize> {
         T::opt_len(self)
