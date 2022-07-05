@@ -392,7 +392,7 @@ where
     struct Callback<C, CC> {
         len: usize,
         consumer: C,
-        marker: PhantomData<CC>,
+        marker: std::marker::PhantomData<CC>,
     }
 
     impl<C, I, CC> ProducerCallback<I> for Callback<C, CC>
