@@ -389,7 +389,7 @@ where
     let len = par_iter.len();
     return par_iter.with_producer(Callback::<_, II::Base> { len, consumer, marker: std::marker::PhantomData });
 
-    struct Callback<C, CC> {
+    struct Callback<C, CC: crossbeam_deque::CustomCollector> {
         len: usize,
         consumer: C,
         marker: std::marker::PhantomData<CC>,
