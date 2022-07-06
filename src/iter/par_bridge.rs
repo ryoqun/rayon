@@ -161,7 +161,7 @@ where
             let s = std::any::type_name::<C>().to_string();
             dbg!(s);
             panic!();
-            match self.items.steal() {
+            match self.items.steal_not_dyn() {
                 Steal::Success(it) => {
                     folder = folder.consume(it);
                     if folder.full() {
