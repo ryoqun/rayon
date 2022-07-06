@@ -2227,7 +2227,7 @@ pub trait ParallelIterator: Sized + Send {
     /// ajajaja
     fn drive_unindexed2<C, I: ParallelIterator>(self, consumer: C) -> C::Result
     where
-        C: UnindexedConsumer<Self::Item> { panic!() }
+        C: UnindexedConsumer<Self::Item> { panic!("no drive_unindexed2() for:", std::any::type_name::<Self>()) }
 
     /// Internal method used to define the behavior of this parallel
     /// iterator. You should not need to call this directly.
