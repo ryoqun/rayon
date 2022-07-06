@@ -395,7 +395,7 @@ where
         marker: std::marker::PhantomData<CC>,
     }
 
-    impl<C, I, CC> ProducerCallback<I> for Callback<C, CC>
+    impl<C, I, CC: crossbeam_deque::CustomCollector> ProducerCallback<I> for Callback<C, CC>
     where
         C: Consumer<I>,
     {
