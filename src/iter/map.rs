@@ -40,7 +40,7 @@ where
     R: Send,
 {
     type Item = F::Output;
-    type Base = I;
+    type Base = I::Base;
 
     fn drive_unindexed<C>(self, consumer: C) -> C::Result
     where
