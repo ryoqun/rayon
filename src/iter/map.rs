@@ -54,7 +54,8 @@ where
     where
         C: UnindexedConsumer<Self::Item>,
     {
-        self.base.drive_unindexed2::<_, II>(consumer)
+        let consumer1 = MapConsumer::new(consumer, &self.map_op);
+        self.base.drive_unindexed2::<_, II>(consumer1)
     }
 
     fn opt_len(&self) -> Option<usize> {
