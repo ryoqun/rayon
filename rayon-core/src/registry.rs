@@ -819,7 +819,7 @@ impl<C: CustomCollector> WorkerThread<C> {
                 .find_map(|victim_index| {
                     let victim = &thread_infos[victim_index];
                     //dbg!(("steal2", std::any::type_name::<C>()));
-                    match victim.stealer.steal(&self.dyn_collector) {
+                    match victim.stealer.steal() {
                         Steal::Success(job) => {
                             self.log(|| JobStolen {
                                 worker: self.index,
