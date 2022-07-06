@@ -812,7 +812,7 @@ impl<C: CustomCollector> WorkerThread<C> {
                 //panic!("type erase detected!")
             }
             */
-            dbg!("right before steal: {:?}", (std::any::type_name::<C>()));
+            dbg!(std::thread::current::name(), "right before steal: {:?}", (std::any::type_name::<C>()));
             let job = (start..num_threads)
                 .chain(0..start)
                 .filter(move |&i| i != self.index)
