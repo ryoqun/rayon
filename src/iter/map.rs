@@ -50,6 +50,13 @@ where
         self.base.drive_unindexed(consumer1)
     }
 
+    fn drive_unindexed2<C, II: ParallelIterator>(self, consumer: C) -> C::Result
+    where
+        C: UnindexedConsumer<Self::Item>,
+    {
+        self.base.drive_unindexed2::<_, II>(consumer)
+    }
+
     fn opt_len(&self) -> Option<usize> {
         self.base.opt_len()
     }
