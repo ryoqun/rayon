@@ -481,7 +481,7 @@ where
     P: Producer,
     C: Consumer<P::Item>,
 {
-    panic!("{:?}", (std::any::type_name::<II>()));
+    //panic!("{:?}", (std::any::type_name::<II>()));
     let splitter = LengthSplitter::new(producer.min_len(), producer.max_len(), len);
     return helper::<P, C, II>(len, false, splitter, producer, consumer);
 
