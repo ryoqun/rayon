@@ -384,6 +384,7 @@ pub fn bridge2<I, C, II: crate::iter::ParallelIterator>(par_iter: I, consumer: C
 where
     I: IndexedParallelIterator,
     C: Consumer<I::Item>,
+    <II as iter::ParallelIterator>::Base: CustomCollector,
 {
     //panic!("{:?}", (std::any::type_name::<II>(), std::any::type_name::<II::Base>(), std::any::type_name::<I>(), std::any::type_name::<I::Base>()));
     let len = par_iter.len();
