@@ -161,7 +161,7 @@ where
             let s = std::any::type_name::<C>().to_string();
             dbg!(s);
             panic!();
-            match self.items.steal(&((*WorkerThread::<C>::current()).dyn_collector)) {
+            match self.items.steal() {
                 Steal::Success(it) => {
                     folder = folder.consume(it);
                     if folder.full() {
