@@ -353,7 +353,7 @@ pub trait ParallelIterator: Sized + Send {
     /// [`for_each`]: #method.for_each
     type Item: Send;
     /// jajaala
-    type Base: CustomCollector = TypeErasedCustomCollector;
+    type Base: crossbeam_deque::CustomCollector = TypeErasedCustomCollector;
 
     /// Executes `OP` on each item produced by the iterator, in parallel.
     ///
